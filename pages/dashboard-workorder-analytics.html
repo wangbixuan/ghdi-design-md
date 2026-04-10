@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>工单统计看板</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="topbar__left">
+        <div class="eyebrow"><span class="eyebrow__dot"></span>Dashboard / 工单统计</div>
+        <h1 class="topbar__title">工单数据统计看板</h1>
+        <div class="topbar__meta">左窄右宽，指标、趋势、热度与关键词统一编排</div>
+      </div>
+      <div class="topbar__actions">
+        <a class="btn btn--secondary" href="./index.html">返回索引</a>
+        <a class="btn btn--primary" href="./list-management.html">查看列表页</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero__row">
+        <div>
+          <h2 class="hero__title">2026 年 4 月运维工单总览</h2>
+          <p class="hero__desc">
+            原型遵循现有 Vue 页面结构，采用双栏卡片看板，左侧聚合核心指标和过程状态，右侧补充项目归属、热点内容与搜索热词。
+          </p>
+        </div>
+        <div class="hero__badges">
+          <span class="tag tag--success">主题色驱动图表</span>
+          <span class="tag tag--primary">空态兼容</span>
+          <span class="tag tag--info">大盘可扩展</span>
+        </div>
+      </div>
+    </section>
+
+    <main class="dashboard-grid">
+      <section class="dashboard-left">
+        <div class="metric-grid">
+          <article class="metric-card">
+            <p class="metric-card__label">提单数</p>
+            <div class="metric-card__value">12,846</div>
+            <div class="metric-card__foot">较上周 +8.2%</div>
+          </article>
+          <article class="metric-card">
+            <p class="metric-card__label">处理中数</p>
+            <div class="metric-card__value">1,436</div>
+            <div class="metric-card__foot">逾期 42 单</div>
+          </article>
+          <article class="metric-card">
+            <p class="metric-card__label">工单完成数</p>
+            <div class="metric-card__value">10,982</div>
+            <div class="metric-card__foot">完结率 85.5%</div>
+          </article>
+        </div>
+
+        <section class="panel">
+          <div class="panel__head">
+            <h2 class="panel__title">工单评分</h2>
+            <div class="panel__meta">平均评分 + 分布</div>
+          </div>
+          <div class="panel__body">
+            <div class="section-grid section-grid--2" style="margin-top:0;">
+              <div class="chart-box chart-box--short donut-chart">
+                <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="120" cy="120" r="72" fill="none" stroke="#ececec" stroke-width="22"/>
+                  <circle cx="120" cy="120" r="72" fill="none" stroke="#f19e38" stroke-width="22" stroke-linecap="round" stroke-dasharray="332 452" transform="rotate(-90 120 120)"/>
+                  <text x="120" y="116" text-anchor="middle" font-size="16" fill="#606266">平均评分</text>
+                  <text x="120" y="146" text-anchor="middle" font-size="34" font-weight="700" fill="#f19e38">4.6</text>
+                </svg>
+              </div>
+              <div class="rank-list">
+                <div class="rank-item"><div class="rank-item__top"><span class="rank-item__label">5 星</span><span class="rank-item__value">68%</span></div><div class="rank-item__bar"><div class="rank-item__fill" style="width:68%;"></div></div></div>
+                <div class="rank-item"><div class="rank-item__top"><span class="rank-item__label">4 星</span><span class="rank-item__value">21%</span></div><div class="rank-item__bar"><div class="rank-item__fill" style="width:21%;"></div></div></div>
+                <div class="rank-item"><div class="rank-item__top"><span class="rank-item__label">3 星</span><span class="rank-item__value">7%</span></div><div class="rank-item__bar"><div class="rank-item__fill" style="width:7%;"></div></div></div>
+                <div class="rank-item"><div class="rank-item__top"><span class="rank-item__label">2 星</span><span class="rank-item__value">3%</span></div><div class="rank-item__bar"><div class="rank-item__fill" style="width:3%;"></div></div></div>
+                <div class="rank-item"><div class="rank-item__top"><span class="rank-item__label">1 星</span><span class="rank-item__value">1%</span></div><div class="rank-item__bar"><div class="rank-item__fill" style="width:1%;"></div></div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel__head">
+            <h2 class="panel__title">工单趋势统计</h2>
+            <div class="panel__meta">近 7 日创建与完成</div>
+          </div>
+          <div class="panel__body">
+            <div class="chart-box chart-box--tall">
+              <div class="chart-grid"></div>
+              <div class="line-chart">
+                <svg viewBox="0 0 760 280" xmlns="http://www.w3.org/2000/svg">
+                  <polyline fill="none" stroke="#f19e38" stroke-width="4" points="20,210 120,170 220,185 320,130 420,150 520,100 620,112 720,70"/>
+                  <polyline fill="none" stroke="#67c23a" stroke-width="4" points="20,222 120,194 220,168 320,158 420,132 520,122 620,92 720,84"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel__head">
+            <h2 class="panel__title">工单状态统计</h2>
+            <div class="panel__meta">按阶段聚合</div>
+          </div>
+          <div class="panel__body">
+            <div class="rank-list">
+              <div class="rank-item"><div class="rank-item__top"><span class="rank-item__label">待受理</span><span class="rank-item__value">126</span></div><div class="rank-item__bar"><div class="rank-item__fill" style="width:12%;"></div></div></div>
+              <div class="rank-item"><div class="rank-item__top"><span class="rank-item__label">处理中</span><span class="rank-item__value">1,436</span></div><div class="rank-item__bar"><div class="rank-item__fill" style="width:68%;"></div></div></div>
+              <div class="rank-item"><div class="rank-item__top"><span class="rank-item__label">待回访</span><span class="rank-item__value">284</span></div><div class="rank-item__bar"><div class="rank-item__fill" style="width:18%;"></div></div></div>
+              <div class="rank-item"><div class="rank-item__top"><span class="rank-item__label">已完成</span><span class="rank-item__value">10,982</span></div><div class="rank-item__bar"><div class="rank-item__fill" style="width:88%;"></div></div></div>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section class="dashboard-right">
+        <section class="panel span-3">
+          <div class="panel__head">
+            <h2 class="panel__title">工单归属项目统计</h2>
+            <div class="panel__meta">重点项目工作量</div>
+          </div>
+          <div class="panel__body">
+            <div class="chart-box bar-chart">
+              <div class="chart-grid"></div>
+              <div class="line-chart">
+                <svg viewBox="0 0 900 240" xmlns="http://www.w3.org/2000/svg">
+                  <g fill="#f19e38">
+                    <rect x="48" y="120" width="70" height="80" rx="8"/>
+                    <rect x="178" y="84" width="70" height="116" rx="8"/>
+                    <rect x="308" y="64" width="70" height="136" rx="8"/>
+                    <rect x="438" y="102" width="70" height="98" rx="8"/>
+                    <rect x="568" y="48" width="70" height="152" rx="8"/>
+                    <rect x="698" y="74" width="70" height="126" rx="8"/>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel__head">
+            <h2 class="panel__title">热门案例阅读频次</h2>
+            <div class="panel__meta">Top 4</div>
+          </div>
+          <div class="panel__body">
+            <div class="rank-list">
+              <div class="rank-item"><div class="rank-item__top"><span class="rank-item__label">服务器巡检故障排查模板</span><span class="rank-item__value">3,286</span></div><div class="rank-item__bar"><div class="rank-item__fill" style="width:90%;"></div></div></div>
+              <div class="rank-item"><div class="rank-item__top"><span class="rank-item__label">办公网络断连应急处理</span><span class="rank-item__value">2,940</span></div><div class="rank-item__bar"><div class="rank-item__fill" style="width:80%;"></div></div></div>
+              <div class="rank-item"><div class="rank-item__top"><span class="rank-item__label">打印设备资产更换流程</span><span class="rank-item__value">2,216</span></div><div class="rank-item__bar"><div class="rank-item__fill" style="width:66%;"></div></div></div>
+              <div class="rank-item"><div class="rank-item__top"><span class="rank-item__label">监控系统录像缺失分析</span><span class="rank-item__value">1,425</span></div><div class="rank-item__bar"><div class="rank-item__fill" style="width:44%;"></div></div></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel__head">
+            <h2 class="panel__title">热搜问题分类</h2>
+            <div class="panel__meta">问题类型排行</div>
+          </div>
+          <div class="panel__body">
+            <div class="rank-list">
+              <div class="rank-item"><div class="rank-item__top"><span class="rank-item__label">网络故障</span><span class="rank-item__value">352</span></div><div class="rank-item__bar"><div class="rank-item__fill" style="width:100%;"></div></div></div>
+              <div class="rank-item"><div class="rank-item__top"><span class="rank-item__label">资产报修</span><span class="rank-item__value">298</span></div><div class="rank-item__bar"><div class="rank-item__fill" style="width:84%;"></div></div></div>
+              <div class="rank-item"><div class="rank-item__top"><span class="rank-item__label">账号权限</span><span class="rank-item__value">214</span></div><div class="rank-item__bar"><div class="rank-item__fill" style="width:62%;"></div></div></div>
+              <div class="rank-item"><div class="rank-item__top"><span class="rank-item__label">会议设备</span><span class="rank-item__value">168</span></div><div class="rank-item__bar"><div class="rank-item__fill" style="width:48%;"></div></div></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel__head">
+            <h2 class="panel__title">热搜关键词</h2>
+            <div class="panel__meta">词云示意</div>
+          </div>
+          <div class="panel__body">
+            <div class="chart-box word-cloud chart-box--short">
+              <svg viewBox="0 0 420 220" xmlns="http://www.w3.org/2000/svg">
+                <text x="34" y="72" fill="#f19e38" font-size="30" font-weight="700">VPN</text>
+                <text x="130" y="50" fill="#d77f1a" font-size="24">打印机</text>
+                <text x="252" y="80" fill="#8f8f8f" font-size="28">网络</text>
+                <text x="70" y="132" fill="#f2a74e" font-size="20">会议系统</text>
+                <text x="212" y="146" fill="#b0b0b0" font-size="18">资产盘点</text>
+                <text x="28" y="184" fill="#c79d60" font-size="22">账号权限</text>
+                <text x="268" y="184" fill="#f19e38" font-size="26" font-weight="700">报修</text>
+              </svg>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

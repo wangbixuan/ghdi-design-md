@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Element 基础控件规范页</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="topbar__left">
+        <div class="eyebrow"><span class="eyebrow__dot"></span>Foundation / Element UI Controls</div>
+        <h1 class="topbar__title">基础控件规范页</h1>
+        <div class="topbar__meta">按 Element UI 尺寸、状态和层级补强后的基础控件演示</div>
+      </div>
+      <div class="topbar__actions">
+        <a class="btn btn--secondary" href="./index.html">返回索引</a>
+        <a class="btn btn--ghost" href="../design.md">查看设计规范</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero__row">
+        <div>
+          <h2 class="hero__title">Element UI 语义，GHDI 主题主色</h2>
+          <p class="hero__desc">
+            这页只负责展示基础控件层：按钮、输入框、选择器、单选、多选、开关、标签、提示、表格、标签页、下拉、分页和弹窗。
+            业务卡片、dashboard 和审批布局继续建立在这些控件基线上。
+          </p>
+        </div>
+        <div class="hero__badges">
+          <span class="chip chip--success">控件尺寸回归 Element</span>
+          <span class="chip">主题色保持项目化</span>
+          <span class="chip">可作为后续页面基线</span>
+        </div>
+      </div>
+    </section>
+
+    <main class="control-showcase">
+      <section class="panel">
+        <div class="panel__head">
+          <h2 class="panel__title">按钮 Buttons</h2>
+          <div class="panel__meta">default / primary / semantic / text / size</div>
+        </div>
+        <div class="panel__body control-showcase">
+          <div class="control-row">
+            <button class="btn btn--secondary">默认按钮</button>
+            <button class="btn btn--primary">主要按钮</button>
+            <button class="btn btn--success">成功按钮</button>
+            <button class="btn btn--warning">警告按钮</button>
+            <button class="btn btn--danger">危险按钮</button>
+            <button class="btn btn--info">信息按钮</button>
+            <button class="btn btn--text">文字按钮</button>
+          </div>
+          <div class="control-row">
+            <button class="btn btn--primary">默认</button>
+            <button class="btn btn--primary btn--medium">Medium</button>
+            <button class="btn btn--primary btn--small">Small</button>
+            <button class="btn btn--primary btn--mini">Mini</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel__head">
+          <h2 class="panel__title">输入类控件 Inputs</h2>
+          <div class="panel__meta">40 / 36 / 32 / 28 高度体系</div>
+        </div>
+        <div class="panel__body section-grid section-grid--2" style="margin-top:0;">
+          <div class="control-showcase">
+            <input class="input" value="默认输入框">
+            <input class="input input--medium" value="medium 输入框">
+            <input class="input input--small" value="small 输入框">
+            <input class="input input--mini" value="mini 输入框">
+            <input class="input" placeholder="占位文本示意">
+            <input class="input" value="禁用输入框" disabled>
+          </div>
+          <div class="control-showcase">
+            <select class="select"><option>默认选择器</option></select>
+            <select class="select select--small"><option>small 选择器</option></select>
+            <textarea class="textarea">多行文本输入区域，hover / focus / disabled 规则与 Element 输入框保持一致。</textarea>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel__head">
+          <h2 class="panel__title">选择控件 Selection</h2>
+          <div class="panel__meta">radio / checkbox / switch</div>
+        </div>
+        <div class="panel__body control-showcase">
+          <div class="control-row">
+            <span class="radio-demo is-checked"><i class="radio-demo__dot"></i>已选项</span>
+            <span class="radio-demo"><i class="radio-demo__dot"></i>未选项</span>
+          </div>
+          <div class="control-row">
+            <span class="checkbox-demo is-checked"><i class="checkbox-demo__box"></i>多选项 A</span>
+            <span class="checkbox-demo"><i class="checkbox-demo__box"></i>多选项 B</span>
+          </div>
+          <div class="control-row">
+            <span class="switch-demo is-checked"><i class="switch-demo__core"></i>开启</span>
+            <span class="switch-demo"><i class="switch-demo__core"></i>关闭</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel__head">
+          <h2 class="panel__title">标签与提示 Tags / Alerts</h2>
+          <div class="panel__meta">浅底语义色</div>
+        </div>
+        <div class="panel__body control-showcase">
+          <div class="control-row">
+            <span class="tag tag--primary">主题标签</span>
+            <span class="tag tag--success">成功标签</span>
+            <span class="tag tag--warning">警告标签</span>
+            <span class="tag tag--danger">危险标签</span>
+            <span class="tag tag--info">信息标签</span>
+          </div>
+          <div class="control-showcase">
+            <div class="alert alert--success"><div class="alert__title">成功提示</div><div class="alert__desc">适合表单保存成功、提交完成等正向反馈。</div></div>
+            <div class="alert alert--warning"><div class="alert__title">警告提示</div><div class="alert__desc">适合缺少前置条件、需二次确认或存在风险提醒的场景。</div></div>
+            <div class="alert alert--info"><div class="alert__title">信息提示</div><div class="alert__desc">适合中性业务说明或控件帮助文本的增强表达。</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel__head">
+          <h2 class="panel__title">表格 / 标签页 / 下拉 / 分页</h2>
+          <div class="panel__meta">高频后台基础骨架</div>
+        </div>
+        <div class="panel__body control-showcase">
+          <div class="tabs-demo">
+            <div class="tabs-demo__item is-active">资产信息</div>
+            <div class="tabs-demo__item">变更记录</div>
+            <div class="tabs-demo__item">审批日志</div>
+          </div>
+          <table class="table-mini">
+            <thead>
+              <tr><th>资产编号</th><th>资产名称</th><th>状态</th><th>操作</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>ZC-2026-1024</td><td>图形工作站</td><td><span class="tag tag--success">已确认</span></td><td><button class="btn btn--text">查看</button></td></tr>
+              <tr><td>ZC-2026-1025</td><td>会议终端</td><td><span class="tag tag--warning">处理中</span></td><td><button class="btn btn--text">编辑</button></td></tr>
+            </tbody>
+          </table>
+          <div class="section-grid section-grid--2" style="margin-top:0;">
+            <div class="dropdown-demo">
+              <div class="dropdown-demo__item">查看详情</div>
+              <div class="dropdown-demo__item">编辑数据</div>
+              <div class="dropdown-demo__item">打印二维码</div>
+              <div class="dropdown-demo__item">删除</div>
+            </div>
+            <div class="pagination">
+              <span class="pagination__item">‹</span>
+              <span class="pagination__item is-active">1</span>
+              <span class="pagination__item">2</span>
+              <span class="pagination__item">3</span>
+              <span class="pagination__item">4</span>
+              <span class="pagination__item">›</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel__head">
+          <h2 class="panel__title">弹窗 Dialog</h2>
+          <div class="panel__meta">标题 / 内容 / 底部按钮区</div>
+        </div>
+        <div class="panel__body">
+          <div class="dialog-demo">
+            <div class="dialog-demo__head">
+              <h3 class="dialog-demo__title">资产详情</h3>
+              <span class="tag tag--info">90% 宽度场景</span>
+            </div>
+            <div class="dialog-demo__body">
+              这是一个按 Element Dialog 结构表达的弹窗示意。标题区、内容区、底部按钮区明确分层，
+              字号、内边距和圆角都回到 Element UI 的基准表达，再叠加项目业务内容。
+            </div>
+            <div class="dialog-demo__foot">
+              <button class="btn btn--secondary">取 消</button>
+              <button class="btn btn--primary">确 定</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

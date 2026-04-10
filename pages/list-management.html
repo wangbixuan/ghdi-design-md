@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>列表管理页</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="topbar__left">
+        <div class="eyebrow"><span class="eyebrow__dot"></span>List / 资产登记</div>
+        <h1 class="topbar__title">资产登记一览表</h1>
+        <div class="topbar__meta">搜索、表格、工具栏、行内操作与弹窗的标准后台列表页</div>
+      </div>
+      <div class="topbar__actions">
+        <a class="btn btn--secondary" href="./index.html">返回索引</a>
+        <a class="btn btn--primary" href="./detail-config.html">查看详情配置页</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero__row">
+        <div>
+          <h2 class="hero__title">资产登记管理</h2>
+          <p class="hero__desc">当前页展示典型列表管理模式：顶部筛选、中部表格、右侧操作能力外收到更多菜单，并通过弹窗完成详情、导入、打印等附加任务。</p>
+        </div>
+        <div class="hero__badges">
+          <span class="tag tag--info">批量勾选</span>
+          <span class="tag tag--primary">二维码</span>
+          <span class="tag tag--success">权限驱动操作</span>
+        </div>
+      </div>
+    </section>
+
+    <main class="section-grid">
+      <section class="panel">
+        <div class="panel__head">
+          <h2 class="panel__title">筛选区</h2>
+          <div class="panel__meta">搜索条件 / 分页前置</div>
+        </div>
+        <div class="panel__body">
+          <div class="search-bar">
+            <input class="input" placeholder="请输入资产编号 / 资产名称">
+            <select class="select"><option>资产类型：全部</option></select>
+            <select class="select"><option>状态：全部</option></select>
+            <select class="select"><option>所属单位：全部</option></select>
+            <div class="toolbar__actions">
+              <button class="btn btn--primary btn--small">查询</button>
+              <button class="btn btn--secondary btn--small">重置</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel__head">
+          <h2 class="panel__title">列表工具栏</h2>
+          <div class="panel__meta">与表格联动</div>
+        </div>
+        <div class="panel__body">
+          <div class="toolbar">
+            <div class="hero__badges" style="justify-content:flex-start;">
+              <span class="tag tag--info">已选 3 项</span>
+              <span class="tag tag--info">当前权限：单位资产管理员</span>
+            </div>
+            <div class="toolbar__actions">
+              <button class="btn btn--primary btn--small">登 记</button>
+              <button class="btn btn--primary btn--small">导 入</button>
+              <button class="btn btn--primary btn--small">打 印</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel__head">
+          <h2 class="panel__title">资产列表</h2>
+          <div class="panel__meta">共 1,286 条</div>
+        </div>
+        <div class="panel__body">
+          <div class="table-wrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>选择</th>
+                  <th>资产编号</th>
+                  <th>资产名称</th>
+                  <th>规格/型号</th>
+                  <th>所属单位</th>
+                  <th>状态</th>
+                  <th>使用人</th>
+                  <th>入账日期</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="table-selection"><span class="checkbox-demo is-checked"><i class="checkbox-demo__box"></i></span></span></td>
+                  <td>ZC-2026-00128</td>
+                  <td>图形工作站</td>
+                  <td>Precision 5820</td>
+                  <td>桥梁设计院</td>
+                  <td><span class="tag tag--warning">待确认</span></td>
+                  <td>李瑞</td>
+                  <td>2026-03-12</td>
+                  <td><div class="table-ops"><button class="btn btn--text">数据确认</button><span class="dropdown-trigger">更多<i class="icon-caret"></i></span></div></td>
+                </tr>
+                <tr>
+                  <td><span class="table-selection"><span class="checkbox-demo is-checked"><i class="checkbox-demo__box"></i></span></span></td>
+                  <td>ZC-2026-00129</td>
+                  <td>激光打印机</td>
+                  <td>HP M706</td>
+                  <td>综合管理部</td>
+                  <td><span class="tag tag--success">已确认</span></td>
+                  <td>何清</td>
+                  <td>2026-02-18</td>
+                  <td><div class="table-ops"><button class="btn btn--text">查 看</button><span class="dropdown-trigger">更多<i class="icon-caret"></i></span></div></td>
+                </tr>
+                <tr>
+                  <td><span class="table-selection"><span class="checkbox-demo"><i class="checkbox-demo__box"></i></span></span></td>
+                  <td>ZC-2026-00130</td>
+                  <td>会议终端</td>
+                  <td>MAXHUB M86</td>
+                  <td>信息中心</td>
+                  <td><span class="tag tag--success">已确认</span></td>
+                  <td>张森</td>
+                  <td>2026-01-26</td>
+                  <td><div class="table-ops"><button class="btn btn--text">查 看</button><span class="dropdown-trigger">更多<i class="icon-caret"></i></span></div></td>
+                </tr>
+                <tr>
+                  <td><span class="table-selection"><span class="checkbox-demo is-checked"><i class="checkbox-demo__box"></i></span></span></td>
+                  <td>ZC-2026-00131</td>
+                  <td>网络交换机</td>
+                  <td>S5720-28X</td>
+                  <td>信息中心</td>
+                  <td><span class="tag tag--primary">处理中</span></td>
+                  <td>赵宁</td>
+                  <td>2025-12-08</td>
+                  <td><div class="table-ops"><button class="btn btn--text">查 看</button><span class="dropdown-trigger">更多<i class="icon-caret"></i></span></div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="toolbar" style="margin-top:16px;">
+            <div class="form-helper">显示第 1 - 4 条，共 1,286 条记录</div>
+            <div class="pagination">
+              <span class="pagination__item">&lt;</span>
+              <span class="pagination__item is-active">1</span>
+              <span class="pagination__item">2</span>
+              <span class="pagination__item">3</span>
+              <span class="pagination__item">4</span>
+              <span class="pagination__item">...</span>
+              <span class="pagination__item">322</span>
+              <span class="pagination__item">&gt;</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel__head">
+          <h2 class="panel__title">弹窗能力预览</h2>
+          <div class="panel__meta">详情 / 导入 / 打印 / 二维码</div>
+        </div>
+        <div class="panel__body">
+          <div class="dialog-grid">
+            <article class="dialog-card">
+              <h3 class="dialog-card__title">资产详情弹窗</h3>
+              <p class="dialog-card__desc">90% 宽度，承载新增、编辑、查看三种模式，底部统一为关闭与保存。</p>
+            </article>
+            <article class="dialog-card">
+              <h3 class="dialog-card__title">批量导入弹窗</h3>
+              <p class="dialog-card__desc">全屏打开，容纳模板说明、拖拽上传和错误反馈，适合大批量操作。</p>
+            </article>
+            <article class="dialog-card">
+              <h3 class="dialog-card__title">打印与二维码弹窗</h3>
+              <p class="dialog-card__desc">分别用于标签打印预览和二维码展示，内容聚焦，不干扰列表上下文。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

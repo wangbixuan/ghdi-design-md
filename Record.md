@@ -3,7 +3,7 @@
 ###  核心设计资产 (Visual & Logic)
 
 - **Figma/Adobe XD 链接或截图：** 
-- https://mastergo.com/goto/S028Kikk?page_id=0:2903&file=188196286918363 邀请您进入《Element Plus Design System》，点击链接开始协作
+- https://mastergo.com/goto/S028Kikk?page_id=0:2903&file=188196286918363 
 
 - **图标库 (Iconography)：** Solid面性图标
     
@@ -14,20 +14,19 @@
 - **组件库文档 (Storybook/Documentation)：**
 - https://element.eleme.cn/#/zh-CN/component/installation
     
-- **核心配置代码：** 比如 `theme.js` 或 `tailwind.config.js` 的片段。我想看看你们是如何命名变量的（是语义化命名如 `brand-primary`，还是描述性命名如 `blue-500`）。
-    [C:\ghdi\bigboss-base\src\store\mutation-types.js](file:///c%3A/ghdi/bigboss-base/src/store/mutation-types.js)
+- **核心配置代码： 暂无
 - **技术栈：** Vue
 ### 典型页面原型 (Component Patterns)
 
 - **高频页面截图：**
 
-| 页面                 | 截图                                        | 相对路径                                                                                                                                                                                                                       |
-| ------------------ | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| dashboard资产管理首页    | ![[Pasted image 20260408103800.png]]      | bigboss-wedo\src\module\main\ema\home\newIndex.vue                                                                                                                                                                         |
-| dashboard工单汇总-数据统计 | ![[Pasted image 20260408103332.png\|206]] | bigboss-base\src\module\order\work\manage\order_manage_sts.vue                                                                                                                                                             |
-| 列表页-通知公告列表页        | ![[Pasted image 20260408151438.png\|203]] | ema/asset/maintenance/signin/index                                                                                                                                                                                         |
-| 详情页                | ![[Pasted image 20260409093411.png]]      | [C:\ghdi\bigboss-wedo\src\module\main\ppm\ds\projectDetail\index.vue](file:///c%3A/ghdi/bigboss-wedo/src/module/main/ppm/ds/projectDetail/index.vue)                                                                       |
-| 表单页                | ![[Pasted image 20260409093600.png]]      | [C:\ghdi\bigboss-wedo\src\module\main\ppm\ds\projectDetail\personnelManagement\reportApproval\table.vue](file:///c%3A/ghdi/bigboss-wedo/src/module/main/ppm/ds/projectDetail/personnelManagement/reportApproval/table.vue) |
+| 页面                 | 截图                                        | 文件名        |
+| ------------------ | ----------------------------------------- | ---------- |
+| dashboard资产管理首页    | ![[Pasted image 20260408103800.png\|210]] | 数据可视化1.vue |
+| dashboard工单汇总-数据统计 | ![[Pasted image 20260408103332.png\|206]] | 数据可视化2.vue |
+| 列表页-通知公告列表页        | ![[Pasted image 20260408151438.png\|203]] | 列表页.vue    |
+| 详情页                | ![[Pasted image 20260409093411.png\|206]] | 详情页.vue    |
+| 表单页                | ![[Pasted image 20260409093600.png\|219]] | 表单页.vue    |
 
 
     

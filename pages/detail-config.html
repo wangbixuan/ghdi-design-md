@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>详情配置页</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="topbar__left">
+        <div class="eyebrow"><span class="eyebrow__dot"></span>Detail / 通知公告</div>
+        <h1 class="topbar__title">通知公告配置详情</h1>
+        <div class="topbar__meta">双列设置 + 富文本编辑 + 规则抽屉 + 浮动提示</div>
+      </div>
+      <div class="topbar__actions">
+        <a class="btn btn--secondary" href="./index.html">返回索引</a>
+        <a class="btn btn--primary" href="./approval-form.html">查看审批页</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero__row">
+        <div>
+          <h2 class="hero__title">广东省交通规划设计研究院集团股份有限公司</h2>
+          <p class="hero__desc">
+            页面融合了模板选择、发布规则、富文本编辑、附件上传和预览能力。右侧浮动卡片模拟了“规则已更新”的悬浮提醒。
+          </p>
+        </div>
+        <div class="hero__badges">
+          <span class="tag tag--success">当前模式：编辑公告</span>
+          <span class="tag tag--primary">可预览</span>
+          <span class="tag tag--info">规则联动</span>
+        </div>
+      </div>
+    </section>
+
+    <main class="section-grid section-grid--sidebar">
+      <div class="section-grid" style="margin-top:0;">
+        <section class="panel">
+          <div class="panel__head">
+            <h2 class="panel__title">基础配置</h2>
+            <div class="panel__meta">双列表单布局</div>
+          </div>
+          <div class="panel__body">
+            <div class="form-layout">
+              <div class="field-group"><label class="field-group__label is-required">选择模板</label><select class="select"><option>标准通知模板 / 党委公告模板 / 安全生产模板</option></select></div>
+              <div class="field-group"><label class="field-group__label is-required">重要程度</label><select class="select"><option>非常重要</option></select></div>
+              <div class="field-group"><label class="field-group__label is-required">发布时间</label><select class="select"><option>定时触发</option></select></div>
+              <div class="field-group"><label class="field-group__label is-required">定时触发时间</label><input class="input" value="2026-04-16 09:30:00"></div>
+              <div class="field-group"><label class="field-group__label is-required">发文规则</label><select class="select"><option>综合管理部-全员签收</option></select></div>
+              <div class="field-group"><label class="field-group__label">权重排序</label><input class="input" value="100"></div>
+              <div class="field-group" style="grid-column: span 2;">
+                <label class="field-group__label is-required">公告标题</label>
+                <textarea class="textarea">关于 2026 年第二季度固定资产盘点工作的通知</textarea>
+                <div class="form-helper">标题长度建议控制在 200 字以内，便于列表和移动端摘要展示。</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel__head">
+            <h2 class="panel__title">公告内容</h2>
+            <div class="panel__meta">Template Editor 结构示意</div>
+          </div>
+          <div class="panel__body">
+            <div class="editor-shell">
+              <article class="editor">
+                <h2>关于 2026 年第二季度固定资产盘点工作的通知</h2>
+                <p>各部门、各生产单元：</p>
+                <p>为进一步加强固定资产全生命周期管理，确保资产账实一致，现组织开展 2026 年第二季度固定资产盘点工作。请各部门依据系统台账，按期完成自查、异常说明及确认回传。</p>
+                <h3>一、盘点范围</h3>
+                <p>本次盘点涵盖办公设备、网络设备、会议终端、打印设备、实验设备及其他纳入资产系统管理范围的固定资产。</p>
+                <h3>二、时间安排</h3>
+                <p>1. 自查阶段：4 月 16 日至 4 月 20 日<br>2. 复核阶段：4 月 21 日至 4 月 24 日<br>3. 汇总确认：4 月 25 日</p>
+              </article>
+              <aside class="person-grid">
+                <div class="placeholder-card">
+                  <h3 class="placeholder-card__title">变量面板</h3>
+                  <div class="rank-list">
+                    <div class="rank-item"><div class="rank-item__top"><span class="rank-item__label">公告标题</span><span class="rank-item__value">{{ title }}</span></div><div class="rank-item__bar"><div class="rank-item__fill" style="width:84%;"></div></div></div>
+                    <div class="rank-item"><div class="rank-item__top"><span class="rank-item__label">组织名称</span><span class="rank-item__value">{{ orgName }}</span></div><div class="rank-item__bar"><div class="rank-item__fill" style="width:60%;"></div></div></div>
+                    <div class="rank-item"><div class="rank-item__top"><span class="rank-item__label">发布时间</span><span class="rank-item__value">{{ publishAt }}</span></div><div class="rank-item__bar"><div class="rank-item__fill" style="width:48%;"></div></div></div>
+                  </div>
+                </div>
+                <div class="placeholder-card">
+                  <h3 class="placeholder-card__title">操作能力</h3>
+                  <div class="toolbar__actions">
+                    <button class="btn btn--ghost btn--small">生成预览</button>
+                    <button class="btn btn--secondary btn--small">查看规则</button>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel__head">
+            <h2 class="panel__title">附件与封面</h2>
+            <div class="panel__meta">与编辑区左边界对齐</div>
+          </div>
+          <div class="panel__body section-grid section-grid--2" style="margin-top:0;">
+            <div class="attachment-list">
+              <div class="attachment-item"><span>资产盘点工作方案.docx</span><span class="attachment-item__meta">已上传</span></div>
+              <div class="attachment-item"><span>盘点模板.xlsx</span><span class="attachment-item__meta">已上传</span></div>
+              <button class="btn btn--primary btn--small">上传通知附件</button>
+            </div>
+            <div class="attachment-list">
+              <div class="attachment-item"><span>cover-asset-check.png</span><span class="attachment-item__meta">1200 × 630</span></div>
+              <button class="btn btn--primary btn--small">上传封面图片</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel__body">
+            <div class="toolbar" style="justify-content:center;">
+              <div class="toolbar__actions">
+                <button class="btn btn--primary">保 存</button>
+                <button class="btn btn--secondary">取 消</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <aside class="floating-card">
+        <h3 class="floating-card__title">检测到规则已更新</h3>
+        <p class="dialog-card__desc">该模板绑定规则的接收人、确认方式配置已发生变化。是否将当前内容同步覆盖为最新规则快照。</p>
+        <div class="toolbar__actions" style="margin-top:14px;">
+          <button class="btn btn--primary btn--small">同步覆盖</button>
+          <button class="btn btn--secondary btn--small">暂不同步</button>
+        </div>
+      </aside>
+    </main>
+  </div>
+</body>
+</html>

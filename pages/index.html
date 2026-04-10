@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GHDI 页面原型索引</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="topbar__left">
+        <div class="eyebrow"><span class="eyebrow__dot"></span>GHDI Design Pages</div>
+        <h1 class="topbar__title">页面原型目录</h1>
+        <div class="topbar__meta">基于 Vue 页面结构抽取并生成的静态 HTML 原型</div>
+      </div>
+      <div class="topbar__actions">
+        <a class="btn btn--ghost" href="../design.md">总设计规范</a>
+        <a class="btn btn--secondary" href="../page-designs/README.md">Design MD 索引</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero__row">
+        <div>
+          <h2 class="hero__title">企业后台页面集</h2>
+          <p class="hero__desc">
+            这里包含 5 类常见页面：角色首页、统计看板、列表管理、详情配置和审批长表单。
+            所有页面都复用了统一主题变量、边框、卡片和按钮风格，便于后续继续转成 Vue 页面或 Figma 设计稿。
+          </p>
+        </div>
+        <div class="hero__badges">
+          <span class="chip">白底后台</span>
+          <span class="chip">Element 风格兼容</span>
+          <span class="chip chip--success">桌面端优先</span>
+        </div>
+      </div>
+    </section>
+
+    <main class="menu-grid">
+      <a class="page-card" href="./dashboard-role-home.html">
+        <div>
+          <h3 class="page-card__title">角色分发首页</h3>
+          <p class="page-card__desc">适合系统首页、管理台首页、按角色进入不同工作台的入口型页面。</p>
+        </div>
+        <div class="page-card__preview"><div class="preview-tiles"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+      </a>
+      <a class="page-card" href="./dashboard-workorder-analytics.html">
+        <div>
+          <h3 class="page-card__title">工单统计看板</h3>
+          <p class="page-card__desc">双栏看板，涵盖指标卡、趋势图、排名列表、项目统计和关键词云。</p>
+        </div>
+        <div class="page-card__preview"><div class="preview-tiles"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+      </a>
+      <a class="page-card" href="./list-management.html">
+        <div>
+          <h3 class="page-card__title">列表管理页</h3>
+          <p class="page-card__desc">搜索、工具栏、表格、行内操作与弹窗能力齐全的标准后台列表页。</p>
+        </div>
+        <div class="page-card__preview"><div class="preview-bars"><span></span><span></span><span></span><span></span><span></span></div></div>
+      </a>
+      <a class="page-card" href="./detail-config.html">
+        <div>
+          <h3 class="page-card__title">详情配置页</h3>
+          <p class="page-card__desc">双列设置 + 富文本编辑 + 附件上传 + 预览与规则提醒的文档型编辑页。</p>
+        </div>
+        <div class="page-card__preview"><div class="preview-form"><span></span><span></span><span></span><span></span><span></span></div></div>
+      </a>
+      <a class="page-card" href="./element-controls-foundation.html">
+        <div>
+          <h3 class="page-card__title">基础控件规范页</h3>
+          <p class="page-card__desc">按 Element UI 规范补强后的按钮、输入、选择、标签、表格、弹窗和分页演示页。</p>
+        </div>
+        <div class="page-card__preview"><div class="preview-form"><span></span><span></span><span></span><span></span><span></span></div></div>
+      </a>
+      <a class="page-card" href="./approval-form.html">
+        <div>
+          <h3 class="page-card__title">审批长表单页</h3>
+          <p class="page-card__desc">带右侧锚点导航、状态块、台账式表格和审批流区块的正式业务单据页面。</p>
+        </div>
+        <div class="page-card__preview"><div class="preview-bars"><span></span><span></span><span></span><span></span><span></span></div></div>
+      </a>
+    </main>
+  </div>
+</body>
+</html>

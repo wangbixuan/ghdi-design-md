@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enterprise Operations Console</title>
+  <style>
+    :root {
+      --theme-color: #f19e38;
+      --theme-color-deep: #dd8d2e;
+      --accent-main-color: #f19e38;
+      --accent-sub-color: #adadad;
+      --success-color: #6ab588;
+      --danger-color: #d73925;
+      --danger-hover: #b82f1f;
+      --bg-page: #f6f7f9;
+      --bg-card: #ffffff;
+      --text-heading: #262626;
+      --text-body: #333333;
+      --text-secondary: #3d3d3d;
+      --text-info: #606266;
+      --text-muted: #909399;
+      --text-empty: #adadad;
+      --border-soft: #e5e6eb;
+      --border-overlay: #ebeef5;
+      --fill-soft: #f2f3f5;
+      --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.06);
+      --shadow-nav: 0 3px 16px rgba(31, 39, 51, 0.2);
+      --shadow-panel: 0 8px 24px rgba(15, 34, 58, 0.12);
+      --radius-sm: 4px;
+      --radius-md: 6px;
+      --radius-lg: 8px;
+      --header-height: 72px;
+      --font-family: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: var(--font-family);
+      color: var(--text-body);
+      background:
+        radial-gradient(circle at top left, rgba(241, 158, 56, 0.1), transparent 22%),
+        linear-gradient(180deg, #fafafa 0%, var(--bg-page) 100%);
+    }
+
+    button, input, select, textarea { font: inherit; }
+
+    .app-shell { min-height: 100vh; padding: 20px; }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      height: var(--header-height);
+      padding: 18px 24px;
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: var(--shadow-card);
+      backdrop-filter: blur(8px);
+    }
+
+    .header__left {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-info);
+      font-size: 12px;
+    }
+
+    .eyebrow__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success-color);
+      box-shadow: 0 0 0 5px rgba(106, 181, 136, 0.12);
+    }
+
+    .header__title {
+      margin: 0;
+      color: var(--text-heading);
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+
+    .header__meta {
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    .header__right {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .btn {
+      border: 1px solid transparent;
+      border-radius: var(--radius-sm);
+      padding: 10px 16px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .btn--primary { color: #fff; background: var(--theme-color); }
+    .btn--primary:hover { background: var(--theme-color-deep); }
+    .btn--secondary { color: var(--text-body); background: #fff; border-color: var(--border-soft); }
+    .btn--danger { color: #fff; background: var(--danger-color); }
+    .btn--danger:hover { background: var(--danger-hover); }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 7fr 5fr;
+      gap: 16px;
+      margin-top: 16px;
+      align-items: start;
+    }
+
+    .panel {
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-md);
+      background: var(--bg-card);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .panel__head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .panel__title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0;
+      color: var(--text-heading);
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .panel__title::before {
+      content: "";
+      width: 4px;
+      height: 18px;
+      border-radius: 999px;
+      background: var(--accent-main-color);
+    }
+
+    .panel__meta {
+      color: var(--text-muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .panel__body { padding: 16px; }
+    .dashboard-grid { display: grid; gap: 16px; }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .metric-card {
+      padding: 16px;
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-md);
+      background: linear-gradient(180deg, #ffffff 0%, #fdf8f0 100%);
+      box-shadow: var(--shadow-card);
+    }
+
+    .metric-card__label {
+      margin: 0 0 14px;
+      color: var(--text-info);
+      font-size: 12px;
+    }
+
+    .metric-card__value {
+      color: var(--accent-main-color);
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.2px;
+    }
+
+    .metric-card__foot {
+      margin-top: 10px;
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    .viz-grid,
+    .viz-grid--bottom {
+      display: grid;
+      gap: 16px;
+    }
+
+    .viz-grid { grid-template-columns: 2fr 1fr; }
+    .viz-grid--bottom { grid-template-columns: 1.3fr 1fr; }
+
+    .chart-wrap { padding: 8px 0 0; }
+
+    .chart-legend {
+      display: flex;
+      gap: 14px;
+      color: var(--text-info);
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    .chart-legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .chart-legend i {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .line-chart {
+      width: 100%;
+      height: 260px;
+      border-top: 1px dashed rgba(204, 204, 204, 0.5);
+    }
+
+    .chart-axis-labels {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      margin-top: 8px;
+      color: var(--text-empty);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .status-list,
+    .rank-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .status-item,
+    .rank-item {
+      display: grid;
+      gap: 6px;
+    }
+
+    .status-item__top,
+    .rank-item__top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--text-secondary);
+      font-size: 12px;
+    }
+
+    .bar-track {
+      width: 100%;
+      height: 12px;
+      background: var(--fill-soft);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      width: 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--theme-color), #f5c06b);
+      transition: width 1s ease;
+    }
+
+    .pie-wrap {
+      display: grid;
+      place-items: center;
+      gap: 14px;
+      padding-top: 8px;
+    }
+
+    .donut {
+      --value: 86;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at center, #ffffff 54%, transparent 55%),
+        conic-gradient(var(--accent-main-color) calc(var(--value) * 1%), #eceef2 0);
+      display: grid;
+      place-items: center;
+      box-shadow: inset 0 0 0 1px rgba(229, 230, 235, 0.6);
+    }
+
+    .donut__value {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: var(--accent-main-color);
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .donut__value small {
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    .hot-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .hot-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #f0f1f5;
+    }
+
+    .hot-list__left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .hot-list__rank {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--fill-soft);
+      color: var(--text-muted);
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex: 0 0 auto;
+    }
+
+    .hot-list__name {
+      color: var(--text-secondary);
+      font-size: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .hot-list__value {
+      color: var(--text-heading);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-content: flex-start;
+      min-height: 260px;
+      padding-top: 8px;
+    }
+
+    .tag {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #fff8ec;
+      color: var(--text-secondary);
+      border: 1px solid rgba(241, 158, 56, 0.2);
+      font-size: 12px;
+      transform: translateY(18px);
+      opacity: 0;
+      animation: rise-in 0.6s ease forwards;
+    }
+
+    .tag:nth-child(2n) { background: #fff6f1; }
+    .tag:nth-child(3n) { background: #f9fafb; }
+
+    @keyframes rise-in {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .form-panel {
+      position: sticky;
+      top: 20px;
+    }
+
+    .form-status {
+      display: flex;
+      gap: 12px;
+      padding: 16px;
+      background: linear-gradient(135deg, rgba(241, 158, 56, 0.08), rgba(255, 255, 255, 1));
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .status-badge {
+      width: 82px;
+      height: 82px;
+      border-radius: 10px;
+      background: var(--theme-color);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 600;
+      box-shadow: var(--shadow-nav);
+      flex: 0 0 auto;
+    }
+
+    .status-summary {
+      display: grid;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .status-summary__title {
+      color: var(--text-heading);
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .status-summary__text {
+      color: var(--text-info);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .anchor-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .anchor-nav span {
+      padding: 8px 12px;
+      border-radius: 8px;
+      color: var(--text-secondary);
+      background: #fff;
+      border: 1px solid var(--border-soft);
+      font-size: 12px;
+      box-shadow: 0 1px 4px rgba(31, 39, 51, 0.04);
+    }
+
+    .anchor-nav span.is-active {
+      color: #fff;
+      background: var(--theme-color);
+      border-color: var(--theme-color);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px 24px;
+      padding: 16px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field--full { grid-column: 1 / -1; }
+
+    .field label {
+      color: var(--text-info);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      min-height: 42px;
+      padding: 10px 12px;
+      color: var(--text-body);
+      background: #fff;
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-sm);
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .field textarea {
+      min-height: 118px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: rgba(241, 158, 56, 0.7);
+      box-shadow: 0 0 0 4px rgba(241, 158, 56, 0.12);
+    }
+
+    .segmented {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .segmented input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .segmented label {
+      min-height: 40px;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-soft);
+      background: #fff;
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 400;
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .segmented input:checked + label {
+      color: #fff;
+      background: var(--theme-color);
+      border-color: var(--theme-color);
+    }
+
+    .notice-banner {
+      margin: 0 16px 16px;
+      padding: 12px 14px;
+      border: 1px solid var(--border-overlay);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-panel);
+      background: #fff;
+    }
+
+    .notice-banner__title {
+      color: var(--text-heading);
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .notice-banner__text {
+      color: var(--text-info);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .uploader {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 14px;
+      border: 1px dashed rgba(241, 158, 56, 0.38);
+      border-radius: var(--radius-md);
+      background: #fffaf3;
+    }
+
+    .uploader__text {
+      color: var(--text-info);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 16px 16px;
+    }
+
+    .table-panel { margin-top: 16px; }
+
+    .table-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .table-toolbar__title {
+      margin: 0;
+      color: var(--text-heading);
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .table-toolbar__filters {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .table-toolbar__filters input,
+    .table-toolbar__filters select {
+      height: 36px;
+      padding: 0 12px;
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      background: #fff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    thead th {
+      padding: 14px 12px;
+      text-align: left;
+      color: var(--text-body);
+      font-size: 13px;
+      font-weight: 600;
+      background: #fff;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    tbody td {
+      padding: 14px 12px;
+      color: var(--text-secondary);
+      font-size: 13px;
+      border-bottom: 1px solid #f0f1f5;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    tbody tr:hover { background: #fffbf5; }
+
+    .text-link {
+      color: var(--theme-color);
+      font-weight: 600;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 74px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(241, 158, 56, 0.12);
+      color: var(--theme-color);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .status-chip--done {
+      background: rgba(106, 181, 136, 0.14);
+      color: var(--success-color);
+    }
+
+    .toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      padding: 12px 16px;
+      color: #fff;
+      background: rgba(38, 38, 38, 0.92);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-panel);
+      transform: translateY(16px);
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.25s ease;
+    }
+
+    .toast.is-visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 1200px) {
+      .main-grid,
+      .viz-grid,
+      .viz-grid--bottom { grid-template-columns: 1fr; }
+
+      .form-panel { position: static; }
+    }
+
+    @media (max-width: 900px) {
+      .metrics,
+      .form-grid { grid-template-columns: 1fr; }
+
+      .header {
+        height: auto;
+        align-items: flex-start;
+        padding: 16px;
+      }
+
+      .header__right,
+      .table-toolbar { width: 100%; }
+
+      .table-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="header">
+      <div class="header__left">
+        <div class="eyebrow">
+          <span class="eyebrow__dot"></span>
+          企业运营后台 / 资产与工单协同
+        </div>
+        <h1 class="header__title">运营数据看板与工单配置中心</h1>
+        <div class="header__meta">白底高密度业务界面，结合看板、列表管理、公告配置与审批表单的统一样式语言</div>
+      </div>
+      <div class="header__right">
+        <button class="btn btn--secondary">导出看板</button>
+        <button class="btn btn--danger">上传附件</button>
+        <button class="btn btn--primary" id="quickSubmit">保存配置</button>
+      </div>
+    </header>
+
+    <section class="main-grid">
+      <div class="dashboard-grid">
+        <div class="metrics">
+          <article class="metric-card">
+            <p class="metric-card__label">提单总数</p>
+            <div class="metric-card__value" data-target="12486">0</div>
+            <div class="metric-card__foot">较上周 +12.6%</div>
+          </article>
+          <article class="metric-card">
+            <p class="metric-card__label">处理中工单</p>
+            <div class="metric-card__value" data-target="3186">0</div>
+            <div class="metric-card__foot">待协调事项 286 项</div>
+          </article>
+          <article class="metric-card">
+            <p class="metric-card__label">已完成工单</p>
+            <div class="metric-card__value" data-target="9300">0</div>
+            <div class="metric-card__foot">本月完结率 74.4%</div>
+          </article>
+        </div>
+
+        <article class="panel">
+          <div class="panel__head">
+            <h2 class="panel__title">工单趋势统计</h2>
+            <div class="panel__meta">最近 6 个月</div>
+          </div>
+          <div class="panel__body">
+            <div class="chart-wrap">
+              <div class="chart-legend">
+                <span><i style="background: var(--accent-main-color);"></i>提单数</span>
+                <span><i style="background: var(--accent-sub-color);"></i>完成数</span>
+              </div>
+              <svg class="line-chart" viewBox="0 0 760 260" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="rgba(241,158,56,0.24)"></stop>
+                    <stop offset="100%" stop-color="rgba(241,158,56,0.02)"></stop>
+                  </linearGradient>
+                </defs>
+                <g stroke="#e5e6eb" stroke-width="1">
+                  <line x1="40" y1="30" x2="720" y2="30"></line>
+                  <line x1="40" y1="78" x2="720" y2="78"></line>
+                  <line x1="40" y1="126" x2="720" y2="126"></line>
+                  <line x1="40" y1="174" x2="720" y2="174"></line>
+                  <line x1="40" y1="222" x2="720" y2="222"></line>
+                </g>
+                <g id="trendPaths"></g>
+              </svg>
+              <div class="chart-axis-labels">
+                <span>01 月</span>
+                <span>02 月</span>
+                <span>03 月</span>
+                <span>04 月</span>
+                <span>05 月</span>
+                <span>06 月</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <div class="viz-grid">
+          <article class="panel">
+            <div class="panel__head">
+              <h2 class="panel__title">工单状态统计</h2>
+              <div class="panel__meta">状态分布</div>
+            </div>
+            <div class="panel__body status-list">
+              <div class="status-item">
+                <div class="status-item__top"><span>待受理</span><strong>18%</strong></div>
+                <div class="bar-track"><div class="bar-fill" data-width="18"></div></div>
+              </div>
+              <div class="status-item">
+                <div class="status-item__top"><span>处理中</span><strong>41%</strong></div>
+                <div class="bar-track"><div class="bar-fill" data-width="41"></div></div>
+              </div>
+              <div class="status-item">
+                <div class="status-item__top"><span>待确认</span><strong>12%</strong></div>
+                <div class="bar-track"><div class="bar-fill" data-width="12"></div></div>
+              </div>
+              <div class="status-item">
+                <div class="status-item__top"><span>已完成</span><strong>29%</strong></div>
+                <div class="bar-track"><div class="bar-fill" data-width="29"></div></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__head">
+              <h2 class="panel__title">平均评分</h2>
+              <div class="panel__meta">满意度</div>
+            </div>
+            <div class="panel__body pie-wrap">
+              <div class="donut" style="--value: 86;">
+                <div class="donut__value">4.3<small>/ 5.0</small></div>
+              </div>
+              <div class="status-list" style="width: 100%;">
+                <div class="status-item__top"><span>五星好评</span><strong>68%</strong></div>
+                <div class="status-item__top"><span>四星及以上</span><strong>86%</strong></div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="viz-grid--bottom">
+          <article class="panel">
+            <div class="panel__head">
+              <h2 class="panel__title">项目热度排行</h2>
+              <div class="panel__meta">工单归属项目</div>
+            </div>
+            <div class="panel__body rank-list">
+              <div class="rank-item">
+                <div class="rank-item__top"><span>智慧园区一期</span><strong>342</strong></div>
+                <div class="bar-track"><div class="bar-fill" data-width="92"></div></div>
+              </div>
+              <div class="rank-item">
+                <div class="rank-item__top"><span>设备资产台账整治</span><strong>291</strong></div>
+                <div class="bar-track"><div class="bar-fill" data-width="78"></div></div>
+              </div>
+              <div class="rank-item">
+                <div class="rank-item__top"><span>综合维修协同</span><strong>236</strong></div>
+                <div class="bar-track"><div class="bar-fill" data-width="64"></div></div>
+              </div>
+              <div class="rank-item">
+                <div class="rank-item__top"><span>告警中心联动</span><strong>180</strong></div>
+                <div class="bar-track"><div class="bar-fill" data-width="48"></div></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__head">
+              <h2 class="panel__title">热点关键词</h2>
+              <div class="panel__meta">词云式标签</div>
+            </div>
+            <div class="panel__body">
+              <div class="tags">
+                <span class="tag" style="font-size: 24px; animation-delay: 0.02s;">资产登记</span>
+                <span class="tag" style="font-size: 18px; animation-delay: 0.08s;">二维码</span>
+                <span class="tag" style="font-size: 22px; animation-delay: 0.12s;">公告发布</span>
+                <span class="tag" style="font-size: 14px; animation-delay: 0.16s;">规则同步</span>
+                <span class="tag" style="font-size: 16px; animation-delay: 0.20s;">审批表单</span>
+                <span class="tag" style="font-size: 20px; animation-delay: 0.24s;">处理时长</span>
+                <span class="tag" style="font-size: 15px; animation-delay: 0.28s;">知识库</span>
+                <span class="tag" style="font-size: 18px; animation-delay: 0.32s;">责任部门</span>
+                <span class="tag" style="font-size: 13px; animation-delay: 0.36s;">导入模板</span>
+                <span class="tag" style="font-size: 17px; animation-delay: 0.40s;">已完成</span>
+                <span class="tag" style="font-size: 21px; animation-delay: 0.44s;">处理流程</span>
+                <span class="tag" style="font-size: 15px; animation-delay: 0.48s;">人员选择</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <aside class="panel form-panel">
+        <div class="form-status">
+          <div class="status-badge">处理中</div>
+          <div class="status-summary">
+            <div class="status-summary__title">公告与流程配置</div>
+            <div class="status-summary__text">采用双列表单、轻浮层提示和固定操作区，延续现有后台“白底、浅边框、强结构”的视觉基调。</div>
+            <div class="anchor-nav">
+              <span class="is-active">基础信息</span>
+              <span>发布配置</span>
+              <span>附件管理</span>
+              <span>保存提交</span>
+            </div>
+          </div>
+        </div>
+
+        <form id="configForm">
+          <div class="form-grid">
+            <div class="field">
+              <label for="template">选择模板</label>
+              <select id="template" name="template">
+                <option>通知公告模板</option>
+                <option>资产变更模板</option>
+                <option>工单提醒模板</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="priority">重要程度</label>
+              <select id="priority" name="priority">
+                <option>普通</option>
+                <option selected>重要</option>
+                <option>非常重要</option>
+              </select>
+            </div>
+
+            <div class="field field--full">
+              <label>发布时间</label>
+              <div class="segmented">
+                <input checked type="radio" id="manual" name="publishMode" value="manual">
+                <label for="manual">手动触发</label>
+                <input type="radio" id="schedule" name="publishMode" value="schedule">
+                <label for="schedule">定时触发</label>
+                <input type="radio" id="periodic" name="publishMode" value="periodic">
+                <label for="periodic">周期触发</label>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="time">定时发布时间</label>
+              <input id="time" name="time" type="datetime-local" value="2026-04-10T09:30">
+            </div>
+
+            <div class="field">
+              <label for="rule">发文规则</label>
+              <select id="rule" name="rule">
+                <option>资产运维通知规则</option>
+                <option selected>协同发布规则</option>
+                <option>公告审批规则</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="weight">权重排序</label>
+              <input id="weight" name="weight" type="number" value="10">
+            </div>
+
+            <div class="field">
+              <label for="department">责任部门</label>
+              <input id="department" name="department" type="text" value="资产管理部">
+            </div>
+
+            <div class="field field--full">
+              <label for="title">公告标题</label>
+              <input id="title" name="title" type="text" value="2026 年度固定资产盘点与二维码标签补录通知">
+            </div>
+
+            <div class="field field--full">
+              <label for="content">公告内容</label>
+              <textarea id="content" name="content">请各责任部门于本周五前完成固定资产盘点与二维码标签核验。对于未确认数据、标签缺失、位置异常等情况，请在系统中同步更新并附照片说明。系统将依据发文规则自动同步到相关责任人。</textarea>
+            </div>
+
+            <div class="field field--full">
+              <label>附件上传</label>
+              <div class="uploader">
+                <div class="uploader__text">
+                  支持导入 Excel 模板、公告附件与封面图。
+                  <br>
+                  当前已选择: `asset-template.xlsx`、`notice-cover.png`
+                </div>
+                <button class="btn btn--danger" type="button">上传文件</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="notice-banner">
+            <div class="notice-banner__title">规则已更新，建议同步覆盖</div>
+            <div class="notice-banner__text">当前模板绑定的发文规则存在更新。推荐先同步规则快照，再执行保存或发布，避免触发方式、接收人或确认配置不一致。</div>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn--secondary" type="reset">取消</button>
+            <button class="btn btn--primary" type="submit">保存配置</button>
+          </div>
+        </form>
+      </aside>
+    </section>
+
+    <section class="panel table-panel">
+      <div class="table-toolbar">
+        <h2 class="table-toolbar__title">资产登记一览表</h2>
+        <div class="table-toolbar__filters">
+          <input type="text" value="搜索资产名称 / 编号">
+          <select>
+            <option>全部状态</option>
+            <option>待确认</option>
+            <option>已确认</option>
+          </select>
+          <button class="btn btn--primary">查询</button>
+        </div>
+      </div>
+      <div class="panel__body" style="padding: 0;">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 16%;">资产编号</th>
+              <th style="width: 22%;">资产名称</th>
+              <th style="width: 16%;">所属部门</th>
+              <th style="width: 12%;">责任人</th>
+              <th style="width: 12%;">状态</th>
+              <th style="width: 22%;">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ZC-2026-0013</td>
+              <td>会议室投影设备</td>
+              <td>综合管理部</td>
+              <td>李志强</td>
+              <td><span class="status-chip">待确认</span></td>
+              <td>
+                <button class="text-link">数据确认</button>
+                <button class="text-link" style="margin-left: 12px;">修改</button>
+                <button class="text-link" style="margin-left: 12px;">删除</button>
+              </td>
+            </tr>
+            <tr>
+              <td>ZC-2026-0014</td>
+              <td>服务器机柜 B-07</td>
+              <td>信息中心</td>
+              <td>陈文涛</td>
+              <td><span class="status-chip status-chip--done">已确认</span></td>
+              <td>
+                <button class="text-link">查看</button>
+                <button class="text-link" style="margin-left: 12px;">二维码</button>
+                <button class="text-link" style="margin-left: 12px;">是否公用资产</button>
+              </td>
+            </tr>
+            <tr>
+              <td>ZC-2026-0015</td>
+              <td>园区巡检终端</td>
+              <td>运维中心</td>
+              <td>周嘉宁</td>
+              <td><span class="status-chip status-chip--done">已确认</span></td>
+              <td>
+                <button class="text-link">查看</button>
+                <button class="text-link" style="margin-left: 12px;">二维码</button>
+                <button class="text-link" style="margin-left: 12px;">打印标签</button>
+              </td>
+            </tr>
+            <tr>
+              <td>ZC-2026-0016</td>
+              <td>档案室温湿度监测器</td>
+              <td>行政后勤部</td>
+              <td>张梦媛</td>
+              <td><span class="status-chip">待确认</span></td>
+              <td>
+                <button class="text-link">数据确认</button>
+                <button class="text-link" style="margin-left: 12px;">修改</button>
+                <button class="text-link" style="margin-left: 12px;">删除</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast">配置已保存，已按设计规范生成示例页面。</div>
+
+  <script>
+    const trendData = {
+      create: [860, 930, 1020, 1160, 1240, 1380],
+      finish: [740, 820, 910, 980, 1120, 1200]
+    };
+
+    function animateCounters() {
+      const items = document.querySelectorAll("[data-target]");
+      items.forEach((item) => {
+        const target = Number(item.dataset.target);
+        const start = performance.now();
+        const duration = 1400;
+
+        function tick(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const value = Math.round(target * (1 - Math.pow(1 - progress, 3)));
+          item.textContent = value.toLocaleString("zh-CN");
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+
+        requestAnimationFrame(tick);
+      });
+    }
+
+    function createPath(values, xStart, xEnd, yTop, yBottom) {
+      const max = Math.max(...trendData.create, ...trendData.finish);
+      const step = (xEnd - xStart) / (values.length - 1);
+      return values.map((value, index) => {
+        const x = xStart + step * index;
+        const ratio = value / (max || 1);
+        const y = yBottom - ratio * (yBottom - yTop);
+        return { x, y, value };
+      });
+    }
+
+    function pointsToString(points) {
+      return points.map((point) => `${point.x},${point.y}`).join(" ");
+    }
+
+    function renderTrendChart() {
+      const root = document.getElementById("trendPaths");
+      const createPoints = createPath(trendData.create, 40, 720, 30, 222);
+      const finishPoints = createPath(trendData.finish, 40, 720, 30, 222);
+      const areaPoints = `40,222 ${pointsToString(createPoints)} 720,222`;
+
+      root.innerHTML = `
+        <polygon points="${areaPoints}" fill="url(#areaFill)"></polygon>
+        <polyline points="${pointsToString(finishPoints)}" fill="none" stroke="var(--accent-sub-color)" stroke-width="3"></polyline>
+        <polyline points="${pointsToString(createPoints)}" fill="none" stroke="var(--accent-main-color)" stroke-width="4"></polyline>
+        ${finishPoints.map((point) => `
+          <g>
+            <circle cx="${point.x}" cy="${point.y}" r="4" fill="var(--accent-sub-color)"></circle>
+            <text x="${point.x}" y="${point.y - 12}" text-anchor="middle" fill="var(--accent-sub-color)" font-size="12">${point.value}</text>
+          </g>
+        `).join("")}
+        ${createPoints.map((point) => `
+          <g>
+            <circle cx="${point.x}" cy="${point.y}" r="5" fill="var(--accent-main-color)"></circle>
+            <text x="${point.x}" y="${point.y - 14}" text-anchor="middle" fill="var(--accent-main-color)" font-size="12" font-weight="700">${point.value}</text>
+          </g>
+        `).join("")}
+      `;
+    }
+
+    function animateBars() {
+      document.querySelectorAll(".bar-fill").forEach((bar) => {
+        const width = Number(bar.dataset.width || 0);
+        requestAnimationFrame(() => {
+          bar.style.width = `${width}%`;
+        });
+      });
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("is-visible");
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => {
+        toast.classList.remove("is-visible");
+      }, 2200);
+    }
+
+    document.getElementById("configForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      showToast("配置已保存，发布规则与公告内容已同步。");
+    });
+
+    document.getElementById("quickSubmit").addEventListener("click", () => {
+      showToast("已执行快速保存。");
+    });
+
+    animateCounters();
+    renderTrendChart();
+    animateBars();
+  </script>
+</body>
+</html>

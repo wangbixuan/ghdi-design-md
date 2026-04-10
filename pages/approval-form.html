@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>审批长表单页</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="topbar__left">
+        <div class="eyebrow"><span class="eyebrow__dot"></span>Approval / 长表单</div>
+        <h1 class="topbar__title">设计后服务人员报批申请</h1>
+        <div class="topbar__meta">右侧锚点导航 + 台账式表格 + 审批流的正式业务单据页</div>
+      </div>
+      <div class="topbar__actions">
+        <a class="btn btn--secondary" href="./index.html">返回索引</a>
+        <a class="btn btn--primary" href="./dashboard-role-home.html">查看首页</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero__row">
+        <div>
+          <h2 class="hero__title">项目驻地设计代表与协调工作组申请单</h2>
+          <p class="hero__desc">
+            页面采用“文书化表格 + 审批流程”的表达方式，重点突出结构完整性、字段边界和状态流转，不追求轻表单式的极简排版。
+          </p>
+        </div>
+        <div class="hero__badges">
+          <span class="tag tag--warning">当前状态：待申请</span>
+          <span class="tag tag--primary">支持暂存</span>
+          <span class="tag tag--info">支持重新申请</span>
+        </div>
+      </div>
+    </section>
+
+    <main class="doc-layout">
+      <div class="doc-shell">
+        <div class="doc-header">
+          <div>
+            <h2 class="doc-header__title">设计后服务人员报批申请单</h2>
+            <div class="topbar__meta">业务编号：DS_PERSON_APPROVAL_APPLY</div>
+          </div>
+          <span class="tag tag--warning">待申请</span>
+        </div>
+
+        <section id="basic">
+          <h3 class="section-title">基础信息</h3>
+          <table class="doc-table">
+            <tbody>
+              <tr><th>合同编号</th><td>HT-2026-QL-031</td><th>项目类别</th><td>桥梁设计</td></tr>
+              <tr><th>项目名称</th><td>广湛高速改扩建桥梁专项设计</td><th>负责部门</th><td>桥梁设计院</td></tr>
+              <tr><th>现场地址</th><td>广东省湛江市坡头区项目驻地现场</td><th>甲方名称</th><td>广东高速建设有限公司</td></tr>
+              <tr>
+                <th>开工是否满一年</th>
+                <td>
+                  <div class="inline-options">
+                    <span class="radio-button-demo is-active">是</span>
+                    <span class="radio-button-demo">否</span>
+                  </div>
+                </td>
+                <th>是否需要出图章</th>
+                <td>
+                  <div class="inline-options">
+                    <span class="radio-button-demo is-active">是</span>
+                    <span class="radio-button-demo">否</span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="mgmt">
+          <h3 class="section-title">公司级协调管理工作组</h3>
+          <p class="doc-note">注：对于 I 类项目，主体生产单位必须牵头成立公司级设计后服务协调管理工作组，工作组由主体生产单位及各专业生产单位负责人组成。</p>
+          <div class="inline-options" style="margin-bottom:12px;">
+            <span class="radio-button-demo is-active">新派</span>
+            <span class="radio-button-demo">更改</span>
+          </div>
+          <table class="doc-table">
+            <thead>
+              <tr><th>序号</th><th>姓名</th><th>所属部门</th><th>岗位任职资格</th><th>职称</th><th>担任角色</th><th>备注</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>陈志强</td><td>桥梁设计院</td><td>一级注册结构工程师</td><td>高级工程师</td><td>总协调负责人</td><td>项目总牵头</td></tr>
+              <tr><td>2</td><td>刘婉婷</td><td>道路设计院</td><td>注册土木工程师</td><td>工程师</td><td>工作组成员</td><td>负责路桥接口协调</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="person">
+          <h3 class="section-title">驻地设计代表或联络员</h3>
+          <p class="doc-note doc-note--warning">改派人员谨慎变更专业和角色。改派、撤销等业务状态会影响字段结构与提交校验。</p>
+          <div class="inline-options" style="margin-bottom:12px;">
+            <span class="radio-button-demo is-active">新派</span>
+            <span class="radio-button-demo">增派</span>
+            <span class="radio-button-demo">改派</span>
+            <span class="radio-button-demo">撤销</span>
+          </div>
+          <table class="doc-table">
+            <thead>
+              <tr><th>序号</th><th>姓名</th><th>所属部门</th><th>岗位任职资格</th><th>职称</th><th>专业</th><th>担任角色</th><th>备注</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>黄健</td><td>桥梁设计院</td><td>一级注册结构工程师</td><td>高级工程师</td><td>桥梁</td><td>驻地设计代表</td><td>常驻现场</td></tr>
+              <tr><td>2</td><td>周颖</td><td>综合管理部</td><td>项目协调专员</td><td>助理工程师</td><td>综合协调</td><td>联络员</td><td>负责文件流转</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="flow">
+          <h3 class="section-title">审批流程</h3>
+          <div class="person-grid">
+            <div class="dialog-card">
+              <h3 class="dialog-card__title">发起人</h3>
+              <p class="dialog-card__desc">桥梁设计院 / 陈志强<br>2026-04-10 09:42 提交草稿</p>
+            </div>
+            <div class="dialog-card">
+              <h3 class="dialog-card__title">部门负责人审批</h3>
+              <p class="dialog-card__desc">待处理。通过后流转至公司分管领导与项目审批链。</p>
+            </div>
+            <div class="dialog-card">
+              <h3 class="dialog-card__title">归档结果</h3>
+              <p class="dialog-card__desc">审批完成后回填项目详情页指定页签，并保留流程号与重启记录。</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <aside class="anchor-nav">
+        <div class="status-block">待申请<span class="status-block__meta">可暂存、可提交</span></div>
+        <nav class="anchor-list">
+          <a class="is-active" href="#basic">基本信息</a>
+          <a href="#mgmt">协调工作组</a>
+          <a href="#person">人员</a>
+          <a href="#flow">审批流程</a>
+        </nav>
+        <div class="anchor-actions">
+          <button class="btn btn--primary btn--small">暂 存</button>
+          <button class="btn btn--primary btn--small">提 交</button>
+          <button class="btn btn--secondary btn--small">重新申请</button>
+        </div>
+      </aside>
+    </main>
+  </div>
+</body>
+</html>
