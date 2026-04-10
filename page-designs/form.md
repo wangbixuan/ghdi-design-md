@@ -1,125 +1,187 @@
 # Design MD: Form Page
 
-> Source: approval form Vue page
+> Source abstraction: enterprise approval ledger-style form pages
 
 ## 1. Page Positioning
 
-This is a typical approval-oriented long-form page. It combines:
+This page type is a generalized template for approval-oriented enterprise forms with strong document structure.
 
-- project basic information display
-- multi-section structured input
-- personnel assignment maintenance
-- approval-flow integration
-- draft save, submit, and resubmit
+It is suitable for scenarios such as:
 
-It is closer to an online business ledger plus approval sheet than to a short simple form.
+- personnel application
+- role assignment or replacement
+- special approval submission
+- dispatch / revocation / change request
+- project-side formal declarations
 
-## 2. Visual Tone
+The page is not a lightweight simple form. It is a hybrid of:
 
-- Strong structure and strong boundaries
-- White background + gray table borders + theme-color highlights
-- Visual style should feel closer to a formal business document
-- Navigation, status block, and section titles establish a clear reading order
+- business ledger
+- structured form
+- process sheet
+- approval workflow entry
 
-## 3. Layout Structure
+## 2. Shared Components Abstracted From This Form Type
 
-### Outer Structure
+### Right Anchor + Action Panel
 
-- Desktop-first
-- Main content is a large document-like table area
-- Fixed anchor navigation on the right side
+- sticky on desktop
+- top primary action block
+- section navigation
+- bottom submit actions
 
-### Right Anchor Navigation
+Typical actions:
 
-- Shows current process status
-- Navigation should include at least:
-  - basic information
-  - personnel
-  - approval flow
-- Bottom action area contains draft save / submit / resubmit
+- top-level draft or primary operation
+- draft save
+- submit
+- resubmit
 
-### Main Content Area
+### Basic Information Ledger
 
-- Top action title
-- Multiple section title bars
-- Each section uses ledger-like tables to carry fields
-- The bottom connects into the approval-flow component
+- top business identity area
+- contract / project / owner / department / location style fields
+- often starts with readonly display fields, but should also support common editable controls
 
-## 4. Core Components
+Typical controls that may appear in this area:
 
-### Status Block
+- text input with helper action
+- select dropdown
+- radio options
+- radio button group
+- checkbox group
+- switch toggle
+- direct action buttons
+- tags for inline status or strategy hints
+- textarea for business note / explanation
 
-- Shows current approval status
-- Completed and in-progress states should be visually distinct
-- This is the strongest process feedback point on the page
+### Business Detail Ledger Table
 
-### Section Titles
+- the core editable area of the page
+- dense row-column structure
+- mixed readonly and editable cells
+- supports add / delete / replace style operations
 
-- Left vertical accent line + title text
-- Used to separate sections such as:
-  - basic information
-  - company-level coordination group
-  - resident design representative or liaison
+Typical column types:
 
-### Ledger-Style Form Table
+- serial number
+- name
+- department
+- qualification
+- title
+- major or category
+- role
+- reason / remark / change description
 
-- Clear cell borders
-- Supports both read-only display mode and edit mode
-- Mixed field types:
-  - plain text value
-  - radio / single choice
-  - select
-  - multiline input
+### Workflow Tail Section
 
-### Personnel Assignment Tables
+- integrated process display area
+- appears as the final formal section of the page
+- must visually belong to the same business document
 
-- Include fields such as serial number, name, department, title, role, discipline, and remark
-- Support add, delete, reassign, and revoke
-- In some scenarios, a replaced person must also be displayed
+### Selection Dialog
 
-### Process and Reminder Components
+- used when detail rows depend on selecting historical or existing personnel/items
+- includes search
+- result table
+- single-select or multi-select
+- pagination
 
-- `el-alert` for business-rule reminders
-- `WorkFlowDetail` for approval-flow display and submit linkage
+## 3. Component Differences Compared With The Old Prototype
 
-## 5. Interaction Rules
+- The old prototype was a broad approval page with multiple business-specific blocks mixed together.
+- This generalized version focuses on the stable component skeleton shared by this class of pages.
+- The old prototype treated sections as content cards; this abstraction treats them as ledger sections inside one formal document.
+- The new abstraction explicitly includes the selection dialog as a first-class component of the page type.
+- The workflow area is not a summary card anymore. It is a required tail component in the overall form architecture.
 
-- On page entry, load request detail, project detail, role dictionary, discipline dictionary, and dispatch type
-- Draft save and submit are separate actions
-- Before submit, validate multiple form sections in sequence
-- Button labels change based on state:
-  - draft save
-  - submit
-  - resubmit
-- Personnel sections support add, delete, selecting historical personnel, and cross-page single-selection recovery
-- Special business states such as reassignment or revocation affect both field structure and prompt copy
+## 4. Style Differences Compared With The Old Prototype
 
-## 6. Visual Detail Rules
+- Stronger document feeling
+- Stronger table border system
+- Higher information density
+- Less narrative card layout, more ledger layout
+- Clearer split between main document and right operation panel
+- Dialog style aligned with Element UI desktop admin patterns
 
-- Use heavier gray borders to strengthen the feeling of an approval document
-- Table headers and required stars must remain clear
-- Long text should be allowed to wrap
-- Reminder bars should sit between sections as rule guidance, not as decorative UI
-- Right-side anchor navigation should clearly read as the secondary layer to the main form
+## 5. Layout Structure
 
-## 7. Business Constraints
+### Outer Layout
 
-- Company-level and resident-level personnel groups are both constrained by type rules
-- At least one required personnel group must be completed before submission
-- Approval flow must be initialized before submit
-- Reassignment scenarios need stronger risk reminders around role and discipline changes
-- The same person cannot be added repeatedly under the same role/discipline context
+- desktop-first
+- main form document on the left
+- sticky action/navigation panel on the right
 
-## 8. Page Design Abstraction
+### Main Document
 
-This can be abstracted into an approval long-form template:
-
-- fixed right anchor navigation
-- document-style large table
+- form title / business identity
 - section title bars
-- status block + submit actions
-- approval-flow tail component
+- one or more ledger tables
+- approval workflow tail
+- optional dialog preview or helper panel
 
-## 9. AI Generation Prompt
+### Right Panel
 
-> Design an enterprise backoffice approval-oriented long form page that looks like a formal business document. The right side contains a fixed anchor navigation and process status block. The main content is a multi-section structured table including basic information, personnel assignment, and approval flow. Support draft save, submit, and resubmit. Use white background, strong gray borders, small theme-color accents, high information density, and a desktop-first layout.
+- primary action block
+- anchor list
+- bottom action buttons
+
+## 6. Core Visual Tone
+
+- formal
+- dense
+- administrative
+- structured
+
+Use:
+
+- white background
+- medium gray borders
+- compact spacing
+- small but clear theme-color emphasis
+
+Do not over-decorate this page type. It should feel operational and official.
+
+## 7. Interaction Rules
+
+- detail data is loaded on entry
+- business status controls readonly vs editable rendering
+- the basic information area can mix readonly ledger cells and editable control cells
+- draft save and submit are separate
+- required fields may live inside table cells rather than only in stacked form fields
+- row add / delete / selection dialog are common behaviors
+- submit usually depends on both table validation and workflow initialization
+
+## 8. Theme Binding Rules
+
+This page type must consume the global theme module.
+
+Theme color should affect:
+
+- right status panel emphasis
+- section title accent line
+- active anchor item
+- primary actions
+- selected radio / selected row state in dialog
+- editable key fields or focused form emphasis
+
+Theme color should not override semantic colors such as:
+
+- success
+- warning
+- danger
+- disabled
+
+## 9. Business Constraints Template
+
+Common constraints for this page type:
+
+- at least one detail row may be required
+- duplicate personnel or duplicate records may be forbidden
+- some table-cell fields become required only in editable states
+- resubmit differs from first submit
+- readonly and editable modes may coexist on the same page
+
+## 10. AI Generation Prompt
+
+> Design a generalized enterprise approval ledger form page for backoffice systems. Use a desktop-first layout with a formal document area on the left and a sticky action/navigation panel on the right. The page must include a basic information ledger, a dense editable detail table, an approval workflow tail, and a standard Element UI style selection dialog with search, table, and pagination. Use theme color only for structural emphasis such as title bars, active anchor items, status blocks, selected rows, and primary buttons. Keep the page dense, official, and highly structured.

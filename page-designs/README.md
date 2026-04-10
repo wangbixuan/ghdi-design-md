@@ -15,6 +15,22 @@ These page-level design markdown files were derived from `Record.md` and the fol
 - `list.md`: list management page
 - `config.md`: detail + configuration page
 - `form.md`: approval-oriented long form page
+- `controls.md`: Element UI foundation controls page
+- `theme.md`: global theme module page
+- `status.md`: special status page with 404 / empty state
+
+## HTML to MD Mapping
+
+| HTML Prototype | Design MD | Page Type |
+|---|---|---|
+| `pages/home.html` | `page-designs/home.md` | role-dispatch home page |
+| `pages/dashboard.html` | `page-designs/dashboard.md` | analytics dashboard |
+| `pages/list.html` | `page-designs/list.md` | list management page |
+| `pages/config.html` | `page-designs/config.md` | detail/configuration page |
+| `pages/form.html` | `page-designs/form.md` | approval-oriented long form page |
+| `pages/controls.html` | `page-designs/controls.md` | foundation controls page |
+| `pages/theme.html` | `page-designs/theme.md` | global theme module page |
+| `pages/status.html` | `page-designs/status.md` | special status page |
 
 ## Shared Extraction Principles
 

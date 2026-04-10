@@ -3,148 +3,416 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>审批长表单页</title>
+  <title>表单类页面</title>
+  <script src="./theme-runtime.js"></script>
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
   <div class="page-shell">
     <header class="topbar">
       <div class="topbar__left">
-        <div class="eyebrow"><span class="eyebrow__dot"></span>Approval / 长表单</div>
-        <h1 class="topbar__title">设计后服务人员报批申请</h1>
-        <div class="topbar__meta">右侧锚点导航 + 台账式表格 + 审批流的正式业务单据页</div>
+        <div class="eyebrow"><span class="eyebrow__dot"></span>Approval / Ledger Form Template</div>
+        <h1 class="topbar__title">审批类文书表单页</h1>
+        <div class="topbar__meta">抽象这类正式业务表单的共有结构，而不是绑定单一业务名称</div>
       </div>
       <div class="topbar__actions">
         <a class="btn btn--secondary" href="./index.html">返回索引</a>
-        <a class="btn btn--primary" href="./home.html">查看首页</a>
+        <a class="btn btn--primary" href="./theme.html">查看主题模块</a>
       </div>
     </header>
 
     <section class="hero">
       <div class="hero__row">
         <div>
-          <h2 class="hero__title">项目驻地设计代表与协调工作组申请单</h2>
+          <h2 class="hero__title">这是一类“审批文书型表单页”的共性模板</h2>
           <p class="hero__desc">
-            页面采用“文书化表格 + 审批流程”的表达方式，重点突出结构完整性、字段边界和状态流转，不追求轻表单式的极简排版。
+            它沉淀的是这类页面稳定重复出现的组件组合：右侧锚点和动作区、上部基础信息台账、一个可编辑明细表、
+            审批流尾部，以及成员或对象选择弹窗。页面可以承接人员申请、改派、撤销、专项审批等多类业务。
           </p>
         </div>
         <div class="hero__badges">
-          <span class="tag tag--warning">当前状态：待申请</span>
-          <span class="tag tag--primary">支持暂存</span>
-          <span class="tag tag--info">支持重新申请</span>
+          <span class="tag tag--warning">状态驱动读写</span>
+          <span class="tag tag--primary">文书型表格</span>
+          <span class="tag tag--info">主题联动</span>
         </div>
       </div>
     </section>
 
-    <main class="doc-layout">
-      <div class="doc-shell">
-        <div class="doc-header">
+    <main class="apply-layout">
+      <div class="apply-sheet">
+        <div class="apply-sheet__head">
           <div>
-            <h2 class="doc-header__title">设计后服务人员报批申请单</h2>
-            <div class="topbar__meta">业务编号：DS_PERSON_APPROVAL_APPLY</div>
+            <div class="apply-sheet__eyebrow">APPROVAL_LEDGER_FORM</div>
+            <h2 class="apply-sheet__title">审批类业务申请单</h2>
+            <div class="apply-sheet__meta">业务编号：FORM-2026-001 / 当前状态：待申请 / 当前模式：可编辑</div>
           </div>
-          <span class="tag tag--warning">待申请</span>
+          <span class="status-pill status-pill--draft">待申请</span>
         </div>
 
-        <section id="basic">
-          <h3 class="section-title">基础信息</h3>
-          <table class="doc-table">
-            <tbody>
-              <tr><th>合同编号</th><td>HT-2026-QL-031</td><th>项目类别</th><td>桥梁设计</td></tr>
-              <tr><th>项目名称</th><td>广湛高速改扩建桥梁专项设计</td><th>负责部门</th><td>桥梁设计院</td></tr>
-              <tr><th>现场地址</th><td>广东省湛江市坡头区项目驻地现场</td><th>甲方名称</th><td>广东高速建设有限公司</td></tr>
-              <tr>
-                <th>开工是否满一年</th>
-                <td>
-                  <div class="inline-options">
-                    <span class="radio-button-demo is-active">是</span>
-                    <span class="radio-button-demo">否</span>
-                  </div>
-                </td>
-                <th>是否需要出图章</th>
-                <td>
-                  <div class="inline-options">
-                    <span class="radio-button-demo is-active">是</span>
-                    <span class="radio-button-demo">否</span>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-
-        <section id="mgmt">
-          <h3 class="section-title">公司级协调管理工作组</h3>
-          <p class="doc-note">注：对于 I 类项目，主体生产单位必须牵头成立公司级设计后服务协调管理工作组，工作组由主体生产单位及各专业生产单位负责人组成。</p>
-          <div class="inline-options" style="margin-bottom:12px;">
-            <span class="radio-button-demo is-active">新派</span>
-            <span class="radio-button-demo">更改</span>
+        <section id="basic-info" class="ledger-section">
+          <div class="ledger-section__head">
+            <span class="ledger-section__line"></span>
+            <h3 class="ledger-section__title">基础信息</h3>
           </div>
-          <table class="doc-table">
-            <thead>
-              <tr><th>序号</th><th>姓名</th><th>所属部门</th><th>岗位任职资格</th><th>职称</th><th>担任角色</th><th>备注</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>1</td><td>陈志强</td><td>桥梁设计院</td><td>一级注册结构工程师</td><td>高级工程师</td><td>总协调负责人</td><td>项目总牵头</td></tr>
-              <tr><td>2</td><td>刘婉婷</td><td>道路设计院</td><td>注册土木工程师</td><td>工程师</td><td>工作组成员</td><td>负责路桥接口协调</td></tr>
-            </tbody>
-          </table>
-        </section>
-
-        <section id="person">
-          <h3 class="section-title">驻地设计代表或联络员</h3>
-          <p class="doc-note doc-note--warning">改派人员谨慎变更专业和角色。改派、撤销等业务状态会影响字段结构与提交校验。</p>
-          <div class="inline-options" style="margin-bottom:12px;">
-            <span class="radio-button-demo is-active">新派</span>
-            <span class="radio-button-demo">增派</span>
-            <span class="radio-button-demo">改派</span>
-            <span class="radio-button-demo">撤销</span>
+          <div class="ledger-table-wrap">
+            <div class="ledger-table-wrap__band"></div>
+            <table class="ledger-table">
+              <tbody>
+                <tr>
+                  <th>业务编号</th>
+                  <td>FORM-2026-001</td>
+                  <th>业务类别</th>
+                  <td>专项审批</td>
+                </tr>
+                <tr>
+                  <th>项目名称</th>
+                  <td>典型审批文书型表单抽象示例</td>
+                  <th>负责部门</th>
+                  <td>设计管理中心</td>
+                </tr>
+                <tr>
+                  <th>关联对象</th>
+                  <td>驻地设计代表 / 联络员 / 协调组成员</td>
+                  <th>适用场景</th>
+                  <td>申请 / 增派 / 改派 / 撤销 / 重新申请</td>
+                </tr>
+                <tr>
+                  <th>流程模板</th>
+                  <td>
+                    <div class="ledger-field-stack">
+                      <div class="ledger-field-inline">
+                        <select class="select select--small ledger-field-inline__main">
+                          <option>标准审批流程 A</option>
+                          <option>跨部门会签流程</option>
+                          <option>加急审批流程</option>
+                        </select>
+                        <button class="btn btn--secondary btn--small">查看流程</button>
+                        <button class="btn btn--text" type="button">重置</button>
+                      </div>
+                    </div>
+                  </td>
+                  <th>申请模式</th>
+                  <td>
+                    <div class="ledger-field-stack">
+                      <div class="control-row">
+                        <span class="radio-button-demo is-active">首次申请</span>
+                        <span class="radio-button-demo">变更申请</span>
+                        <span class="radio-button-demo">重新申请</span>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th>紧急程度</th>
+                  <td>
+                    <div class="ledger-field-stack">
+                      <div class="control-row">
+                        <label class="radio-demo is-checked"><span class="radio-demo__dot"></span>普通</label>
+                        <label class="radio-demo"><span class="radio-demo__dot"></span>加急</label>
+                        <label class="radio-demo"><span class="radio-demo__dot"></span>特急</label>
+                        <span class="tag tag--warning">时效敏感</span>
+                      </div>
+                    </div>
+                  </td>
+                  <th>跨部门协同</th>
+                  <td>
+                    <div class="ledger-field-stack">
+                      <div class="control-row">
+                        <label class="switch-demo is-checked">
+                          <span class="switch-demo__core"></span>
+                          <span>已开启</span>
+                        </label>
+                        <span class="tag tag--primary">联动主题色</span>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th>通知方式</th>
+                  <td>
+                    <div class="ledger-field-stack">
+                      <div class="control-row">
+                        <label class="checkbox-demo is-checked"><span class="checkbox-demo__box"></span>站内消息</label>
+                        <label class="checkbox-demo is-checked"><span class="checkbox-demo__box"></span>邮件提醒</label>
+                        <label class="checkbox-demo"><span class="checkbox-demo__box"></span>短信提醒</label>
+                      </div>
+                    </div>
+                  </td>
+                  <th>快捷操作</th>
+                  <td>
+                    <div class="ledger-field-stack">
+                      <div class="control-row">
+                        <button class="btn btn--primary btn--small" type="button">自动带出项目成员</button>
+                        <button class="btn btn--ghost btn--small" type="button">批量套用规则</button>
+                        <button class="btn btn--secondary btn--small" type="button">清空当前选择</button>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th>审批时限</th>
+                  <td>
+                    <div class="ledger-field-stack">
+                      <div class="ledger-field-inline">
+                        <input class="input input--small ledger-field-inline__short" value="3">
+                        <span class="ledger-field-unit">工作日</span>
+                        <button class="btn btn--text" type="button">使用默认 SLA</button>
+                      </div>
+                    </div>
+                  </td>
+                  <th>附加说明</th>
+                  <td>
+                    <div class="ledger-field-stack">
+                      <textarea class="textarea textarea--compact">该区域用于沉淀基础信息区里需要提前配置的说明类字段。</textarea>
+                      <div class="control-row">
+                        <span class="tag tag--info">只读模式可折叠</span>
+                        <span class="tag tag--success">可参与主题联动</span>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <table class="doc-table">
-            <thead>
-              <tr><th>序号</th><th>姓名</th><th>所属部门</th><th>岗位任职资格</th><th>职称</th><th>专业</th><th>担任角色</th><th>备注</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>1</td><td>黄健</td><td>桥梁设计院</td><td>一级注册结构工程师</td><td>高级工程师</td><td>桥梁</td><td>驻地设计代表</td><td>常驻现场</td></tr>
-              <tr><td>2</td><td>周颖</td><td>综合管理部</td><td>项目协调专员</td><td>助理工程师</td><td>综合协调</td><td>联络员</td><td>负责文件流转</td></tr>
-            </tbody>
-          </table>
+          <div class="ledger-tip">
+            注：此类表单页通常存在业务约束提示、组织规则说明或提交前校验提醒。提示条应跟随主题色进行弱强调，但不能压过正式表格主体。
+          </div>
+          <div class="ledger-divider"></div>
         </section>
 
-        <section id="flow">
-          <h3 class="section-title">审批流程</h3>
-          <div class="person-grid">
-            <div class="dialog-card">
-              <h3 class="dialog-card__title">发起人</h3>
-              <p class="dialog-card__desc">桥梁设计院 / 陈志强<br>2026-04-10 09:42 提交草稿</p>
+        <section id="detail-table" class="ledger-section">
+          <div class="ledger-section__head">
+            <span class="ledger-section__line"></span>
+            <h3 class="ledger-section__title">业务明细</h3>
+          </div>
+          <div class="ledger-toolbar">
+            <button class="btn btn--primary btn--small">新增</button>
+            <div class="ledger-toolbar__hint">这一块代表此类页面最核心的可编辑台账区，字段会因业务状态而变动。</div>
+          </div>
+          <div class="ledger-table-wrap ledger-table-wrap--dense">
+            <div class="ledger-table-wrap__band"></div>
+            <table class="ledger-table ledger-table--dense">
+              <thead>
+                <tr>
+                  <th class="is-mini">序号</th>
+                  <th>姓名 / 对象</th>
+                  <th>所属部门</th>
+                  <th>资格或类别</th>
+                  <th>职称或级别</th>
+                  <th>专业或标签</th>
+                  <th>承担角色</th>
+                  <th class="is-required">业务原因 / 说明</th>
+                  <th class="is-mini">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>张三</td>
+                  <td>桥梁设计院</td>
+                  <td>一级注册结构工程师</td>
+                  <td>高级工程师</td>
+                  <td>桥梁</td>
+                  <td>驻地代表</td>
+                  <td><div class="textarea-cell is-editable">请输入业务原因或变更说明</div></td>
+                  <td><a class="table-text-action" href="javascript:void(0)">删除</a></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>李四</td>
+                  <td>综合管理部</td>
+                  <td>项目协调专员</td>
+                  <td>助理工程师</td>
+                  <td>综合协调</td>
+                  <td>联络员</td>
+                  <td><div class="textarea-cell is-editable">支持跨业务解释，例如不驻地原因、改派原因或撤销说明。</div></td>
+                  <td><a class="table-text-action" href="javascript:void(0)">删除</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="ledger-divider ledger-divider--spaced"></div>
+        </section>
+
+        <section id="workflow" class="ledger-section">
+          <div class="ledger-section__head">
+            <span class="ledger-section__line"></span>
+            <h3 class="ledger-section__title">审批流</h3>
+          </div>
+          <div class="workflow-shell">
+            <div class="workflow-node">
+              <div class="workflow-node__top">
+                <span class="workflow-node__dot is-done"></span>
+                <strong>发起</strong>
+              </div>
+              <div class="workflow-node__body">业务发起人创建单据并暂存。</div>
             </div>
-            <div class="dialog-card">
-              <h3 class="dialog-card__title">部门负责人审批</h3>
-              <p class="dialog-card__desc">待处理。通过后流转至公司分管领导与项目审批链。</p>
+            <div class="workflow-node">
+              <div class="workflow-node__top">
+                <span class="workflow-node__dot is-active"></span>
+                <strong>审批处理</strong>
+              </div>
+              <div class="workflow-node__body">按业务规则流转，按钮文案会因首次提交或重新申请而变化。</div>
             </div>
-            <div class="dialog-card">
-              <h3 class="dialog-card__title">归档结果</h3>
-              <p class="dialog-card__desc">审批完成后回填项目详情页指定页签，并保留流程号与重启记录。</p>
+            <div class="workflow-node">
+              <div class="workflow-node__top">
+                <span class="workflow-node__dot"></span>
+                <strong>归档结果</strong>
+              </div>
+              <div class="workflow-node__body">审批完成后回填业务页签，保留流程号、重启记录和操作痕迹。</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="ledger-section">
+          <div class="ledger-section__head">
+            <span class="ledger-section__line"></span>
+            <h3 class="ledger-section__title">选择弹窗预览</h3>
+          </div>
+          <div class="dialog-demo apply-dialog-demo">
+            <div class="dialog-demo__head">
+              <h3 class="dialog-demo__title">选择成员 / 对象</h3>
+              <span class="tag tag--info">Element UI Dialog</span>
+            </div>
+            <div class="dialog-demo__body">
+              <div class="apply-dialog-toolbar">
+                <div class="field-group">
+                  <label class="field-group__label">关键字</label>
+                  <input class="input input--small" value="张三" />
+                </div>
+                <div class="apply-dialog-toolbar__actions">
+                  <button class="btn btn--secondary btn--small">重置搜索</button>
+                  <button class="btn btn--primary btn--small">搜索</button>
+                </div>
+              </div>
+              <div class="ledger-table-wrap ledger-table-wrap--dialog">
+                <div class="ledger-table-wrap__band"></div>
+                <table class="table-mini table-mini--select">
+                  <thead>
+                    <tr>
+                      <th class="is-mini">选择</th>
+                      <th>姓名</th>
+                      <th>部门</th>
+                      <th>资格</th>
+                      <th>职称</th>
+                      <th>角色</th>
+                      <th>专业</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="is-selected">
+                      <td><span class="radio-mark is-active"></span></td>
+                      <td>张三（zhangsan）</td>
+                      <td>桥梁设计院</td>
+                      <td>一级注册结构工程师</td>
+                      <td>高级工程师</td>
+                      <td>驻地代表</td>
+                      <td>桥梁</td>
+                    </tr>
+                    <tr>
+                      <td><span class="radio-mark"></span></td>
+                      <td>李四（lisi）</td>
+                      <td>综合管理部</td>
+                      <td>项目协调专员</td>
+                      <td>助理工程师</td>
+                      <td>联络员</td>
+                      <td>综合协调</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="base-table-pagination">
+                <div class="pagination">
+                  <span>共 26 条</span>
+                  <span class="pagination__item">‹</span>
+                  <span class="pagination__item is-active">1</span>
+                  <span class="pagination__item">2</span>
+                  <span class="pagination__item">›</span>
+                </div>
+              </div>
+            </div>
+            <div class="dialog-demo__foot">
+              <button class="btn btn--secondary btn--small">取消</button>
+              <button class="btn btn--primary btn--small">确定</button>
             </div>
           </div>
         </section>
       </div>
 
-      <aside class="anchor-nav">
-        <div class="status-block">待申请<span class="status-block__meta">可暂存、可提交</span></div>
-        <nav class="anchor-list">
-          <a class="is-active" href="#basic">基本信息</a>
-          <a href="#mgmt">协调工作组</a>
-          <a href="#person">人员</a>
-          <a href="#flow">审批流程</a>
+      <aside class="apply-anchor">
+        <div class="apply-anchor__primary">
+          <button class="apply-anchor__primary-btn">暂存</button>
+        </div>
+        <nav class="apply-anchor__nav">
+          <a class="is-active" href="#basic-info">
+            <span class="apply-anchor__nav-index">01</span>
+            <span class="apply-anchor__nav-text">基础信息</span>
+          </a>
+          <a href="#detail-table">
+            <span class="apply-anchor__nav-index">02</span>
+            <span class="apply-anchor__nav-text">业务明细</span>
+          </a>
+          <a href="#workflow">
+            <span class="apply-anchor__nav-index">03</span>
+            <span class="apply-anchor__nav-text">审批流程</span>
+          </a>
         </nav>
-        <div class="anchor-actions">
-          <button class="btn btn--primary btn--small">暂 存</button>
-          <button class="btn btn--primary btn--small">提 交</button>
-          <button class="btn btn--secondary btn--small">重新申请</button>
+        <div class="apply-anchor__actions">
+          <button class="btn btn--primary btn--small">暂存</button>
+          <button class="btn btn--primary btn--small">提交</button>
         </div>
       </aside>
     </main>
   </div>
+  <script>
+    (function () {
+      const navLinks = Array.from(document.querySelectorAll('.apply-anchor__nav a'));
+      const sectionMap = navLinks
+        .map((link) => {
+          const id = link.getAttribute('href').replace('#', '');
+          return { link, section: document.getElementById(id), id };
+        })
+        .filter((item) => item.section);
+
+      if (!sectionMap.length) return;
+
+      function setActive(id) {
+        sectionMap.forEach((item) => {
+          const isActive = item.id === id;
+          item.link.classList.toggle('is-active', isActive);
+          if (isActive) {
+            item.link.setAttribute('aria-current', 'true');
+          } else {
+            item.link.removeAttribute('aria-current');
+          }
+        });
+      }
+
+      sectionMap.forEach((item) => {
+        item.link.addEventListener('click', function (event) {
+          event.preventDefault();
+          setActive(item.id);
+          item.section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const current = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+          if (current) setActive(current.target.id);
+        },
+        {
+          rootMargin: '-18% 0px -56% 0px',
+          threshold: [0.2, 0.4, 0.6]
+        }
+      );
+
+      sectionMap.forEach((item) => observer.observe(item.section));
+      setActive(sectionMap[0].id);
+    })();
+  </script>
 </body>
 </html>
