@@ -252,7 +252,7 @@ GHDI 项目里要做的是：
 本次补强已落地到：
 
 - `pages/styles.css`
-- `pages/element-controls-foundation.html`
+- `pages/controls.html`
 - 现有各页面共享的按钮、输入、表格、标签、弹窗、分页等基础样式
 
 建议后续所有新页面继续复用这套控件层，不要再单独发明一套基础 UI。
