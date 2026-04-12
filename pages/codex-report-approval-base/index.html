@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report Approval Base Page</title>
+  <link rel="stylesheet" href="./vendor/element-ui.css">
+  <link rel="stylesheet" href="./page.css">
+</head>
+<body>
+  <div id="app" class="benchmark-page">
+    <el-card shadow="never" class="section-card">
+      <div slot="header" class="header-row">
+        <div>
+          <h1 class="page-title">Personnel Report Approval</h1>
+          <p class="page-subtitle">Neutral benchmark base page (Vue2 + Element UI + local mock data)</p>
+        </div>
+        <div class="header-actions">
+          <el-tag size="small" :type="statusTagType">{{ form.statusLabel }}</el-tag>
+          <el-button size="small" @click="handleSave">Save Draft</el-button>
+          <el-button size="small" type="primary" @click="handleSubmit">{{ submitButtonLabel }}</el-button>
+        </div>
+      </div>
+      <el-tabs v-model="activeAnchor">
+        <el-tab-pane label="Basic Info" name="basic"></el-tab-pane>
+        <el-tab-pane label="Company Group" name="company"></el-tab-pane>
+        <el-tab-pane label="Site Team" name="site"></el-tab-pane>
+        <el-tab-pane label="Workflow" name="workflow"></el-tab-pane>
+      </el-tabs>
+    </el-card>
+
+    <el-card id="basic" shadow="never" class="section-card">
+      <div slot="header">
+        <span>Basic Information</span>
+      </div>
+      <el-form :model="form" label-width="180px" size="small">
+        <el-row :gutter="16">
+          <el-col :xs="24" :sm="12">
+            <el-form-item label="Contract Number">
+              <div class="readonly-field">{{ form.contractNo || "-" }}</div>
+            </el-form-item>
+          </el-col>
+          <el-col :xs="24" :sm="12">
+            <el-form-item label="Project Category">
+              <div class="readonly-field">{{ form.projectType || "-" }}</div>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="16">
+          <el-col :xs="24" :sm="12">
+            <el-form-item label="Project Name">
+              <div class="readonly-field">{{ form.projectName || "-" }}</div>
+            </el-form-item>
+          </el-col>
+          <el-col :xs="24" :sm="12">
+            <el-form-item label="Responsible Department">
+              <div class="readonly-field">{{ form.responsibleDept || "-" }}</div>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="16">
+          <el-col :xs="24" :sm="12">
+            <el-form-item label="Site Address">
+              <div class="readonly-field">{{ form.location || "-" }}</div>
+            </el-form-item>
+          </el-col>
+          <el-col :xs="24" :sm="12">
+            <el-form-item label="Applicant Organization">
+              <div class="readonly-field">{{ form.ownerUnit || "-" }}</div>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="16">
+          <el-col :xs="24" :sm="12">
+            <el-form-item label="Started Over One Year">
+              <el-radio-group v-model="form.projHaveOneYear">
+                <el-radio label="Yes">Yes</el-radio>
+                <el-radio label="No">No</el-radio>
+              </el-radio-group>
+            </el-form-item>
+          </el-col>
+          <el-col :xs="24" :sm="12">
+            <el-form-item label="Require Drawing Stamp">
+              <el-radio-group v-model="form.produceStamp">
+                <el-radio label="Yes">Yes</el-radio>
+                <el-radio label="No">No</el-radio>
+              </el-radio-group>
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </el-form>
+    </el-card>
+
+    <el-card id="company" shadow="never" class="section-card">
+      <div slot="header">
+        <span>Company-Level Coordination Group</span>
+      </div>
+      <el-alert
+        title="For high-priority projects, the company-level coordination group should be established and clearly assigned."
+        type="info"
+        :closable="false"
+        class="inline-alert"
+      ></el-alert>
+      <div class="control-row">
+        <el-radio-group v-model="form.mgmtTeamType" size="small" @change="handleMgmtTeamTypeChange">
+          <el-radio-button
+            v-for="option in mgmtTeamTypeOptions"
+            :key="option.value"
+            :label="option.value"
+          >{{ option.label }}</el-radio-button>
+        </el-radio-group>
+        <el-button
+          size="small"
+          type="primary"
+          :disabled="!form.mgmtTeamType"
+          @click="openMemberDialog('mgmt', 'add')"
+        >Add Member</el-button>
+      </div>
+      <el-table :data="form.mgmtTeamMembers" border size="small" empty-text="No data">
+        <el-table-column type="index" label="#" width="56"></el-table-column>
+        <el-table-column prop="usernameZh" label="Name" min-width="120"></el-table-column>
+        <el-table-column prop="deptName" label="Department" min-width="160"></el-table-column>
+        <el-table-column prop="postQualification" label="Qualification" min-width="200"></el-table-column>
+        <el-table-column prop="title" label="Title" min-width="130"></el-table-column>
+        <el-table-column label="Role" min-width="170">
+          <template slot-scope="scope">
+            <el-select v-model="scope.row.role" size="small" placeholder="Select role">
+              <el-option
+                v-for="option in mgmtRoleOptions"
+                :key="option.value"
+                :label="option.label"
+                :value="option.value"
+              ></el-option>
+            </el-select>
+          </template>
+        </el-table-column>
+        <el-table-column label="Remark" min-width="180">
+          <template slot-scope="scope">
+            <el-input v-model="scope.row.bz" size="small" placeholder="Optional"></el-input>
+          </template>
+        </el-table-column>
+        <el-table-column label="Actions" width="90" fixed="right">
+          <template slot-scope="scope">
+            <el-button type="text" @click="deleteMgmtMember(scope.$index)">Delete</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-card>
+
+    <el-card id="site" shadow="never" class="section-card">
+      <div slot="header">
+        <span>On-Site Design Representative / Liaison</span>
+      </div>
+      <div class="control-row">
+        <el-radio-group v-model="form.siteTeamType" size="small" @change="handleSiteTeamTypeChange">
+          <el-radio-button
+            v-for="option in siteTeamTypeOptions"
+            :key="option.value"
+            :label="option.value"
+          >{{ option.label }}</el-radio-button>
+        </el-radio-group>
+        <el-button
+          size="small"
+          type="primary"
+          :disabled="!form.siteTeamType"
+          @click="openMemberDialog('site', 'add')"
+        >Add Member</el-button>
+      </div>
+      <el-alert
+        v-if="form.siteTeamType === 3"
+        title="When replacing a member, keep major and role aligned with the replaced role."
+        type="warning"
+        :closable="false"
+        class="inline-alert"
+      ></el-alert>
+      <el-table :data="form.siteTeamMembers" border size="small" empty-text="No data">
+        <el-table-column type="index" label="#" width="56"></el-table-column>
+        <el-table-column prop="usernameZh" label="Name" min-width="120"></el-table-column>
+        <el-table-column prop="deptName" label="Department" min-width="160"></el-table-column>
+        <el-table-column prop="postQualification" label="Qualification" min-width="200"></el-table-column>
+        <el-table-column prop="title" label="Title" min-width="130"></el-table-column>
+        <el-table-column label="Major" min-width="150">
+          <template slot-scope="scope">
+            <el-select
+              v-model="scope.row.major"
+              size="small"
+              placeholder="Select major"
+              :disabled="form.siteTeamType === 4"
+            >
+              <el-option
+                v-for="option in majorOptions"
+                :key="option.value"
+                :label="option.label"
+                :value="option.value"
+              ></el-option>
+            </el-select>
+          </template>
+        </el-table-column>
+        <el-table-column label="Role" min-width="170">
+          <template slot-scope="scope">
+            <el-select
+              v-model="scope.row.role"
+              size="small"
+              placeholder="Select role"
+              :disabled="form.siteTeamType === 4"
+            >
+              <el-option
+                v-for="option in siteRoleOptions"
+                :key="option.value"
+                :label="option.label"
+                :value="option.value"
+              ></el-option>
+            </el-select>
+          </template>
+        </el-table-column>
+        <el-table-column label="Remark" min-width="180">
+          <template slot-scope="scope">
+            <el-input
+              v-model="scope.row.bz"
+              size="small"
+              placeholder="Optional"
+              :disabled="form.siteTeamType === 4"
+            ></el-input>
+          </template>
+        </el-table-column>
+        <el-table-column label="Replaced Member" min-width="220">
+          <template slot-scope="scope">
+            <div class="inline-op">
+              <span>{{ scope.row.replacedByZh || "-" }}</span>
+              <el-button
+                v-if="form.siteTeamType === 3"
+                size="mini"
+                type="text"
+                @click="openMemberDialog('site', 'replace', scope.$index)"
+              >Select</el-button>
+            </div>
+          </template>
+        </el-table-column>
+        <el-table-column label="Actions" width="90" fixed="right">
+          <template slot-scope="scope">
+            <el-button type="text" @click="deleteSiteMember(scope.$index)">Delete</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-card>
+
+    <el-card id="workflow" shadow="never" class="section-card">
+      <div slot="header">
+        <span>Workflow</span>
+      </div>
+      <el-table :data="workflowRecords" border size="small">
+        <el-table-column type="index" label="#" width="56"></el-table-column>
+        <el-table-column prop="nodeName" label="Node" min-width="180"></el-table-column>
+        <el-table-column prop="assignee" label="Assignee" min-width="160"></el-table-column>
+        <el-table-column prop="result" label="Result" width="120"></el-table-column>
+        <el-table-column prop="time" label="Time" min-width="160"></el-table-column>
+        <el-table-column prop="comment" label="Comment" min-width="220"></el-table-column>
+      </el-table>
+    </el-card>
+
+    <el-dialog
+      title="Select Member"
+      :visible.sync="memberDialog.visible"
+      width="860px"
+      append-to-body
+    >
+      <el-form :inline="true" size="small" class="dialog-filter">
+        <el-form-item label="Keyword">
+          <el-input
+            v-model.trim="memberDialog.keyword"
+            placeholder="Name / department / role"
+            @keyup.enter.native="memberDialog.pageNum = 1"
+          ></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button @click="resetMemberFilter">Reset</el-button>
+        </el-form-item>
+      </el-form>
+      <el-table :data="pagedDialogUsers" border size="small" height="320">
+        <el-table-column width="56">
+          <template slot-scope="scope">
+            <el-radio :label="scope.row.id" v-model="memberDialog.selectedId">&nbsp;</el-radio>
+          </template>
+        </el-table-column>
+        <el-table-column prop="usernameZh" label="Name" width="160"></el-table-column>
+        <el-table-column prop="deptName" label="Department" min-width="170"></el-table-column>
+        <el-table-column prop="postQualification" label="Qualification" min-width="180"></el-table-column>
+        <el-table-column prop="title" label="Title" width="140"></el-table-column>
+        <el-table-column prop="major" label="Major" width="130"></el-table-column>
+        <el-table-column prop="role" label="Role" min-width="140"></el-table-column>
+      </el-table>
+      <div class="dialog-pagination">
+        <el-pagination
+          :current-page.sync="memberDialog.pageNum"
+          :page-size.sync="memberDialog.pageSize"
+          :page-sizes="[5, 10, 20]"
+          layout="total, sizes, prev, pager, next"
+          :total="dialogUserTotal"
+        ></el-pagination>
+      </div>
+      <span slot="footer">
+        <el-button size="small" @click="memberDialog.visible = false">Cancel</el-button>
+        <el-button size="small" type="primary" @click="confirmMemberSelection">Confirm</el-button>
+      </span>
+    </el-dialog>
+  </div>
+
+  <script src="./vendor/vue.min.js"></script>
+  <script src="./vendor/element-ui.min.js"></script>
+  <script src="./mock/mock-data.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
