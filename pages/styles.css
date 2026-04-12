@@ -1115,6 +1115,10 @@ input::placeholder, textarea::placeholder { color: var(--text-placeholder); }
   display: grid;
 }
 
+.apply-anchor__status-only + .apply-anchor__primary {
+  display: none;
+}
+
 .apply-anchor__primary-btn {
   min-height: 122px;
   border: 0;
@@ -1126,6 +1130,30 @@ input::placeholder, textarea::placeholder { color: var(--text-placeholder); }
   letter-spacing: 1px;
   box-shadow: 0 10px 24px color-mix(in srgb, var(--theme-color) 26%, transparent);
   cursor: pointer;
+}
+
+.apply-anchor__status {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 8px;
+  min-height: 112px;
+  aspect-ratio: 1;
+  cursor: default;
+}
+
+.apply-anchor__status-label {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.apply-anchor__status strong {
+  color: #fff;
+  font-size: 17px;
+  line-height: 1.2;
+  font-weight: 700;
 }
 
 .apply-anchor__primary-btn:hover {
@@ -1186,6 +1214,10 @@ input::placeholder, textarea::placeholder { color: var(--text-placeholder); }
   min-height: 34px;
   border-radius: 4px;
   padding: 0 12px;
+}
+
+.apply-anchor__actions .btn:nth-child(n+3) {
+  display: none;
 }
 
 .apply-anchor__actions .btn--primary {
