@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>全局主题模块</title>
+  <script src="./theme-runtime.js"></script>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="topbar__left">
+        <div class="eyebrow"><span class="eyebrow__dot"></span>Global Theme Engine</div>
+        <h1 class="topbar__title">全局主题模块</h1>
+        <div class="topbar__meta">提供基础主题色，选色后对下方子模块以及其他页面产生统一的主题影响</div>
+      </div>
+      <div class="topbar__actions">
+        <a class="btn btn--secondary" href="./index.html">返回索引</a>
+        <a class="btn btn--ghost" href="../theme-color-logic.md">查看主题逻辑文档</a>
+      </div>
+    </header>
+
+    <section class="hero hero--theme">
+      <div class="hero__row">
+        <div>
+          <h2 class="hero__title">主题模块先提供基础颜色，再把风格结果向下渲染到业务子模块和其他页面</h2>
+          <p class="hero__desc">
+            这里的主题色不再只作用于当前页面，而是写入共享主题运行时。选中主题后，
+            首页、看板、列表、配置、表单、状态页和控件页都会读取同一套主题变量。
+          </p>
+        </div>
+        <div class="hero__badges">
+          <span class="tag tag--primary">基础主题色</span>
+          <span class="tag tag--info">全局变量</span>
+          <span class="tag tag--success">跨页面生效</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="theme-global">
+      <div class="theme-global__main">
+        <div class="theme-global__label">Global Scope</div>
+        <h2 class="theme-global__title">一个模块，影响整个后台</h2>
+        <p class="theme-global__desc">
+          主题模块负责输出基础颜色，再通过共享运行时把颜色写入 `--theme-color`、`--theme-color-deep`、
+          `--theme-color-light-8`、`--theme-color-light-9`。其他页面只消费变量，不再各自管理主题。
+        </p>
+      </div>
+      <div class="theme-global__chips">
+        <span class="theme-impact-chip">Home</span>
+        <span class="theme-impact-chip">Dashboard</span>
+        <span class="theme-impact-chip">List</span>
+        <span class="theme-impact-chip">Config</span>
+        <span class="theme-impact-chip">Form</span>
+        <span class="theme-impact-chip">Controls</span>
+        <span class="theme-impact-chip">Status</span>
+      </div>
+    </section>
+
+    <main class="section-grid">
+      <section class="panel">
+        <div class="panel__head">
+          <h2 class="panel__title">基础主题色</h2>
+          <div class="panel__meta">Preset Palette / Shared Runtime</div>
+        </div>
+        <div class="panel__body">
+          <div class="theme-console">
+            <div class="theme-console__palette">
+              <button class="theme-preset is-active" data-name="琥珀橙" data-color="#F19E38">
+                <span class="theme-preset__swatch" style="background:#F19E38;"></span>
+                <span class="theme-preset__meta"><strong>琥珀橙</strong><em>#F19E38</em></span>
+              </button>
+              <button class="theme-preset" data-name="科技蓝" data-color="#2F7EF7">
+                <span class="theme-preset__swatch" style="background:#2F7EF7;"></span>
+                <span class="theme-preset__meta"><strong>科技蓝</strong><em>#2F7EF7</em></span>
+              </button>
+              <button class="theme-preset" data-name="生态绿" data-color="#2FA66B">
+                <span class="theme-preset__swatch" style="background:#2FA66B;"></span>
+                <span class="theme-preset__meta"><strong>生态绿</strong><em>#2FA66B</em></span>
+              </button>
+              <button class="theme-preset" data-name="业务红" data-color="#E05A47">
+                <span class="theme-preset__swatch" style="background:#E05A47;"></span>
+                <span class="theme-preset__meta"><strong>业务红</strong><em>#E05A47</em></span>
+              </button>
+              <button class="theme-preset" data-name="深海青" data-color="#0F8C8C">
+                <span class="theme-preset__swatch" style="background:#0F8C8C;"></span>
+                <span class="theme-preset__meta"><strong>深海青</strong><em>#0F8C8C</em></span>
+              </button>
+              <button class="theme-preset" data-name="深紫灰" data-color="#5D5D8C">
+                <span class="theme-preset__swatch" style="background:#5D5D8C;"></span>
+                <span class="theme-preset__meta"><strong>深紫灰</strong><em>#5D5D8C</em></span>
+              </button>
+            </div>
+
+            <div class="theme-console__current">
+              <div class="theme-current">
+                <div class="theme-current__head">
+                  <span class="theme-current__swatch" id="themeCurrentSwatch"></span>
+                  <div>
+                    <div class="theme-current__label">当前主题</div>
+                    <div class="theme-current__name" id="themeCurrentName">琥珀橙</div>
+                  </div>
+                </div>
+                <div class="theme-current__vars">
+                  <div class="theme-current__var"><span>--theme-color</span><strong id="themeColorValue">#F19E38</strong></div>
+                  <div class="theme-current__var"><span>--line-color</span><strong id="themeLineValue">#DD8D2E</strong></div>
+                  <div class="theme-current__var"><span>--theme-color-light-8</span><strong id="themeLight8Value">#FDF3E1</strong></div>
+                  <div class="theme-current__var"><span>--theme-color-light-9</span><strong id="themeLight9Value">#FEF8EE</strong></div>
+                </div>
+              </div>
+
+              <label class="theme-custom">
+                <span class="theme-custom__label">自定义颜色</span>
+                <div class="theme-custom__control">
+                  <input id="themeCustomInput" type="color" value="#F19E38">
+                  <span id="themeCustomValue">#F19E38</span>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel__head">
+          <h2 class="panel__title">子模块联动预览</h2>
+          <div class="panel__meta">Selected Theme → Rendered Modules</div>
+        </div>
+        <div class="panel__body">
+          <div class="theme-module-grid">
+            <article class="theme-module-card">
+              <div class="theme-module-card__top">Home Module</div>
+              <div class="theme-module-card__body">
+                <div class="theme-module-card__title"><span></span>角色分发首页</div>
+                <div class="theme-module-card__chips"><em>组织切换</em><em>工作入口</em><em>快速导航</em></div>
+                <div class="theme-module-card__cta"><button>进入工作台</button><a href="javascript:void(0)">查看更多</a></div>
+              </div>
+            </article>
+            <article class="theme-module-card">
+              <div class="theme-module-card__top">Dashboard Module</div>
+              <div class="theme-module-card__body">
+                <div class="theme-module-metrics">
+                  <div><strong>128</strong><span>待处理</span></div>
+                  <div><strong>86%</strong><span>完成率</span></div>
+                  <div><strong>16</strong><span>预警项</span></div>
+                </div>
+                <div class="theme-module-chart"><i></i><i></i><i></i><i></i><i></i></div>
+              </div>
+            </article>
+            <article class="theme-module-card">
+              <div class="theme-module-card__top">List Module</div>
+              <div class="theme-module-card__body">
+                <div class="theme-module-toolbar"><button>新增</button><button class="is-ghost">导出</button></div>
+                <div class="theme-module-table"><span class="is-head"></span><span></span><span></span><span></span></div>
+              </div>
+            </article>
+            <article class="theme-module-card">
+              <div class="theme-module-card__top">Config Module</div>
+              <div class="theme-module-card__body">
+                <div class="theme-module-card__title"><span></span>配置表单</div>
+                <div class="theme-module-form"><span></span><span></span><span></span></div>
+                <div class="theme-module-card__cta"><button>保存配置</button></div>
+              </div>
+            </article>
+            <article class="theme-module-card">
+              <div class="theme-module-card__top">Form Module</div>
+              <div class="theme-module-card__body">
+                <div class="theme-module-tabs"><span class="is-active">基本信息</span><span>审批意见</span><span>流转日志</span></div>
+                <div class="theme-module-card__cta"><button>提交审批</button><a href="javascript:void(0)">暂存</a></div>
+              </div>
+            </article>
+            <article class="theme-module-card">
+              <div class="theme-module-card__top">Status Module</div>
+              <div class="theme-module-card__body">
+                <div class="theme-module-status"><div class="theme-module-status__ring"></div><div class="theme-module-status__line"></div></div>
+                <div class="theme-module-card__title"><span></span>404 / Empty 状态页</div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel__head">
+          <h2 class="panel__title">全局驱动链路</h2>
+          <div class="panel__meta">Source → Variable → Pages</div>
+        </div>
+        <div class="panel__body">
+          <div class="theme-flow">
+            <div class="theme-flow__node"><strong>System/index.vue</strong><span>默认 systemColor / buttonColor</span></div>
+            <div class="theme-flow__arrow">→</div>
+            <div class="theme-flow__node"><strong>Theme Module</strong><span>基础主题色 / 自定义颜色</span></div>
+            <div class="theme-flow__arrow">→</div>
+            <div class="theme-flow__node"><strong>App / Top Menu</strong><span>写入 --theme-color / --line-color</span></div>
+            <div class="theme-flow__arrow">→</div>
+            <div class="theme-flow__node"><strong>Child Modules</strong><span>首页、列表、表单、状态页同步生效</span></div>
+          </div>
+          <div class="alert alert--info" style="margin-top:14px;">
+            <div class="alert__title">当前逻辑</div>
+            <div class="alert__desc">主题模块先选颜色，再把颜色写入共享变量层，由所有页面和子模块统一消费。</div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      const runtime = window.__ghdiThemeRuntime;
+      const presetButtons = Array.from(document.querySelectorAll('.theme-preset'));
+      const customInput = document.getElementById('themeCustomInput');
+      const customValue = document.getElementById('themeCustomValue');
+      const currentName = document.getElementById('themeCurrentName');
+      const currentSwatch = document.getElementById('themeCurrentSwatch');
+      const themeColorValue = document.getElementById('themeColorValue');
+      const themeLineValue = document.getElementById('themeLineValue');
+      const themeLight8Value = document.getElementById('themeLight8Value');
+      const themeLight9Value = document.getElementById('themeLight9Value');
+
+      function setActive(button) {
+        presetButtons.forEach((item) => item.classList.remove('is-active'));
+        if (button) button.classList.add('is-active');
+      }
+
+      function syncTheme(theme, sourceButton) {
+        currentName.textContent = theme.name;
+        currentSwatch.style.background = theme.color;
+        themeColorValue.textContent = theme.color;
+        themeLineValue.textContent = theme.deep;
+        themeLight8Value.textContent = theme.light8;
+        themeLight9Value.textContent = theme.light9;
+        customInput.value = theme.color;
+        customValue.textContent = theme.color;
+        setActive(sourceButton || null);
+      }
+
+      presetButtons.forEach((button) => {
+        button.addEventListener('click', function () {
+          const theme = runtime.setTheme(button.dataset.name, button.dataset.color);
+          syncTheme(theme, button);
+        });
+      });
+
+      customInput.addEventListener('input', function () {
+        const theme = runtime.setTheme('自定义颜色', customInput.value);
+        syncTheme(theme, null);
+      });
+
+      document.addEventListener('ghdi-theme-change', function (event) {
+        const matchedButton = presetButtons.find((button) => button.dataset.color.toUpperCase() === event.detail.color);
+        syncTheme(event.detail, matchedButton || null);
+      });
+
+      const initialTheme = runtime.getTheme();
+      const defaultButton = presetButtons.find((button) => button.dataset.color.toUpperCase() === initialTheme.color);
+      syncTheme(initialTheme, defaultButton || null);
+    })();
+  </script>
+</body>
+</html>

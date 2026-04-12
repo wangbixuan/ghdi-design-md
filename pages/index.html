@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GHDI 页面原型索引</title>
+  <script src="./theme-runtime.js"></script>
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -12,7 +13,7 @@
       <div class="topbar__left">
         <div class="eyebrow"><span class="eyebrow__dot"></span>GHDI Design Pages</div>
         <h1 class="topbar__title">页面原型目录</h1>
-        <div class="topbar__meta">基于 Vue 页面结构抽取并生成的静态 HTML 原型</div>
+        <div class="topbar__meta">基于现有 Vue 页面结构抽象出的静态 HTML 原型集合。</div>
       </div>
       <div class="topbar__actions">
         <a class="btn btn--ghost" href="../design.md">总设计规范</a>
@@ -23,16 +24,115 @@
     <section class="hero">
       <div class="hero__row">
         <div>
-          <h2 class="hero__title">企业后台页面集</h2>
+          <h2 class="hero__title">企业后台页面原型集</h2>
           <p class="hero__desc">
-            这里包含 5 类常见页面：角色首页、统计看板、列表管理、详情配置和审批长表单。
-            所有页面都复用了统一主题变量、边框、卡片和按钮风格，便于后续继续转成 Vue 页面或 Figma 设计稿。
+            这里包含首页、看板、列表、配置、表单、状态页和基础控件页。
+            主题颜色已经作为全局模块存在，下面所有页面都会消费同一套主题变量。
           </p>
         </div>
         <div class="hero__badges">
           <span class="chip">白底后台</span>
           <span class="chip">Element 风格兼容</span>
-          <span class="chip chip--success">桌面端优先</span>
+          <span class="chip chip--success">全局主题联动</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="global-module">
+      <div class="global-module__main">
+        <div class="eyebrow"><span class="eyebrow__dot"></span>Global Theme Engine</div>
+        <h2 class="global-module__title">主题颜色作为全局模块存在，不再只是独立子页面</h2>
+        <p class="global-module__desc">
+          主题会写入共享运行时，再统一影响导航、按钮、Tabs、base table、表单强调态和状态页等模块。
+          现在可以直接在首页选择基础主题色，并同步影响其他页面。
+        </p>
+
+        <div class="global-module__theme">
+          <div class="global-module__theme-head">
+            <div>
+              <h3 class="global-module__theme-title">基础主题色</h3>
+              <p class="global-module__theme-desc">在首页直接选色，下面所有子模块和其他页面同步生效。</p>
+            </div>
+            <a class="global-module__theme-link" href="./theme.html">进入完整主题页</a>
+          </div>
+
+          <div class="global-module__theme-grid">
+            <div class="global-module__theme-palette">
+              <button class="theme-preset" data-name="Amber" data-color="#F19E38">
+                <span class="theme-preset__swatch" style="background:#F19E38;"></span>
+                <span class="theme-preset__meta"><strong>Amber</strong><em>#F19E38</em></span>
+              </button>
+              <button class="theme-preset" data-name="Blue" data-color="#2F7EF7">
+                <span class="theme-preset__swatch" style="background:#2F7EF7;"></span>
+                <span class="theme-preset__meta"><strong>Blue</strong><em>#2F7EF7</em></span>
+              </button>
+              <button class="theme-preset" data-name="Green" data-color="#2FA66B">
+                <span class="theme-preset__swatch" style="background:#2FA66B;"></span>
+                <span class="theme-preset__meta"><strong>Green</strong><em>#2FA66B</em></span>
+              </button>
+              <button class="theme-preset" data-name="Coral" data-color="#E05A47">
+                <span class="theme-preset__swatch" style="background:#E05A47;"></span>
+                <span class="theme-preset__meta"><strong>Coral</strong><em>#E05A47</em></span>
+              </button>
+              <button class="theme-preset" data-name="Teal" data-color="#0F8C8C">
+                <span class="theme-preset__swatch" style="background:#0F8C8C;"></span>
+                <span class="theme-preset__meta"><strong>Teal</strong><em>#0F8C8C</em></span>
+              </button>
+              <button class="theme-preset" data-name="Indigo" data-color="#5D5D8C">
+                <span class="theme-preset__swatch" style="background:#5D5D8C;"></span>
+                <span class="theme-preset__meta"><strong>Indigo</strong><em>#5D5D8C</em></span>
+              </button>
+            </div>
+
+            <div class="global-module__theme-current">
+              <div class="global-module__theme-current-top">
+                <span class="global-module__theme-current-swatch" id="indexThemeSwatch"></span>
+                <div>
+                  <div class="global-module__theme-current-name" id="indexThemeName">Amber</div>
+                  <div class="global-module__theme-current-meta">Shared theme runtime</div>
+                </div>
+              </div>
+              <div class="global-module__theme-vars">
+                <div class="global-module__theme-var"><span>--theme-color</span><strong id="indexThemeColorValue">#F19E38</strong></div>
+                <div class="global-module__theme-var"><span>--line-color</span><strong id="indexThemeLineValue">#DD8D2E</strong></div>
+                <div class="global-module__theme-var"><span>--theme-color-light-9</span><strong id="indexThemeLightValue">#FEF8EE</strong></div>
+              </div>
+              <label class="global-module__theme-custom">
+                <span>自定义颜色</span>
+                <div class="global-module__theme-custom-control">
+                  <input id="indexThemeCustomInput" type="color" value="#F19E38">
+                  <strong class="global-module__theme-custom-value" id="indexThemeCustomValue">#F19E38</strong>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="global-module__actions">
+          <a class="btn btn--primary" href="./theme.html">查看全局主题模块</a>
+          <a class="btn btn--ghost" href="../theme-color-logic.md">查看主题逻辑文档</a>
+        </div>
+      </div>
+
+      <div class="global-module__side">
+        <div class="global-module__label">全局影响范围</div>
+        <div class="global-module__chips">
+          <span class="tag tag--primary">首页</span>
+          <span class="tag tag--primary">看板</span>
+          <span class="tag tag--primary">列表</span>
+          <span class="tag tag--primary">配置</span>
+          <span class="tag tag--primary">表单</span>
+          <span class="tag tag--primary">控件</span>
+          <span class="tag tag--primary">状态页</span>
+        </div>
+        <div class="global-module__map">
+          <div class="global-module__map-line"></div>
+          <div class="global-module__map-items">
+            <span>System Config</span>
+            <span>Menu Color</span>
+            <span>App / Top Menu</span>
+            <span>All Pages</span>
+          </div>
         </div>
       </div>
     </section>
@@ -48,28 +148,28 @@
       <a class="page-card" href="./dashboard.html">
         <div>
           <h3 class="page-card__title">工单统计看板</h3>
-          <p class="page-card__desc">双栏看板，涵盖指标卡、趋势图、排名列表、项目统计和关键词云。</p>
+          <p class="page-card__desc">双栏看板，涵盖指标卡、趋势图、排名列表和业务概览。</p>
         </div>
         <div class="page-card__preview"><div class="preview-tiles"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
       </a>
       <a class="page-card" href="./list.html">
         <div>
           <h3 class="page-card__title">列表管理页</h3>
-          <p class="page-card__desc">搜索、工具栏、表格、行内操作与弹窗能力齐全的标准后台列表页。</p>
+          <p class="page-card__desc">覆盖搜索、工具栏、表格、分页、行内操作和批量处理的标准后台列表页。</p>
         </div>
         <div class="page-card__preview"><div class="preview-bars"><span></span><span></span><span></span><span></span><span></span></div></div>
       </a>
       <a class="page-card" href="./config.html">
         <div>
           <h3 class="page-card__title">详情配置页</h3>
-          <p class="page-card__desc">双列设置 + 富文本编辑 + 附件上传 + 预览与规则提醒的文档型编辑页。</p>
+          <p class="page-card__desc">适合文档型配置、富文本编辑、附件上传和右侧辅助说明的配置页面。</p>
         </div>
         <div class="page-card__preview"><div class="preview-form"><span></span><span></span><span></span><span></span><span></span></div></div>
       </a>
       <a class="page-card" href="./controls.html">
         <div>
           <h3 class="page-card__title">基础控件规范页</h3>
-          <p class="page-card__desc">按 Element UI 规范补强后的按钮、输入、选择、标签、表格、弹窗和分页演示页。</p>
+          <p class="page-card__desc">集中展示按 Element UI 规范收紧后的按钮、输入、标签、表格、弹窗和分页。</p>
         </div>
         <div class="page-card__preview"><div class="preview-form"><span></span><span></span><span></span><span></span><span></span></div></div>
       </a>
@@ -80,7 +180,67 @@
         </div>
         <div class="page-card__preview"><div class="preview-bars"><span></span><span></span><span></span><span></span><span></span></div></div>
       </a>
+      <a class="page-card" href="./status.html">
+        <div>
+          <h3 class="page-card__title">特殊状态类页面</h3>
+          <p class="page-card__desc">当前收敛展示 404 页面和 Element 风格空状态，入口仍放在最后。</p>
+        </div>
+        <div class="page-card__preview"><div class="preview-bars"><span></span><span></span><span></span><span></span><span></span></div></div>
+      </a>
     </main>
   </div>
+
+  <script>
+    (function () {
+      const runtime = window.__ghdiThemeRuntime;
+      if (!runtime) return;
+
+      const presetButtons = Array.from(document.querySelectorAll('.global-module .theme-preset'));
+      const customInput = document.getElementById('indexThemeCustomInput');
+      const customValue = document.getElementById('indexThemeCustomValue');
+      const currentName = document.getElementById('indexThemeName');
+      const currentSwatch = document.getElementById('indexThemeSwatch');
+      const colorValue = document.getElementById('indexThemeColorValue');
+      const lineValue = document.getElementById('indexThemeLineValue');
+      const lightValue = document.getElementById('indexThemeLightValue');
+
+      function setActive(button) {
+        presetButtons.forEach((item) => item.classList.remove('is-active'));
+        if (button) button.classList.add('is-active');
+      }
+
+      function syncTheme(theme, sourceButton) {
+        currentName.textContent = theme.name;
+        currentSwatch.style.background = theme.color;
+        colorValue.textContent = theme.color;
+        lineValue.textContent = theme.deep;
+        lightValue.textContent = theme.light9;
+        customInput.value = theme.color;
+        customValue.textContent = theme.color;
+        setActive(sourceButton || null);
+      }
+
+      presetButtons.forEach((button) => {
+        button.addEventListener('click', function () {
+          const theme = runtime.setTheme(button.dataset.name, button.dataset.color);
+          syncTheme(theme, button);
+        });
+      });
+
+      customInput.addEventListener('input', function () {
+        const theme = runtime.setTheme('Custom', customInput.value);
+        syncTheme(theme, null);
+      });
+
+      document.addEventListener('ghdi-theme-change', function (event) {
+        const matchedButton = presetButtons.find((button) => button.dataset.color.toUpperCase() === event.detail.color);
+        syncTheme(event.detail, matchedButton || null);
+      });
+
+      const initialTheme = runtime.getTheme();
+      const defaultButton = presetButtons.find((button) => button.dataset.color.toUpperCase() === initialTheme.color);
+      syncTheme(initialTheme, defaultButton || null);
+    })();
+  </script>
 </body>
 </html>

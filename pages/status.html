@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>特殊状态类页面</title>
+  <script src="./theme-runtime.js"></script>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="topbar__left">
+        <div class="eyebrow"><span class="eyebrow__dot"></span>Special Status Pages</div>
+        <h1 class="topbar__title">特殊状态类页面</h1>
+        <div class="topbar__meta">当前仅体现 404 页面和 Element UI 风格空状态</div>
+      </div>
+      <div class="topbar__actions">
+        <a class="btn btn--secondary" href="./index.html">返回索引</a>
+        <a class="btn btn--ghost" href="./controls.html">基础控件页</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero__row">
+        <div>
+          <h2 class="hero__title">特殊状态暂时收敛为系统 404 和标准空状态两类</h2>
+          <p class="hero__desc">
+            404 直接取自你给的项目页表达，保留大数字和中间指针图形。
+            空状态则按 Element UI 默认 `el-empty` 的思路处理，使用浅灰蓝插画、弱说明文案和单一主操作。
+          </p>
+        </div>
+        <div class="hero__badges">
+          <span class="tag tag--primary">404</span>
+          <span class="tag tag--info">Element Empty</span>
+        </div>
+      </div>
+    </section>
+
+    <main class="section-grid">
+      <section class="panel">
+        <div class="panel__head">
+          <h2 class="panel__title">状态原型</h2>
+          <div class="panel__meta">404 / Empty</div>
+        </div>
+        <div class="panel__body">
+          <div class="status-grid">
+            <article class="status-card status-card--notfound">
+              <div class="status-card__stage">
+                <div class="status-code">
+                  <span class="status-code__digit">4</span>
+                  <span class="status-symbol status-symbol--compass">
+                    <span class="status-symbol__ring"></span>
+                    <span class="status-symbol__needle"></span>
+                  </span>
+                  <span class="status-code__digit">4</span>
+                </div>
+                <h3 class="status-card__title status-card__title--404">页面不存在</h3>
+              </div>
+            </article>
+
+            <article class="status-card status-card--empty">
+              <div class="status-card__stage status-card__stage--empty">
+                <div class="el-empty-demo" aria-hidden="true">
+                  <div class="el-empty-demo__image">
+                    <svg class="el-empty-demo__svg" viewBox="0 0 240 180" xmlns="http://www.w3.org/2000/svg">
+                      <ellipse cx="120" cy="160" rx="88" ry="10" fill="#F5F7FA"/>
+                      <path d="M74 44h52l24 18-20 10-56-18z" fill="#F8F9FC"/>
+                      <path d="M74 44L48 98l42 18 40-72z" fill="#FAFBFD"/>
+                      <path d="M126 44l52 24-20 48-28-44z" fill="#F0F2F7"/>
+                      <path d="M90 116h74v44H90z" fill="#F5F7FA"/>
+                      <path d="M164 116l24 16v28h-24z" fill="#EBEEF5"/>
+                      <path d="M70 116h20l-20 18h-22z" fill="#EDEFF4"/>
+                      <path d="M164 116h24l18 18h-34z" fill="#E3E7EE"/>
+                    </svg>
+                  </div>
+                </div>
+                <h3 class="status-card__title status-card__title--empty">暂无数据</h3>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

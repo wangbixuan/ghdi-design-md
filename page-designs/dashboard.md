@@ -1,110 +1,136 @@
 # Design MD: Dashboard Page
 
-> Source: analytics / data-visualization Vue page
+> Source abstraction: generic enterprise analytics dashboard
 
 ## 1. Page Positioning
 
-This is a standard analytics dashboard for enterprise operations. It is used to show work order volume, processing status, score distribution, project ownership, hot cases, hot issue categories, and hot keywords.
+This page type is a reusable enterprise dashboard template for operational overview and management monitoring.
 
-It is not a flashy wallboard. It is a high-frequency monitoring view inside an enterprise workbench.
+It should not be bound to a single business such as work orders only. It can carry:
+
+- project operations
+- service operations
+- asset governance
+- process monitoring
+- organization-level risk tracking
+
+The page is a high-frequency management view, not a decorative command-center screen.
 
 ## 2. Visual Tone
 
-- White background with card-based information modules
-- Chart color theme is driven by `--accent-main-color`
-- Build a chart palette from primary-color gradients so different charts still feel consistent
-- Emphasize business information density and scanability
-- Minimize decorative noise
+- white background with structured card layout
+- high information density and fast scanability
+- chart emphasis driven by the current global theme variables
+- weak information stays in neutral gray scale
+- visual hierarchy must be stable across different business datasets
 
 ## 3. Layout Structure
 
 ### Overall Grid
 
-- Two-column layout: `3fr / 6fr`
-- Unified gap: about `10px`
-- Main page height target: around `85vh`
+- two-column desktop layout: narrow left column + wide right column
+- left column focuses on overview and trend
+- right column focuses on structure, hotspots, and extended analysis
 
 ### Left Column
 
-- Four stacked sections
-- Top: three small metric cards
-- Upper middle: work-order score card, split into average score and score distribution
-- Lower middle: work-order trend statistics
-- Bottom: work-order status statistics
+- top KPI metric cards
+- quality / score / evaluation module
+- trend module
+- stage or status distribution module
 
-### Right Main Area
+### Right Column
 
-- Three-column card grid
-- First row spans full width: project ownership statistics
-- Second row contains three parallel modules:
-  - hot cases
-  - hot issue categories
-  - hot keywords
+- one wide ownership or structure module
+- one wide geographic distribution module when location data matters
+- multiple parallel cards for ranking, category split, or keyword insight
+- support reordering based on business emphasis
 
 ## 4. Core Components
 
 ### Metric Cards
 
-- Content: submitted / processing / completed
-- Numbers centered, `28px`, bold
-- Supports animated number transitions such as `count-to`
+- show total volume, in-progress volume, completion rate, response rate, or similar first-level KPIs
+- large numeric value
+- short comparison text below
 
 ### Chart Cards
 
-- Card header has a `4px` left accent bar
-- White card background, `1px` light border, `6px` radius
-- Light shadow such as `0 2px 12px rgba(0, 0, 0, 0.06)`
+- card header with accent line
+- body area reserved for charts or ranked data
+- each card remains reusable across business domains
 
-### Chart Types
+### Common Chart Types
 
-- Gauge or score ring: average score
-- Bar/distribution charts: score distribution and project statistics
-- Line/trend chart: work-order trend
-- Status chart: work-order status
-- Ranked list: hot cases and hot issue categories
-- Word cloud: hot keywords
+- ring / score chart
+- line trend chart
+- bar structure chart
+- ranked list
+- keyword cloud or hotspot insight block
+
+### Geographic Distribution Module
+
+- combines location table, area map, category filters, and department distribution
+- suitable for asset, project, service, or regional operation scenarios
+- should be treated as a reusable dashboard module rather than a standalone special page
+- theme color must drive active region emphasis, category legend colors, and department bar fills
 
 ### Empty State
 
-- Every chart needs an `el-empty` fallback
-- Empty states should be vertically and horizontally centered
-- Chart containers must not collapse when empty
+- every chart area needs a stable empty-state container
+- chart shell height should remain fixed when empty
 
 ## 5. Interaction Rules
 
-- Parent components pass filter conditions and statistics data down; the dashboard layer should render rather than refetch by default
-- When metrics change, number animations should replay
-- Bar charts should support `dataZoom`
-- Project statistics should support auto-hover carousel and pause on pointer hover
-- When data is empty, destroy stale chart instances to avoid dirty visuals
+- dashboard should primarily render incoming aggregated data rather than own the business fetch logic
+- filter changes should update metrics and chart highlights consistently
+- chart hover, legend, and focus states should stay within the same theme palette
+- in geographic modules, area filters, map highlights, and side tables should remain visually linked
+- if a module has no data, stale chart visuals must not remain
 
-## 6. Color and Data Visualization Rules
+## 6. Theme and Color Rules
 
-- Primary color comes from the business theme color
-- Generate gradient ranges from primary to white and white to secondary tones
-- All charts on the same page must use a unified palette system
-- Secondary text, axes, and weak hints should stay in neutral gray scale
+This page must consume the existing global theme system.
+
+Theme color should affect:
+
+- card title accent line
+- KPI emphasis numbers
+- main chart stroke / fill
+- highlighted bars and ranking fills
+- active analysis emphasis
+
+Theme-derived colors should be created from:
+
+- `--theme-color`
+- `--theme-color-deep`
+- `--theme-color-light-8`
+- `--theme-color-light-9`
+
+Avoid hardcoded business-specific accent colors inside charts unless they are true semantic colors.
 
 ## 7. Business Expression Priorities
 
-- Quantity metrics come first in the left column for fast scanning
-- Quality metrics belong in the score module
-- Ownership, popularity, and keywords expand horizontally on the right side
-- The page structure should communicate: overview first, then cause, then hotspot
+- overview first
+- trend second
+- structure and ownership next
+- hotspot and keyword insight last
 
-## 8. Design Output Recommendations
+This ordering should remain understandable even when the business domain changes.
 
-- In Figma, split into these frames:
-  - metric and scoring area
-  - trend and status area
-  - project statistics area
-  - hot cases / hot categories / hot keywords area
-- Add a dedicated chart-spec page for:
-  - card header style
-  - numeric metric style
-  - empty-state style
-  - gradient palette rules
+## 8. Reusable Design Pattern Summary
+
+This dashboard page can be reused as a generic board template with the following stable skeleton:
+
+- KPI summary row
+- evaluation or score card
+- trend card
+- distribution card
+- geographic distribution module
+- wide structure card
+- ranking cards
+- keyword or hotspot card
 
 ## 9. AI Generation Prompt
 
-> Design an enterprise backoffice work-order analytics dashboard with a white card layout and desktop-first structure. Use a narrow left column and a wider right column. The left side contains three KPI cards, a score module, a trend chart, and a status chart. The right side contains project statistics, a ranked list of hot cases, hot issue categories, and a hot keyword word cloud. Use a disciplined business-dashboard style, theme-color-driven chart gradients, and high information density. Do not make it look like a flashy command center screen.
+> Design a reusable enterprise backoffice dashboard page with a narrow left column and a wider right column. The page should include KPI cards, an evaluation/score module, a trend chart, a stage distribution module, a wide ownership/structure chart, and several ranking or hotspot cards. Keep the page generic enough to support multiple business domains. All chart and emphasis colors must derive from the existing global theme color system rather than hardcoded business-specific colors.
