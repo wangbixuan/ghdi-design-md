@@ -145,4 +145,4 @@
 ![[22babe37a169a7449b3f12154c3e57a8.png]]
 
 
-![[Pasted image 20260412152930.png]]
+![[Pasted image 20260412152930.png|697]]
