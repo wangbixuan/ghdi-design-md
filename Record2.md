@@ -146,3 +146,7 @@
 
 
 ![[Pasted image 20260412152930.png|697]]
+
+https://tech.ghdi.cn/#/project/apply/add/1/0
+
+http://local.ghdi.cn:4009/#/project/apply/add/1/0

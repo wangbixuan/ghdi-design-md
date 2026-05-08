@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>左侧导航模块说明</title>
+  <script src="./theme-runtime.js"></script>
+  <script src="./data/local-nav-tree.shared.js"></script>
+  <link rel="stylesheet" href="./styles.css">
+  <style>
+    .nav-doc { margin-top: 16px; display: grid; gap: 14px; }
+    .nav-doc .panel { padding: 18px 20px; border-radius: var(--radius-md); }
+    .nav-doc h3 { margin: 0 0 10px; color: var(--text-heading); font-size: 17px; }
+    .nav-doc ul { margin: 0; padding-left: 18px; color: var(--text-info); line-height: 1.8; }
+    .nav-sample { display: grid; grid-template-columns: minmax(280px, 320px) minmax(0, 1fr); gap: 16px; align-items: start; }
+    .interaction-guide {
+      display: grid;
+      gap: 12px;
+    }
+    .interaction-guide__intro {
+      margin: 0;
+      color: var(--text-info);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+    .interaction-block {
+      padding: 12px 14px;
+      border: 1px solid var(--border-soft);
+      border-radius: 10px;
+      background: color-mix(in srgb, var(--theme-color) 2%, #ffffff);
+    }
+    .interaction-block h4 {
+      margin: 0 0 6px;
+      color: var(--text-heading);
+      font-size: 14px;
+      line-height: 20px;
+    }
+    .interaction-block ul {
+      padding-left: 16px;
+      line-height: 1.75;
+    }
+    .interaction-note {
+      padding: 10px 12px;
+      border-radius: 8px;
+      color: color-mix(in srgb, var(--theme-color) 74%, #24344e);
+      background: color-mix(in srgb, var(--theme-color) 8%, #ffffff);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .nav-demo-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border-soft);
+      border-radius: 10px;
+      background: color-mix(in srgb, var(--theme-color) 3%, #ffffff);
+    }
+    .nav-demo-toolbar__text {
+      display: grid;
+      gap: 2px;
+      min-width: 0;
+    }
+    .nav-demo-toolbar__title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-heading);
+    }
+    .nav-demo-toolbar__desc {
+      font-size: 12px;
+      color: var(--text-info);
+    }
+    .nav-switch {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      width: 44px;
+      height: 24px;
+      flex: 0 0 auto;
+      cursor: pointer;
+    }
+    .nav-switch input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .nav-switch__track {
+      width: 44px;
+      height: 24px;
+      border-radius: 999px;
+      background: #cfd7e3;
+      transition: background-color 180ms ease;
+    }
+    .nav-switch__thumb {
+      position: absolute;
+      left: 3px;
+      top: 3px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 2px 6px rgba(33, 43, 54, 0.18);
+      transition: transform 180ms cubic-bezier(0.33, 1, 0.68, 1);
+    }
+    .nav-switch input:checked + .nav-switch__track {
+      background: color-mix(in srgb, var(--theme-color) 72%, #ffffff);
+    }
+    .nav-switch input:checked + .nav-switch__track .nav-switch__thumb {
+      transform: translateX(20px);
+    }
+    .nav-search {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border-soft);
+      border-radius: 10px;
+      background: #ffffff;
+    }
+    .nav-search__input {
+      width: 100%;
+      min-width: 0;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: var(--text-heading);
+      font-size: 14px;
+      line-height: 22px;
+    }
+    .nav-search__input::placeholder {
+      color: #9aa6b5;
+    }
+    .nav-search__clear {
+      flex: 0 0 auto;
+      border: none;
+      border-radius: 6px;
+      padding: 3px 8px;
+      background: color-mix(in srgb, var(--theme-color) 7%, #ffffff);
+      color: color-mix(in srgb, var(--theme-color) 70%, #31445e);
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .nav-empty {
+      padding: 18px 10px;
+      color: #7a8797;
+      font-size: 13px;
+      line-height: 1.7;
+      text-align: center;
+    }
+    .nav-card { border: 1px solid var(--border-soft); border-radius: var(--radius-md); background: #fff; padding: 12px; }
+    .nav-tree { display: grid; gap: 6px; }
+    .nav-l1-card { border-radius: 4px; overflow: hidden; background: #fff; }
+    .nav-l1-card.is-branch-active {
+      position: relative;
+      background: #fff;
+    }
+    .nav-l1-card.is-branch-active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      border-radius: 2px;
+      opacity: 0.72;
+      background: color-mix(in srgb, var(--theme-color) 56%, #ffffff);
+      z-index: 1;
+    }
+    .nav-tree {
+      --nav-arrow-right: 12px;
+      --nav-arrow-box: 22px;
+      --nav-arrow-text-space: 42px;
+      --nav-l1-text-space: 12px;
+    }
+    .nav-tree.has-l1-toggle { --nav-l1-text-space: var(--nav-arrow-text-space); }
+    .nav-l1-head {
+      background: transparent;
+      padding: 10px var(--nav-l1-text-space) 10px 12px;
+      font-weight: 700;
+      color: #111827;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 44px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .nav-l1-card.is-branch-active .nav-l1-head {
+      background: color-mix(in srgb, var(--theme-color) 12%, #fff);
+      color: color-mix(in srgb, var(--theme-color) 76%, #24344e);
+    }
+    .nav-l1-head .nav-arrow {
+      color: #8f9cab;
+    }
+    .nav-l1-card.is-branch-active .nav-arrow {
+      color: color-mix(in srgb, var(--theme-color) 76%, #24344e);
+    }
+    .nav-l1-list {
+      display: grid;
+      overflow: hidden;
+      position: relative;
+      transition: height 260ms cubic-bezier(0.33,1,0.68,1), opacity 180ms ease, transform 260ms cubic-bezier(0.33,1,0.68,1);
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .nav-l1-list.is-collapsed { height: 0 !important; opacity: 0; transform: translateY(-4px); }
+    .nav-l2-row {
+      display: flex;
+      align-items: center;
+      min-height: 40px;
+      border-radius: 4px;
+      overflow: hidden;
+      transition: background-color .15s ease;
+      position: relative;
+      isolation: isolate;
+      z-index: 2;
+    }
+    .nav-l2-row:hover { background: color-mix(in srgb, var(--theme-color) 9%, #ffffff); }
+    .nav-l2-row.is-active { background: color-mix(in srgb, var(--theme-color) 12%, #ffffff); }
+    .nav-l2-main {
+      flex: 1;
+      border: none;
+      background: transparent;
+      text-align: left;
+      padding: 10px var(--nav-arrow-text-space) 10px 12px;
+      color: #5a6675;
+      cursor: pointer;
+      font-size: 14px;
+      position: relative;
+      z-index: 2;
+    }
+    .nav-l2-row.is-active .nav-l2-main { color: color-mix(in srgb, var(--theme-color) 74%, #24344e); }
+    .nav-l2-arrow {
+      width: var(--nav-arrow-box);
+      height: var(--nav-arrow-box);
+      margin-right: 0;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #c6ced8;
+      position: absolute;
+      right: var(--nav-arrow-right);
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+    }
+    .nav-l2-arrow.is-expanded { color: #8f9cab; }
+    .nav-l3-wrap {
+      margin: 0 0 2px;
+      border-bottom: 1px solid #eef1f4;
+      padding: 4px 0 8px;
+      overflow: hidden;
+      position: relative;
+      z-index: 2;
+      transition: height 260ms cubic-bezier(0.33,1,0.68,1), opacity 180ms ease, transform 260ms cubic-bezier(0.33,1,0.68,1);
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .nav-l3-wrap.is-collapsed { height: 0 !important; opacity: 0; transform: translateY(-4px); margin: 0; padding: 0; border: none; }
+    .nav-l3 {
+      border: none;
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      padding: 6px 12px 6px calc(12px + 2em);
+      border-radius: 4px;
+      color: #5a6675;
+      cursor: pointer;
+      font-size: 14px;
+      line-height: 20px;
+      transition: background-color .15s ease, color .15s ease;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .nav-l3:hover { color: #4f5f72; background: color-mix(in srgb, var(--theme-color) 10%, #ffffff); }
+    .nav-l3.is-active {
+      color: color-mix(in srgb, var(--theme-color) 74%, #24344e);
+      background: color-mix(in srgb, var(--theme-color) 12%, #ffffff);
+      font-weight: 500;
+    }
+    .nav-arrow {
+      width: var(--nav-arrow-box); height: var(--nav-arrow-box); border: none; background: transparent;
+      display: inline-flex; align-items: center; justify-content: center; color: currentColor; padding: 0;
+      position: absolute; right: var(--nav-arrow-right); top: 50%; transform: translateY(-50%); z-index: 2;
+    }
+    .nav-fold-arrow { width: 13px; height: 10px; display: inline-flex; align-items: center; justify-content: center; color: inherit; }
+    .nav-fold-arrow__svg { width: 13px; height: 10px; overflow: visible; }
+    .nav-fold-arrow__wing {
+      fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round;
+      transform-box: view-box; transform-origin: 0 0;
+      transition: transform 320ms cubic-bezier(0.33, 1, 0.68, 1); will-change: transform;
+    }
+    .nav-fold-arrow__wing--left { transform: translate(4.8px, 6px) rotate(45deg); }
+    .nav-fold-arrow__wing--right { transform: translate(11.2px, 6px) rotate(-45deg); }
+    .nav-fold-arrow.is-expanded .nav-fold-arrow__wing--left { transform: translate(4.8px, 6px) rotate(-45deg); }
+    .nav-fold-arrow.is-expanded .nav-fold-arrow__wing--right { transform: translate(11.2px, 6px) rotate(45deg); }
+    .ripple-label { position: relative; z-index: 2; }
+
+    @media (max-width: 960px) {
+      .nav-sample { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="topbar__left">
+        <div class="eyebrow"><span class="eyebrow__dot"></span>Klog Left Navigation</div>
+        <h1 class="topbar__title">左侧导航模块说明</h1>
+        <div class="topbar__meta">一比一交互迁移 Demo：箭头、手风琴、涟漪、部分三级挂载。</div>
+      </div>
+      <div class="topbar__actions">
+        <a class="btn btn--ghost" href="./index.html">返回目录</a>
+      </div>
+    </header>
+
+    <section class="nav-doc">
+      <article class="panel nav-sample">
+        <div>
+          <div class="nav-demo-toolbar">
+            <div class="nav-demo-toolbar__text">
+              <div class="nav-demo-toolbar__title">一级展开按钮</div>
+              <div class="nav-demo-toolbar__desc">控制一级导航是否显示右侧箭头。</div>
+            </div>
+            <label class="nav-switch" for="firstLevelToggleSwitch" aria-label="显示一级展开收起按钮">
+              <input id="firstLevelToggleSwitch" type="checkbox">
+              <span class="nav-switch__track"><span class="nav-switch__thumb"></span></span>
+            </label>
+          </div>
+          <div class="nav-search" role="search">
+            <input id="navSearchInput" class="nav-search__input" type="search" placeholder="搜索一级 / 二级 / 三级节点">
+            <button id="navSearchClear" class="nav-search__clear" type="button">清空</button>
+          </div>
+          <div class="nav-card" id="leftNavDemo"></div>
+        </div>
+        <aside class="interaction-guide">
+          <div>
+            <h3>交互规则</h3>
+            <p class="interaction-guide__intro">左侧导航承担两个任务：告诉用户“当前在哪”，以及帮助用户快速看到“这个分类下还有什么”。因此选中态和展开态必须分开表达。</p>
+          </div>
+
+          <div class="interaction-block">
+            <h4>1. 层级结构</h4>
+            <ul>
+              <li>一级是业务域，例如企业文化、法律法规、日常管理。</li>
+              <li>二级是该业务域下的资料分类，和一级使用统一左起点，保证扫描路径稳定。</li>
+              <li>三级只出现在有细分内容的二级下面，文字相对二级缩进一个层级，表示从属关系。</li>
+              <li>没有三级的二级不显示箭头，避免用户误判还有隐藏内容。</li>
+            </ul>
+          </div>
+
+          <div class="interaction-block">
+            <h4>2. 操作规则</h4>
+            <ul>
+              <li>点击一级：只控制该一级下面二级列表的展开或收起。</li>
+              <li>点击二级文字：切换当前位置；如果该二级有三级，则同步展开或收起三级。</li>
+              <li>点击二级箭头：只控制三级面板，不改变当前选中项。</li>
+              <li>点击三级：选中三级，同时让所属一级和二级保持激活上下文。</li>
+            </ul>
+          </div>
+
+          <div class="interaction-block">
+            <h4>3. 搜索规则</h4>
+            <ul>
+              <li>搜索不裁剪子节点，而是保留命中项所属的完整一级分支。</li>
+              <li>命中一级：展开该一级，并展示它下面完整的二级和三级结构。</li>
+              <li>命中二级：保留所属一级，展开一级，并展开命中的二级。</li>
+              <li>命中三级：保留所属一级，展开一级和该三级所属二级，避免结果被折叠隐藏。</li>
+            </ul>
+          </div>
+
+          <div class="interaction-block">
+            <h4>4. 状态反馈</h4>
+            <ul>
+              <li>当前一级分支用左侧贯穿引导线标识，帮助用户确认所属范围。</li>
+              <li>未选中的一级保持普通文字和透明背景，避免多个一级同时抢焦点。</li>
+              <li>选中的二级或三级使用浅主题底色和主题色文字，只强调当前 item。</li>
+              <li>hover 只表达“可点击”，不改变选中关系。</li>
+            </ul>
+          </div>
+
+          <div class="interaction-block">
+            <h4>5. 动效与优先级</h4>
+            <ul>
+              <li>展开收起使用手风琴高度动画，避免内容突然跳变。</li>
+              <li>二级箭头通过折线旋转表达方向，展开时颜色略深，收起时颜色更浅。</li>
+              <li>点击反馈使用主题色涟漪，涟漪限制在当前 item 内，不扩散到整棵树。</li>
+              <li>搜索态下的强制展开优先级高于用户手动折叠，清空搜索后恢复手动状态。</li>
+            </ul>
+          </div>
+
+          <div class="interaction-note">设计重点：展开态负责暴露内容，选中态负责定位当前位置。两者可以同时出现，但不能互相替代。</div>
+        </aside>
+      </article>
+    </section>
+  </div>
+
+  <script>
+    (function () {
+      const source = window.GHDILeftNavSource || {};
+      const navTree = Array.isArray(source.navTree) ? source.navTree : [];
+      const getThirdLevelNodes = typeof source.getThirdLevelNodes === 'function' ? source.getThirdLevelNodes : (() => []);
+      const root = document.getElementById('leftNavDemo');
+      const firstLevelToggleSwitch = document.getElementById('firstLevelToggleSwitch');
+      const navSearchInput = document.getElementById('navSearchInput');
+      const navSearchClear = document.getElementById('navSearchClear');
+      if (!root || navTree.length === 0) return;
+      const demoConfig = {
+        showFirstLevelToggle: false
+      };
+      if (firstLevelToggleSwitch) firstLevelToggleSwitch.checked = demoConfig.showFirstLevelToggle;
+
+      const navData = navTree.map((l1) => ({
+        id: l1.id,
+        label: l1.label,
+        expanded: l1.expanded !== false,
+        selected: !!l1.selected,
+        children: (l1.children || []).map((l2) => {
+          const third = getThirdLevelNodes({ id: l2.id, localTypeId: l2.id });
+          return { id: l2.id, label: l2.label, selected: !!l2.selected, children: third.map((t) => t.title) };
+        })
+      }));
+
+      const selectedL1Index = navData.findIndex((l1) => !!l1.selected);
+      const selectedChildL1Index = navData.findIndex((l1) => (l1.children || []).some((l2) => !!l2.selected));
+      const initialActiveL1 = selectedL1Index >= 0 ? selectedL1Index : Math.max(0, selectedChildL1Index);
+      const state = {
+        activeL1: initialActiveL1,
+        activeL2ByL1: {},
+        activeL3ByL2: {},
+        expandedL1: new Set(),
+        expandedL2: new Set(),
+        searchKeyword: ''
+      };
+
+      const rippleFloatAnimations = new WeakMap();
+      const keyL2 = (l1, l2) => `${l1}-${l2}`;
+
+      navData.forEach((l1, i) => {
+        if (l1.expanded) state.expandedL1.add(i);
+        const s = (l1.children || []).findIndex((x) => x.selected);
+        state.activeL2ByL1[i] = s >= 0 ? s : 0;
+      });
+
+      function parseRgb(color) {
+        const c = String(color || '').trim();
+        const h = c.match(/^#([0-9a-f]{6})$/i);
+        if (h) return { r: parseInt(h[1].slice(0,2),16), g: parseInt(h[1].slice(2,4),16), b: parseInt(h[1].slice(4,6),16) };
+        const m = c.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)/i);
+        if (m) return { r: +m[1], g: +m[2], b: +m[3] };
+        return { r: 64, g: 158, b: 255 };
+      }
+      function rgba(rgb, a) { return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${a})`; }
+      function rippleRadius(x,y,w,h){ return Math.max(Math.hypot(x,y), Math.hypot(w-x,y), Math.hypot(x,h-y), Math.hypot(w-x,h-y)); }
+      function playFloat(el, d){
+        const prev = rippleFloatAnimations.get(el);
+        if (prev && typeof prev.cancel === 'function') prev.cancel();
+        if (typeof el.animate === 'function') {
+          const a = el.animate([{transform:'translateY(0)'},{offset:0.62,transform:'translateY(-1.1px)'},{transform:'translateY(0)'}],{duration:d,easing:'cubic-bezier(0.2,0.85,0.25,1)',fill:'none'});
+          rippleFloatAnimations.set(el, a);
+        }
+      }
+      function createRipple(el, evt) {
+        if (!el) return;
+        const theme = getComputedStyle(document.documentElement).getPropertyValue('--theme-color').trim() || '#409eff';
+        const rgb = parseRgb(theme);
+        const rect = el.getBoundingClientRect();
+        const x = typeof evt.clientX === 'number' ? evt.clientX - rect.left : rect.width / 2;
+        const y = typeof evt.clientY === 'number' ? evt.clientY - rect.top : rect.height / 2;
+        const size = rippleRadius(x, y, rect.width, rect.height) * 2 * 1.14;
+        playFloat(el, 1280);
+        const r = document.createElement('span');
+        Object.assign(r.style, {
+          position:'absolute', left:`${x-size/2}px`, top:`${y-size/2}px`, width:`${size}px`, height:`${size}px`,
+          borderRadius:'50%', pointerEvents:'none', zIndex:'1', mixBlendMode:'normal',
+          background:`radial-gradient(circle, ${rgba(rgb,0.40)} 0%, ${rgba(rgb,0.40)} 91.6%, ${rgba(rgb,0.94)} 96.1%, transparent 100%)`,
+          opacity:'0.38', transform:'scale(0)', transformOrigin:'center center', willChange:'transform, opacity',
+          transition:'transform 820ms cubic-bezier(0.16,1,0.3,1), opacity 180ms ease-out'
+        });
+        el.appendChild(r);
+        requestAnimationFrame(()=>{ r.style.transform='scale(1)'; });
+        setTimeout(()=>{ if (r.parentNode===el) r.style.opacity='0.28'; },640);
+        setTimeout(()=>{
+          r.style.transition='background 240ms ease, opacity 240ms ease';
+          r.style.background=`radial-gradient(circle, ${rgba(rgb,0.13)} 0%, ${rgba(rgb,0.13)} 91.6%, ${rgba(rgb,0.18)} 96.1%, transparent 100%)`;
+          r.style.opacity='0.14';
+        },820);
+        setTimeout(()=>{ r.style.transition='opacity 220ms ease'; r.style.opacity='0'; },1280);
+        setTimeout(()=>{ if (r.parentNode===el) el.removeChild(r); },1540);
+      }
+
+      function animateAccordion(panel, expand) {
+        if (!panel) return;
+        panel.style.transition = 'none';
+        const fromHeight = panel.getBoundingClientRect().height;
+        panel.classList.remove('is-collapsed');
+        panel.style.height = 'auto';
+        const toHeight = panel.scrollHeight;
+        panel.style.height = `${fromHeight}px`;
+        panel.style.opacity = expand ? '0' : '1';
+        panel.style.transform = expand ? 'translateY(-4px)' : 'translateY(0)';
+        panel.offsetHeight;
+        panel.style.transition = 'height 260ms cubic-bezier(0.33,1,0.68,1), opacity 180ms ease, transform 260ms cubic-bezier(0.33,1,0.68,1)';
+        panel.style.height = expand ? `${toHeight}px` : '0px';
+        panel.style.opacity = expand ? '1' : '0';
+        panel.style.transform = expand ? 'translateY(0)' : 'translateY(-4px)';
+        panel.addEventListener('transitionend', function done() {
+          if (expand) panel.style.height = 'auto';
+          else panel.classList.add('is-collapsed');
+          panel.removeEventListener('transitionend', done);
+        });
+      }
+
+      function foldArrow(expanded) {
+        return `<span class="nav-fold-arrow ${expanded ? 'is-expanded' : ''}" aria-hidden="true">
+          <svg class="nav-fold-arrow__svg" viewBox="0 0 16 12" focusable="false">
+            <path class="nav-fold-arrow__wing nav-fold-arrow__wing--left" d="M -3.8 0 L 3.8 0"></path>
+            <path class="nav-fold-arrow__wing nav-fold-arrow__wing--right" d="M -3.8 0 L 3.8 0"></path>
+          </svg>
+        </span>`;
+      }
+
+      function setArrowExpanded(arrowBtn, expanded) {
+        if (!arrowBtn) return;
+        arrowBtn.classList.toggle('is-expanded', expanded);
+        const fold = arrowBtn.querySelector('.nav-fold-arrow');
+        if (fold) fold.classList.toggle('is-expanded', expanded);
+      }
+
+      function syncActiveBranch(l1Index) {
+        root.querySelectorAll('.nav-l1-card.is-branch-active').forEach((card) => {
+          card.classList.remove('is-branch-active');
+        });
+        const card = root.querySelector(`.nav-l1-card[data-l1="${l1Index}"]`);
+        if (card) card.classList.add('is-branch-active');
+      }
+
+      function normalizeSearchText(value) {
+        return String(value || '').trim().toLowerCase();
+      }
+
+      function includesKeyword(value, keyword) {
+        return normalizeSearchText(value).includes(keyword);
+      }
+
+      function getBranchSearchMeta(l1, l1Index, keyword) {
+        const forceExpandedL2 = new Set();
+        if (!keyword) {
+          return { visible: true, forceExpandedL1: false, forceExpandedL2 };
+        }
+
+        const l1Matched = includesKeyword(l1.label, keyword);
+        let visible = l1Matched;
+        (l1.children || []).forEach((l2, l2Index) => {
+          const l2Key = keyL2(l1Index, l2Index);
+          if (l1Matched && Array.isArray(l2.children) && l2.children.length > 0) {
+            forceExpandedL2.add(l2Key);
+          }
+          const l2Matched = includesKeyword(l2.label, keyword);
+          const l3Matched = (l2.children || []).some((label) => includesKeyword(label, keyword));
+          if (l2Matched || l3Matched) {
+            visible = true;
+            forceExpandedL2.add(l2Key);
+          }
+        });
+
+        return {
+          visible,
+          forceExpandedL1: visible,
+          forceExpandedL2
+        };
+      }
+
+      function render() {
+        root.innerHTML = '<div class="nav-tree"></div>';
+        const tree = root.firstElementChild;
+        tree.classList.toggle('has-l1-toggle', demoConfig.showFirstLevelToggle);
+        const keyword = normalizeSearchText(state.searchKeyword);
+        const visibleBranches = navData
+          .map((l1, l1Index) => ({ l1, l1Index, searchMeta: getBranchSearchMeta(l1, l1Index, keyword) }))
+          .filter((entry) => entry.searchMeta.visible);
+
+        if (visibleBranches.length === 0) {
+          tree.innerHTML = '<div class="nav-empty">没有匹配的导航节点。请换一个关键词试试。</div>';
+          return;
+        }
+
+        visibleBranches.forEach(({ l1, l1Index, searchMeta }) => {
+          const l1Expanded = searchMeta.forceExpandedL1 || state.expandedL1.has(l1Index);
+          const card = document.createElement('section');
+          card.className = `nav-l1-card ${state.activeL1 === l1Index ? 'is-branch-active' : ''}`;
+          card.dataset.l1 = String(l1Index);
+          const firstLevelArrow = demoConfig.showFirstLevelToggle
+            ? `<span class="nav-arrow">${foldArrow(l1Expanded)}</span>`
+            : '';
+          card.innerHTML = `<div class="nav-l1-head"><span class="ripple-label">${l1.label}</span>${firstLevelArrow}</div>`;
+
+          const list = document.createElement('div');
+          list.className = `nav-l1-list ${l1Expanded ? '' : 'is-collapsed'}`;
+          if (!l1Expanded) { list.style.height='0px'; list.style.opacity='0'; list.style.transform='translateY(-4px)'; }
+
+          l1.children.forEach((l2, l2Index) => {
+            const k = keyL2(l1Index, l2Index);
+            const hasL3 = Array.isArray(l2.children) && l2.children.length > 0;
+            const isActive = state.activeL1 === l1Index && state.activeL2ByL1[l1Index] === l2Index;
+            const isExpanded = state.expandedL2.has(k) || searchMeta.forceExpandedL2.has(k);
+
+            const row = document.createElement('div');
+            row.className = `nav-l2-row ${isActive ? 'is-active' : ''}`;
+            row.dataset.key = k;
+            row.innerHTML = `<button type="button" class="nav-l2-main">${l2.label}</button>${hasL3 ? `<button type="button" class="nav-l2-arrow ${isExpanded ? 'is-expanded' : ''}" data-key="${k}">${foldArrow(isExpanded)}</button>` : ''}`;
+            list.appendChild(row);
+
+            if (hasL3) {
+              const wrap = document.createElement('div');
+              wrap.className = `nav-l3-wrap ${isExpanded ? '' : 'is-collapsed'}`;
+              wrap.dataset.key = k;
+              if (!isExpanded) { wrap.style.height='0px'; wrap.style.opacity='0'; wrap.style.transform='translateY(-4px)'; }
+              l2.children.forEach((label, i) => {
+                const b = document.createElement('button');
+                b.type = 'button';
+                b.className = `nav-l3 ${(isActive && state.activeL3ByL2[k] === i) ? 'is-active' : ''}`;
+                b.dataset.key = k;
+                b.dataset.index = String(i);
+                b.textContent = label;
+                wrap.appendChild(b);
+              });
+              list.appendChild(wrap);
+            }
+          });
+          card.appendChild(list);
+          tree.appendChild(card);
+        });
+      }
+
+      render();
+
+      if (firstLevelToggleSwitch) {
+        firstLevelToggleSwitch.addEventListener('change', () => {
+          demoConfig.showFirstLevelToggle = firstLevelToggleSwitch.checked;
+          render();
+        });
+      }
+
+      if (navSearchInput) {
+        navSearchInput.addEventListener('input', () => {
+          state.searchKeyword = navSearchInput.value;
+          render();
+        });
+      }
+
+      if (navSearchClear) {
+        navSearchClear.addEventListener('click', () => {
+          state.searchKeyword = '';
+          if (navSearchInput) navSearchInput.value = '';
+          render();
+        });
+      }
+
+      root.addEventListener('click', (event) => {
+        const l1Head = event.target.closest('.nav-l1-head');
+        if (l1Head) {
+          createRipple(l1Head, event);
+          const l1 = Number(l1Head.closest('.nav-l1-card').dataset.l1);
+          const keyword = normalizeSearchText(state.searchKeyword);
+          if (keyword && getBranchSearchMeta(navData[l1], l1, keyword).forceExpandedL1) {
+            state.expandedL1.add(l1);
+            const panel = l1Head.parentElement.querySelector('.nav-l1-list');
+            if (panel) {
+              panel.classList.remove('is-collapsed');
+              panel.style.height = 'auto';
+              panel.style.opacity = '1';
+              panel.style.transform = 'translateY(0)';
+            }
+            const fold = l1Head.querySelector('.nav-fold-arrow');
+            if (fold) fold.classList.add('is-expanded');
+            return;
+          }
+          const next = !state.expandedL1.has(l1);
+          if (next) state.expandedL1.add(l1); else state.expandedL1.delete(l1);
+          const panel = l1Head.parentElement.querySelector('.nav-l1-list');
+          animateAccordion(panel, next);
+          const fold = l1Head.querySelector('.nav-fold-arrow');
+          if (fold) fold.classList.toggle('is-expanded', next);
+          return;
+        }
+
+        const arrow = event.target.closest('.nav-l2-arrow');
+        if (arrow) {
+          const row = arrow.closest('.nav-l2-row');
+          createRipple(row, event);
+          const key = arrow.dataset.key;
+          const [l1s, l2s] = key.split('-');
+          const l1 = Number(l1s);
+          const keyword = normalizeSearchText(state.searchKeyword);
+          const forced = keyword && getBranchSearchMeta(navData[l1], l1, keyword).forceExpandedL2.has(key);
+          const next = forced || !state.expandedL2.has(key);
+          if (next) state.expandedL2.add(key); else state.expandedL2.delete(key);
+          setArrowExpanded(arrow, next);
+          const wrap = root.querySelector(`.nav-l3-wrap[data-key="${key}"]`);
+          animateAccordion(wrap, next);
+          return;
+        }
+
+        const l2Main = event.target.closest('.nav-l2-main');
+        if (l2Main) {
+          const row = l2Main.closest('.nav-l2-row');
+          createRipple(row, event);
+          const key = row.dataset.key;
+          const [l1s, l2s] = key.split('-');
+          const l1 = Number(l1s);
+          const l2 = Number(l2s);
+          const node = navData[l1].children[l2];
+          state.activeL1 = l1;
+          state.activeL2ByL1[l1] = l2;
+          syncActiveBranch(l1);
+          root.querySelectorAll('.nav-l2-row.is-active').forEach((el) => el.classList.remove('is-active'));
+          row.classList.add('is-active');
+          if (node.children && node.children.length > 0) {
+            const keyword = normalizeSearchText(state.searchKeyword);
+            const forced = keyword && getBranchSearchMeta(navData[l1], l1, keyword).forceExpandedL2.has(key);
+            const next = forced || !state.expandedL2.has(key);
+            if (next) state.expandedL2.add(key); else state.expandedL2.delete(key);
+            const wrap = root.querySelector(`.nav-l3-wrap[data-key="${key}"]`);
+            const arrowBtn = root.querySelector(`.nav-l2-arrow[data-key="${key}"]`);
+            setArrowExpanded(arrowBtn, next);
+            animateAccordion(wrap, next);
+          }
+          return;
+        }
+
+        const l3 = event.target.closest('.nav-l3');
+        if (l3) {
+          createRipple(l3, event);
+          const key = l3.dataset.key;
+          const [l1s, l2s] = key.split('-');
+          const l1 = Number(l1s);
+          const l2 = Number(l2s);
+          const idx = Number(l3.dataset.index);
+          state.activeL1 = l1;
+          state.activeL2ByL1[l1] = l2;
+          state.activeL3ByL2[key] = idx;
+          state.expandedL2.add(key);
+          syncActiveBranch(l1);
+          root.querySelectorAll('.nav-l2-row.is-active').forEach((el) => el.classList.remove('is-active'));
+          const row = root.querySelector(`.nav-l2-row[data-key="${key}"]`);
+          if (row) row.classList.add('is-active');
+          root.querySelectorAll('.nav-l3.is-active').forEach((el) => el.classList.remove('is-active'));
+          l3.classList.add('is-active');
+          const wrap = root.querySelector(`.nav-l3-wrap[data-key="${key}"]`);
+          const arrowBtn = root.querySelector(`.nav-l2-arrow[data-key="${key}"]`);
+          setArrowExpanded(arrowBtn, true);
+          animateAccordion(wrap, true);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
