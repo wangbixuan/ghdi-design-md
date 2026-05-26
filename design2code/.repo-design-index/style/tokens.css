@@ -1,0 +1,14 @@
+:root {
+  --app-text-title: #303133;
+  --app-text-body: #606266;
+  --app-text-secondary: #909399;
+  --app-border: #DCDFE6;
+  --app-border-light: #E4E7ED;
+  --app-border-lighter: #EBEEF5;
+  --app-bg-page: #F5F7FA;
+  --app-bg-card: #FFFFFF;
+  --app-radius-control: 4px;
+  --app-font-body: 14px;
+  --app-font-meta: 12px;
+}
+

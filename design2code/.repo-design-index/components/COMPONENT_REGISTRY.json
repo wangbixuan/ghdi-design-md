@@ -1,0 +1,180 @@
+{
+  "schemaVersion": 1,
+  "sourceCodebase": "D:/ywl/workbench/web/bigboss-base",
+  "componentRoot": "D:/ywl/workbench/web/bigboss-base/src/components",
+  "components": [
+    {
+      "name": "baseTableV2",
+      "path": "src/components/baseTableV2/index.vue",
+      "status": "preferred",
+      "category": "table-list-container",
+      "framework": "Vue2",
+      "uiBase": "Element UI",
+      "purpose": "Newer shared list/table container with search, pagination, export, column settings, chart switching, and selection support.",
+      "keyProps": ["tableData", "tableColumns", "searchCriteria", "searchForm", "showExportBtn", "tableTitle", "isShowAddBtn"],
+      "keyEvents": ["handleSearch", "handleAdd", "changePage", "changeSize", "getExportData", "cell-click", "on-selection-change"],
+      "keywords": ["列表", "表格", "查询", "分页", "导出", "列设置", "CRUD"],
+      "examples": ["src/module/admin/UserManage/index.vue", "src/module/open/pro/wwr/index.vue"],
+      "notes": "Prefer for new table-first pages unless the target module clearly uses legacy TableBase."
+    },
+    {
+      "name": "TableBase",
+      "path": "src/components/baseTable/TableBase.vue",
+      "status": "legacy",
+      "category": "table-list-container",
+      "framework": "Vue2",
+      "uiBase": "Element UI",
+      "purpose": "Older shared table container with search, pagination, export, column settings, and chart switching.",
+      "keyProps": ["tableData", "tableColumns", "searchForm", "searchCriteria", "showExportBtn"],
+      "keyEvents": ["handleSearch", "handleAdd", "changePage", "changeSize", "getExportData", "cell-click"],
+      "keywords": ["旧列表", "旧表格", "历史页面"],
+      "examples": ["ehr/attendance related legacy pages"],
+      "notes": "Use only when maintaining a legacy module that already follows TableBase."
+    },
+    {
+      "name": "File",
+      "path": "src/components/form/uploadFile/newFile.vue",
+      "status": "preferred",
+      "category": "upload-preview",
+      "framework": "Vue2",
+      "uiBase": "Element UI",
+      "purpose": "Shared file upload and preview component for images, videos, and general attachments.",
+      "keyProps": ["value", "multiple", "uploadBtn", "downBtn", "cptCode", "minimalistMode", "selectImg"],
+      "keyEvents": ["input", "change", "del", "selectImg", "close"],
+      "keywords": ["附件", "上传", "文件", "图片", "预览"],
+      "examples": ["src/module/ema/assetFlow/purchase/table.vue", "src/module/fma/projectList/index.vue"],
+      "notes": "Use for attachment collection instead of hand-written upload UI."
+    },
+    {
+      "name": "EditorVue",
+      "path": "src/components/form/EditorVue.vue",
+      "status": "preferred",
+      "category": "rich-text",
+      "framework": "Vue2",
+      "uiBase": "WangEditor + Element UI",
+      "purpose": "Rich text editor wrapper for business content editing and HTML callback.",
+      "keyProps": ["content", "placeholder", "readOnlys"],
+      "keyEvents": ["changeData"],
+      "keywords": ["富文本", "公告内容", "正文", "编辑器"],
+      "examples": ["src/components/form/doc.vue", "src/module/open/pro/wwr/rule.vue"],
+      "notes": "Use for content authoring/configuration pages."
+    },
+    {
+      "name": "SearchSelectUser",
+      "path": "src/components/form/SearchSelectUser.vue",
+      "status": "preferred",
+      "category": "person-selector",
+      "framework": "Vue2",
+      "uiBase": "Element UI",
+      "purpose": "Remote user selector with single/multiple selection, recent users, and department import support.",
+      "keyProps": ["selectList", "multiple", "showRecent", "readonly", "clearBtn", "rootDepartIds", "importDept"],
+      "keyEvents": ["selectPersonnel", "clear", "focus"],
+      "keywords": ["人员", "用户", "选人", "审批人"],
+      "examples": ["src/components/workFlow/setting.vue", "src/module/open/pro/wwr/rule.vue"],
+      "notes": "Prefer for user/person selection when richer behavior is needed."
+    },
+    {
+      "name": "newSelectDepart",
+      "path": "src/components/form/newSelectDepart.vue",
+      "status": "preferred",
+      "category": "department-selector",
+      "framework": "Vue2",
+      "uiBase": "Element UI",
+      "purpose": "Newer lightweight department selector used by baseTableV2 search content and business filters.",
+      "keyProps": ["depart", "multiple", "placeholder"],
+      "keyEvents": ["on-change"],
+      "keywords": ["部门", "组织", "筛选", "查询条件"],
+      "examples": ["src/components/baseTableV2/module/searchContent.vue"],
+      "notes": "Prefer in new search/filter scenarios."
+    },
+    {
+      "name": "selectDepart",
+      "path": "src/components/form/selectDepart.vue",
+      "status": "legacy",
+      "category": "department-selector",
+      "framework": "Vue2",
+      "uiBase": "Element UI",
+      "purpose": "Older department selector.",
+      "keyProps": ["value", "disabled", "multiple", "init_depart"],
+      "keyEvents": ["select", "clear"],
+      "keywords": ["旧部门选择", "部门"],
+      "examples": ["src/module/ema/assetFlow/allocation/table.vue"],
+      "notes": "Use only when matching legacy module usage."
+    },
+    {
+      "name": "UTag",
+      "path": "src/components/form/UTag.vue",
+      "status": "allowed",
+      "category": "status-tag",
+      "framework": "Vue2",
+      "uiBase": "Element UI",
+      "purpose": "Business tag component with click, close, and revoke interactions.",
+      "keyProps": ["label", "closable", "deleted", "backgroundColor", "fontColor"],
+      "keyEvents": ["tag-click", "tag-close", "tag-revocation"],
+      "keywords": ["标签", "状态", "业务标记"],
+      "examples": ["asset tags and status tag scenarios"],
+      "notes": "Use when business tag interactions are needed; simple status may still use Element tags."
+    },
+    {
+      "name": "actionTitle",
+      "path": "src/components/form/actionTitle.vue",
+      "status": "allowed",
+      "category": "page-title",
+      "framework": "Vue2",
+      "uiBase": "Element UI",
+      "purpose": "Page header/title component based on current menu context.",
+      "keyProps": [],
+      "keyEvents": [],
+      "keywords": ["标题", "页面头部", "菜单标题"],
+      "examples": ["detail page headers"],
+      "notes": "Use when target module already uses actionTitle for page headers."
+    },
+    {
+      "name": "WorkFlowDetail",
+      "path": "src/components/flow/WorkFlowDetail.vue",
+      "status": "specialized",
+      "category": "workflow-runtime",
+      "framework": "Vue2",
+      "uiBase": "Element UI",
+      "purpose": "Workflow instance detail and approval action panel.",
+      "keyProps": [],
+      "keyEvents": ["optFlow", "flowBizParam", "flowBizCurrentApprover"],
+      "keywords": ["审批", "流程", "传阅", "催办", "转办", "加签"],
+      "examples": ["src/module/ema/assetFlow/*/table.vue", "src/module/ppm/ds/projectDetail/workTasks/designChange/index.vue"],
+      "notes": "Use only when the page explicitly involves workflow runtime operations."
+    }
+  ],
+  "mappings": [
+    {
+      "intent": "data-table",
+      "keywords": ["表格", "列表", "数据列表", "CRUD"],
+      "recommendedComponent": "baseTableV2"
+    },
+    {
+      "intent": "search-filter",
+      "keywords": ["查询", "筛选", "搜索", "过滤"],
+      "recommendedComponent": "baseTableV2"
+    },
+    {
+      "intent": "file-upload",
+      "keywords": ["附件", "上传", "文件"],
+      "recommendedComponent": "File"
+    },
+    {
+      "intent": "rich-text-editor",
+      "keywords": ["富文本", "公告正文", "内容编辑"],
+      "recommendedComponent": "EditorVue"
+    },
+    {
+      "intent": "user-selector",
+      "keywords": ["选人", "用户", "审批人"],
+      "recommendedComponent": "SearchSelectUser"
+    },
+    {
+      "intent": "department-selector",
+      "keywords": ["部门", "组织"],
+      "recommendedComponent": "newSelectDepart"
+    }
+  ]
+}
+

@@ -1,0 +1,29 @@
+{
+  "name": "ghdi-design-md-harness",
+  "targetStack": "Vue2 + Element UI",
+  "workspaceRoot": "D:/ywl/2026/ghdi-design-md/design2code",
+  "componentCodebaseRoot": "D:/ywl/workbench/web/bigboss-base",
+  "componentRoot": "D:/ywl/workbench/web/bigboss-base/src/components",
+  "sourceDesignSeeds": [
+    "seed/design.md",
+    "seed/Component.md",
+    "seed/theme-color-logic.md",
+    "seed/page-designs"
+  ],
+  "designIndexRoot": ".repo-design-index",
+  "taskOutputRoot": ".codex-task",
+  "defaultPageTypes": [
+    "list-management-page",
+    "config-management-page"
+  ],
+  "preferredComponents": [
+    "baseTableV2",
+    "File",
+    "SearchSelectUser",
+    "newSelectDepart",
+    "EditorVue",
+    "UTag",
+    "actionTitle"
+  ]
+}
+
