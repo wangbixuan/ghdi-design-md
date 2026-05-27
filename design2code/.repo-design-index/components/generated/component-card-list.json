@@ -1,0 +1,508 @@
+{
+  "cards": [
+    {
+      "name": "actionTitle",
+      "cardPath": ".repo-design-index/components/cards/actionTitle.md",
+      "sourcePath": "bigboss-base/src/components/form/actionTitle.vue",
+      "category": "general",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "baseTableV2",
+      "cardPath": ".repo-design-index/components/cards/baseTableV2.md",
+      "sourcePath": "bigboss-base/src/components/baseTableV2/index.vue",
+      "category": "table-list-container",
+      "status": "human-reviewed",
+      "recommendation": "preferred"
+    },
+    {
+      "name": "BaseUserInfo",
+      "cardPath": ".repo-design-index/components/cards/BaseUserInfo.md",
+      "sourcePath": "bigboss-base/src/components/user/BaseUserInfo.vue",
+      "category": "general",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "BizData",
+      "cardPath": ".repo-design-index/components/cards/BizData.md",
+      "sourcePath": "bigboss-base/src/module/admin/BizData/components/detail.vue",
+      "category": "general",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "businessConf",
+      "cardPath": ".repo-design-index/components/cards/businessConf.md",
+      "sourcePath": "bigboss-base/src/components/form/businessConfiguration/index.vue",
+      "category": "general",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "CarouselList",
+      "cardPath": ".repo-design-index/components/cards/CarouselList.md",
+      "sourcePath": "bigboss-base/src/components/bigboss-app/app-infoDrawer/components/table.vue",
+      "category": "general",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "CarouselVue",
+      "cardPath": ".repo-design-index/components/cards/CarouselVue.md",
+      "sourcePath": "bigboss-base/src/components/form/CarouselVue.vue",
+      "category": "general",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "chartsFunnel",
+      "cardPath": ".repo-design-index/components/cards/chartsFunnel.md",
+      "sourcePath": "bigboss-base/src/components/charts/funnel.vue",
+      "category": "chart",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "chartsLine",
+      "cardPath": ".repo-design-index/components/cards/chartsLine.md",
+      "sourcePath": "bigboss-base/src/components/charts/line.vue",
+      "category": "chart",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "countTo",
+      "cardPath": ".repo-design-index/components/cards/countTo.md",
+      "sourcePath": "bigboss-base/src/components/count-to/count-to.vue",
+      "category": "general",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "currentYearMonth",
+      "cardPath": ".repo-design-index/components/cards/currentYearMonth.md",
+      "sourcePath": "bigboss-base/src/components/form/currentYearMonth/index.vue",
+      "category": "general",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "depart",
+      "cardPath": ".repo-design-index/components/cards/depart.md",
+      "sourcePath": "bigboss-base/src/components/form/depart.vue",
+      "category": "department-selector",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DepartmentSelection",
+      "cardPath": ".repo-design-index/components/cards/DepartmentSelection.md",
+      "sourcePath": "bigboss-base/src/components/form/departmentSelection.vue",
+      "category": "department-selector",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "DepartPage",
+      "cardPath": ".repo-design-index/components/cards/DepartPage.md",
+      "sourcePath": "bigboss-base/src/module/admin/DepartManage/index.vue",
+      "category": "department-selector",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Description",
+      "cardPath": ".repo-design-index/components/cards/Description.md",
+      "sourcePath": "bigboss-base/src/module/admin/systemDescription/index.vue",
+      "category": "page-module",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "documentDesc",
+      "cardPath": ".repo-design-index/components/cards/documentDesc.md",
+      "sourcePath": "bigboss-base/src/module/admin/doc/documentDesc.vue",
+      "category": "general",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "EditorVue",
+      "cardPath": ".repo-design-index/components/cards/EditorVue.md",
+      "sourcePath": "bigboss-base/src/components/form/EditorVue.vue",
+      "category": "rich-text",
+      "status": "human-reviewed",
+      "recommendation": "preferred"
+    },
+    {
+      "name": "Excel",
+      "cardPath": ".repo-design-index/components/cards/Excel.md",
+      "sourcePath": "bigboss-base/src/components/excel/index.vue",
+      "category": "general",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "File",
+      "cardPath": ".repo-design-index/components/cards/File.md",
+      "sourcePath": "bigboss-base/src/components/form/uploadFile/newFile.vue",
+      "category": "upload-preview",
+      "status": "human-reviewed",
+      "recommendation": "preferred"
+    },
+    {
+      "name": "Flowchart",
+      "cardPath": ".repo-design-index/components/cards/Flowchart.md",
+      "sourcePath": "bigboss-base/src/components/mvpFlow/Diagram.vue",
+      "category": "chart",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "FlowInstance",
+      "cardPath": ".repo-design-index/components/cards/FlowInstance.md",
+      "sourcePath": "bigboss-base/src/components/flow/instance/index.vue",
+      "category": "workflow",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "FlowTemplate",
+      "cardPath": ".repo-design-index/components/cards/FlowTemplate.md",
+      "sourcePath": "bigboss-base/src/components/flow/template/index.vue",
+      "category": "workflow",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "FlowUserRule",
+      "cardPath": ".repo-design-index/components/cards/FlowUserRule.md",
+      "sourcePath": "bigboss-base/src/module/open/flow/user_rule/index.vue",
+      "category": "workflow",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "HrProfile",
+      "cardPath": ".repo-design-index/components/cards/HrProfile.md",
+      "sourcePath": "bigboss-base/src/components/hrProfile/index.vue",
+      "category": "upload-preview",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "HtmlView",
+      "cardPath": ".repo-design-index/components/cards/HtmlView.md",
+      "sourcePath": "bigboss-base/src/components/form/HtmlView.vue",
+      "category": "rich-text",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "iconPicker",
+      "cardPath": ".repo-design-index/components/cards/iconPicker.md",
+      "sourcePath": "bigboss-base/src/components/iconPicker/index.vue",
+      "category": "general",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MeetingManage",
+      "cardPath": ".repo-design-index/components/cards/MeetingManage.md",
+      "sourcePath": "bigboss-base/src/module/infor-syn/meeting/index.vue",
+      "category": "page-module",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MenuManage",
+      "cardPath": ".repo-design-index/components/cards/MenuManage.md",
+      "sourcePath": "bigboss-base/src/module/admin/MenuManage/menuManage.vue",
+      "category": "page-module",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "mindMap",
+      "cardPath": ".repo-design-index/components/cards/mindMap.md",
+      "sourcePath": "bigboss-base/src/components/mindMap/index.vue",
+      "category": "general",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "MultipleChoice",
+      "cardPath": ".repo-design-index/components/cards/MultipleChoice.md",
+      "sourcePath": "bigboss-base/src/module/admin/SelectProject/multipleChoice.vue",
+      "category": "general",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "newSelectDepart",
+      "cardPath": ".repo-design-index/components/cards/newSelectDepart.md",
+      "sourcePath": "bigboss-base/src/components/form/newSelectDepart.vue",
+      "category": "department-selector",
+      "status": "human-reviewed",
+      "recommendation": "preferred"
+    },
+    {
+      "name": "NoticeConfig",
+      "cardPath": ".repo-design-index/components/cards/NoticeConfig.md",
+      "sourcePath": "bigboss-base/src/components/notice/module/index.vue",
+      "category": "notice",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "NoticeDetail",
+      "cardPath": ".repo-design-index/components/cards/NoticeDetail.md",
+      "sourcePath": "bigboss-base/src/components/notice/detail/index.vue",
+      "category": "notice",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "NoticeLayout",
+      "cardPath": ".repo-design-index/components/cards/NoticeLayout.md",
+      "sourcePath": "bigboss-base/src/components/notice/layout/index.vue",
+      "category": "notice",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "NoticeSubscribe",
+      "cardPath": ".repo-design-index/components/cards/NoticeSubscribe.md",
+      "sourcePath": "bigboss-base/src/components/notice/subscribe/index.vue",
+      "category": "notice",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "PdfCard",
+      "cardPath": ".repo-design-index/components/cards/PdfCard.md",
+      "sourcePath": "bigboss-base/src/components/pdfCard/index.vue",
+      "category": "upload-preview",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "PersonalResume",
+      "cardPath": ".repo-design-index/components/cards/PersonalResume.md",
+      "sourcePath": "bigboss-base/src/components/form/personalResume/index.vue",
+      "category": "general",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "PersonCard",
+      "cardPath": ".repo-design-index/components/cards/PersonCard.md",
+      "sourcePath": "bigboss-base/src/components/PersonCard.vue",
+      "category": "general",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "PicPreview",
+      "cardPath": ".repo-design-index/components/cards/PicPreview.md",
+      "sourcePath": "bigboss-base/src/components/PicPreview.vue",
+      "category": "general",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "QaDetail",
+      "cardPath": ".repo-design-index/components/cards/QaDetail.md",
+      "sourcePath": "bigboss-base/src/module/order/work/module/order_qa_detail.vue",
+      "category": "page-module",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "quarter",
+      "cardPath": ".repo-design-index/components/cards/quarter.md",
+      "sourcePath": "bigboss-base/src/components/form/quarter.vue",
+      "category": "general",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "RankingTag",
+      "cardPath": ".repo-design-index/components/cards/RankingTag.md",
+      "sourcePath": "bigboss-base/src/components/form/RankingTag.vue",
+      "category": "general",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Roll",
+      "cardPath": ".repo-design-index/components/cards/Roll.md",
+      "sourcePath": "bigboss-base/src/components/bigboss-app/app-infoDrawer/components/table.vue",
+      "category": "general",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "searchPersonnel",
+      "cardPath": ".repo-design-index/components/cards/searchPersonnel.md",
+      "sourcePath": "bigboss-base/src/components/form/searchPersonnel.vue",
+      "category": "person-selector",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SearchSelectUser",
+      "cardPath": ".repo-design-index/components/cards/SearchSelectUser.md",
+      "sourcePath": "bigboss-base/src/components/form/SearchSelectUser.vue",
+      "category": "person-selector",
+      "status": "human-reviewed",
+      "recommendation": "preferred"
+    },
+    {
+      "name": "selectDepart",
+      "cardPath": ".repo-design-index/components/cards/selectDepart.md",
+      "sourcePath": "bigboss-base/src/components/form/selectDepart.vue",
+      "category": "department-selector",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "selectDepartUser",
+      "cardPath": ".repo-design-index/components/cards/selectDepartUser.md",
+      "sourcePath": "bigboss-base/src/components/form/selectDepartUser/index.vue",
+      "category": "person-selector",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SelectProject",
+      "cardPath": ".repo-design-index/components/cards/SelectProject.md",
+      "sourcePath": "bigboss-base/src/module/admin/SelectProject/index.vue",
+      "category": "general",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "SelectUser",
+      "cardPath": ".repo-design-index/components/cards/SelectUser.md",
+      "sourcePath": "bigboss-base/src/module/admin/SelectUser/index.vue",
+      "category": "person-selector",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Tab",
+      "cardPath": ".repo-design-index/components/cards/Tab.md",
+      "sourcePath": "bigboss-base/src/components/form/Tabs.vue",
+      "category": "general",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "TableBase",
+      "cardPath": ".repo-design-index/components/cards/TableBase.md",
+      "sourcePath": "bigboss-base/src/components/baseTable/TableBase.vue",
+      "category": "table-list-container",
+      "status": "human-reviewed",
+      "recommendation": "deprecated-for-new-pages"
+    },
+    {
+      "name": "Tabs",
+      "cardPath": ".repo-design-index/components/cards/Tabs.md",
+      "sourcePath": "bigboss-base/src/components/tabs.vue",
+      "category": "general",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "Tags",
+      "cardPath": ".repo-design-index/components/cards/Tags.md",
+      "sourcePath": "bigboss-base/src/components/form/Tags.vue",
+      "category": "general",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "UCard",
+      "cardPath": ".repo-design-index/components/cards/UCard.md",
+      "sourcePath": "bigboss-base/src/components/card/index.vue",
+      "category": "general",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "uploadPdfFile",
+      "cardPath": ".repo-design-index/components/cards/uploadPdfFile.md",
+      "sourcePath": "bigboss-base/src/components/form/uploadPdf/index.vue",
+      "category": "upload-preview",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "UserManage",
+      "cardPath": ".repo-design-index/components/cards/UserManage.md",
+      "sourcePath": "bigboss-base/src/module/admin/UserManage/index.vue",
+      "category": "page-module",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "uSwiper",
+      "cardPath": ".repo-design-index/components/cards/uSwiper.md",
+      "sourcePath": "bigboss-base/src/components/uSwiper/index.vue",
+      "category": "general",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "UTag",
+      "cardPath": ".repo-design-index/components/cards/UTag.md",
+      "sourcePath": "bigboss-base/src/components/form/UTag.vue",
+      "category": "general",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "viewFile",
+      "cardPath": ".repo-design-index/components/cards/viewFile-form-viewFile.md",
+      "sourcePath": "bigboss-base/src/components/form/viewFile.vue",
+      "category": "upload-preview",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "viewFile",
+      "cardPath": ".repo-design-index/components/cards/ViewFile.md",
+      "sourcePath": "bigboss-base/src/components/form/viewFile.vue",
+      "category": "upload-preview",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "viewWord",
+      "cardPath": ".repo-design-index/components/cards/viewWord.md",
+      "sourcePath": "bigboss-base/src/components/form/viewWord/index.vue",
+      "category": "upload-preview",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "workFlow",
+      "cardPath": ".repo-design-index/components/cards/workFlow.md",
+      "sourcePath": "bigboss-base/src/components/workFlow/setting.vue",
+      "category": "workflow",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    },
+    {
+      "name": "WorkFlowDetail",
+      "cardPath": ".repo-design-index/components/cards/WorkFlowDetail.md",
+      "sourcePath": "bigboss-base/src/components/flow/WorkFlowDetail.vue",
+      "category": "workflow",
+      "status": "human-reviewed",
+      "recommendation": "allowed"
+    }
+  ]
+}

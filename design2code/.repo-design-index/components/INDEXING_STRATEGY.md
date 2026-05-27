@@ -2,26 +2,28 @@
 
 ## Goal
 
-Build a component index that helps Codex make stable implementation choices before inspecting source details.
+Build a component knowledge base that helps Codex understand and use team-owned components without repeatedly rediscovering the source code.
 
-The index is not a replacement for source reading. It is a priority map.
+The index is not a replacement for source reading. It is a durable component description layer.
 
 ```txt
-COMPONENT_REGISTRY.json -> what should be considered first
-COMPONENT_CARDS.md -> how and when to use it
-source code -> exact props, events, and examples
+generated/component-scan-summary.json -> machine facts
+components/cards/<ComponentName>.md -> LLM-generated and human-reviewed component descriptions
+COMPONENT_REGISTRY.json -> machine-readable lookup index
+COMPONENT_CARDS.md -> compact reading index for Codex
+source code -> exact details when needed
 ```
 
 ## Source Codebase
 
 ```txt
-D:\ywl\workbench\web\bigboss-base
+bigboss-base
 ```
 
 Primary component root:
 
 ```txt
-D:\ywl\workbench\web\bigboss-base\src\components
+bigboss-base/src/components
 ```
 
 High-value source files:
@@ -59,18 +61,17 @@ Avoid flattening every leaf component. Group dense subtrees such as `mvpFlow/ico
 ## Update Workflow
 
 1. Run `.design-agent/scripts/scan-components.mjs`.
-2. Review `.repo-design-index/components/generated/component-scan-summary.json`.
-3. Promote relevant entries into `COMPONENT_REGISTRY.json`.
-4. Update `COMPONENT_CARDS.md` for human-readable usage rules.
-5. Mark status as `preferred`, `allowed`, `legacy`, `specialized`, or `avoid`.
+2. Run `.design-agent/scripts/generate-component-cards.mjs`.
+3. Let Codex enrich `.repo-design-index/components/cards/<ComponentName>.md`.
+4. Let humans review or revise component cards.
+5. Run `ghdi-component-registry-build` to update `COMPONENT_REGISTRY.json` and `COMPONENT_CARDS.md`.
 
 ## Human Review Required
 
-Human review is required for:
+Human review is useful for:
 
-- choosing preferred vs legacy
+- correcting component purpose and usage boundaries
+- identifying internal child components
 - marking canonical examples
-- deciding whether a component should be recommended for new pages
-- resolving conflicting historical usage
-- approving new component mappings
-
+- clarifying when a component should be preferred, allowed, legacy, specialized, or internal
+- approving mappings from business intent to components

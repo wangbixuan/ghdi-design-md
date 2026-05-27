@@ -1,11 +1,11 @@
 {
-  "scannedAt": "2026-05-26T07:36:00.477Z",
-  "root": "D:/ywl/workbench/web/bigboss-base",
-  "componentRoot": "D:/ywl/workbench/web/bigboss-base/src/components",
+  "scannedAt": "2026-05-27T09:09:52.878Z",
+  "root": "bigboss-base",
+  "componentRoot": "bigboss-base/src/components",
   "totals": {
-    "files": 374,
-    "vueFiles": 224,
-    "exposedComponents": 60
+    "files": 387,
+    "vueFiles": 234,
+    "exposedComponents": 62
   },
   "topLevelDirectories": [
     {
@@ -17,12 +17,12 @@
       "fileCount": 67
     },
     {
-      "name": "flowchart",
-      "fileCount": 36
+      "name": "notice",
+      "fileCount": 41
     },
     {
-      "name": "notice",
-      "fileCount": 28
+      "name": "flowchart",
+      "fileCount": 36
     },
     {
       "name": "bigboss-app",
@@ -138,7 +138,7 @@
       "name": "File",
       "importPath": "./form/uploadFile/newFile.vue",
       "source": "expose.js",
-      "path": "src/components/form/uploadFile/newFile.vue",
+      "path": "bigboss-base/src/components/form/uploadFile/newFile.vue",
       "status": "needs-review",
       "props": []
     },
@@ -146,7 +146,7 @@
       "name": "uploadPdfFile",
       "importPath": "./form/uploadPdf/index.vue",
       "source": "expose.js",
-      "path": "src/components/form/uploadPdf/index.vue",
+      "path": "bigboss-base/src/components/form/uploadPdf/index.vue",
       "status": "needs-review",
       "props": [
         "value"
@@ -156,7 +156,7 @@
       "name": "ViewFile",
       "importPath": "./form/uploadFile/module/ViewFile",
       "source": "expose.js",
-      "path": "src/components/form/uploadFile/module/ViewFile.vue",
+      "path": "bigboss-base/src/components/form/uploadFile/module/ViewFile.vue",
       "status": "needs-review",
       "props": [
         "attachments"
@@ -166,7 +166,7 @@
       "name": "EditorVue",
       "importPath": "./form/EditorVue.vue",
       "source": "expose.js",
-      "path": "src/components/form/EditorVue.vue",
+      "path": "bigboss-base/src/components/form/EditorVue.vue",
       "status": "needs-review",
       "props": [
         "content"
@@ -176,7 +176,7 @@
       "name": "PicPreview",
       "importPath": "./PicPreview",
       "source": "expose.js",
-      "path": "src/components/PicPreview.vue",
+      "path": "bigboss-base/src/components/PicPreview.vue",
       "status": "needs-review",
       "props": [
         "src"
@@ -186,7 +186,7 @@
       "name": "DepartPage",
       "importPath": "../module/admin/DepartManage/index.vue",
       "source": "expose.js",
-      "path": "src/module/admin/DepartManage/index.vue",
+      "path": "bigboss-base/src/module/admin/DepartManage/index.vue",
       "status": "needs-review",
       "props": [
         "selectDepart"
@@ -196,7 +196,7 @@
       "name": "WorkFlowDetail",
       "importPath": "./flow/WorkFlowDetail.vue",
       "source": "expose.js",
-      "path": "src/components/flow/WorkFlowDetail.vue",
+      "path": "bigboss-base/src/components/flow/WorkFlowDetail.vue",
       "status": "needs-review",
       "props": []
     },
@@ -204,7 +204,7 @@
       "name": "UserManage",
       "importPath": "../module/admin/UserManage/index.vue",
       "source": "expose.js",
-      "path": "src/module/admin/UserManage/index.vue",
+      "path": "bigboss-base/src/module/admin/UserManage/index.vue",
       "status": "needs-review",
       "props": [
         "userType"
@@ -214,7 +214,7 @@
       "name": "SelectUser",
       "importPath": "../module/admin/SelectUser/index.vue",
       "source": "expose.js",
-      "path": "src/module/admin/SelectUser/index.vue",
+      "path": "bigboss-base/src/module/admin/SelectUser/index.vue",
       "status": "needs-review",
       "props": [
         "deleteData"
@@ -224,7 +224,7 @@
       "name": "SelectProject",
       "importPath": "../module/admin/SelectProject/index.vue",
       "source": "expose.js",
-      "path": "src/module/admin/SelectProject/index.vue",
+      "path": "bigboss-base/src/module/admin/SelectProject/index.vue",
       "status": "needs-review",
       "props": [
         "selectList"
@@ -234,7 +234,7 @@
       "name": "MultipleChoice",
       "importPath": "../module/admin/SelectProject/multipleChoice.vue",
       "source": "expose.js",
-      "path": "src/module/admin/SelectProject/multipleChoice.vue",
+      "path": "bigboss-base/src/module/admin/SelectProject/multipleChoice.vue",
       "status": "needs-review",
       "props": [
         "selectList"
@@ -244,7 +244,7 @@
       "name": "chartsFunnel",
       "importPath": "./charts/funnel",
       "source": "expose.js",
-      "path": "src/components/charts/funnel.vue",
+      "path": "bigboss-base/src/components/charts/funnel.vue",
       "status": "needs-review",
       "props": [
         "option"
@@ -254,7 +254,7 @@
       "name": "chartsLine",
       "importPath": "./charts/line",
       "source": "expose.js",
-      "path": "src/components/charts/line.vue",
+      "path": "bigboss-base/src/components/charts/line.vue",
       "status": "needs-review",
       "props": [
         "option"
@@ -264,7 +264,7 @@
       "name": "countTo",
       "importPath": "./count-to/count-to",
       "source": "expose.js",
-      "path": "src/components/count-to/count-to.vue",
+      "path": "bigboss-base/src/components/count-to/count-to.vue",
       "status": "needs-review",
       "props": [
         "init"
@@ -274,7 +274,7 @@
       "name": "Tabs",
       "importPath": "./tabs.vue",
       "source": "expose.js",
-      "path": "src/components/tabs.vue",
+      "path": "bigboss-base/src/components/tabs.vue",
       "status": "needs-review",
       "props": [
         "tabs"
@@ -284,7 +284,7 @@
       "name": "TableBase",
       "importPath": "./baseTable/TableBase.vue",
       "source": "expose.js",
-      "path": "src/components/baseTable/TableBase.vue",
+      "path": "bigboss-base/src/components/baseTable/TableBase.vue",
       "status": "needs-review",
       "props": [
         "value"
@@ -294,7 +294,7 @@
       "name": "baseTableV2",
       "importPath": "./baseTableV2/index.vue",
       "source": "expose.js",
-      "path": "src/components/baseTableV2/index.vue",
+      "path": "bigboss-base/src/components/baseTableV2/index.vue",
       "status": "needs-review",
       "props": []
     },
@@ -302,7 +302,7 @@
       "name": "PersonCard",
       "importPath": "./PersonCard.vue",
       "source": "expose.js",
-      "path": "src/components/PersonCard.vue",
+      "path": "bigboss-base/src/components/PersonCard.vue",
       "status": "needs-review",
       "props": [
         "username"
@@ -312,7 +312,7 @@
       "name": "FlowTemplate",
       "importPath": "@/components/flow/template/index",
       "source": "expose.js",
-      "path": "src/components/flow/template/index.vue",
+      "path": "bigboss-base/src/components/flow/template/index.vue",
       "status": "needs-review",
       "props": [
         "appCode"
@@ -322,7 +322,7 @@
       "name": "FlowInstance",
       "importPath": "@/components/flow/instance/index",
       "source": "expose.js",
-      "path": "src/components/flow/instance/index.vue",
+      "path": "bigboss-base/src/components/flow/instance/index.vue",
       "status": "needs-review",
       "props": [
         "appCode"
@@ -332,7 +332,7 @@
       "name": "Flowchart",
       "importPath": "./mvpFlow/Diagram.vue",
       "source": "expose.js",
-      "path": "src/components/mvpFlow/Diagram.vue",
+      "path": "bigboss-base/src/components/mvpFlow/Diagram.vue",
       "status": "needs-review",
       "props": [
         "readOnlyMode"
@@ -342,7 +342,7 @@
       "name": "BaseUserInfo",
       "importPath": "./user/BaseUserInfo.vue",
       "source": "expose.js",
-      "path": "src/components/user/BaseUserInfo.vue",
+      "path": "bigboss-base/src/components/user/BaseUserInfo.vue",
       "status": "needs-review",
       "props": []
     },
@@ -350,7 +350,7 @@
       "name": "CarouselList",
       "importPath": "@/components/bigboss-app/app-infoDrawer/components/table.vue",
       "source": "expose.js",
-      "path": "src/components/bigboss-app/app-infoDrawer/components/table.vue",
+      "path": "bigboss-base/src/components/bigboss-app/app-infoDrawer/components/table.vue",
       "status": "needs-review",
       "props": [
         "tableData"
@@ -360,7 +360,7 @@
       "name": "mindMap",
       "importPath": "@/components/mindMap/index",
       "source": "expose.js",
-      "path": "src/components/mindMap/index.vue",
+      "path": "bigboss-base/src/components/mindMap/index.vue",
       "status": "needs-review",
       "props": [
         "readOnlyMode"
@@ -370,7 +370,7 @@
       "name": "BizData",
       "importPath": "@/module/admin/BizData/components/detail.vue",
       "source": "expose.js",
-      "path": "src/module/admin/BizData/components/detail.vue",
+      "path": "bigboss-base/src/module/admin/BizData/components/detail.vue",
       "status": "needs-review",
       "props": [
         "btnTile"
@@ -380,7 +380,7 @@
       "name": "UCard",
       "importPath": "@/components/card/index.vue",
       "source": "expose.js",
-      "path": "src/components/card/index.vue",
+      "path": "bigboss-base/src/components/card/index.vue",
       "status": "needs-review",
       "props": [
         "width",
@@ -396,7 +396,7 @@
       "name": "searchPersonnel",
       "importPath": "./form/searchPersonnel.vue",
       "source": "expose.js",
-      "path": "src/components/form/searchPersonnel.vue",
+      "path": "bigboss-base/src/components/form/searchPersonnel.vue",
       "status": "needs-review",
       "props": [
         "selectList"
@@ -406,7 +406,7 @@
       "name": "Tags",
       "importPath": "./form/Tags.vue",
       "source": "expose.js",
-      "path": "src/components/form/Tags.vue",
+      "path": "bigboss-base/src/components/form/Tags.vue",
       "status": "needs-review",
       "props": [
         "tagList"
@@ -416,7 +416,7 @@
       "name": "PdfCard",
       "importPath": "@/components/pdfCard/index.vue",
       "source": "expose.js",
-      "path": "src/components/pdfCard/index.vue",
+      "path": "bigboss-base/src/components/pdfCard/index.vue",
       "status": "needs-review",
       "props": [
         "width",
@@ -428,7 +428,7 @@
       "name": "iconPicker",
       "importPath": "@/components/iconPicker/index.vue",
       "source": "expose.js",
-      "path": "src/components/iconPicker/index.vue",
+      "path": "bigboss-base/src/components/iconPicker/index.vue",
       "status": "needs-review",
       "props": []
     },
@@ -436,7 +436,7 @@
       "name": "RankingTag",
       "importPath": "./form/RankingTag.vue",
       "source": "expose.js",
-      "path": "src/components/form/RankingTag.vue",
+      "path": "bigboss-base/src/components/form/RankingTag.vue",
       "status": "needs-review",
       "props": [
         "imageUrl"
@@ -446,7 +446,7 @@
       "name": "selectDepart",
       "importPath": "./form/selectDepart.vue",
       "source": "expose.js",
-      "path": "src/components/form/selectDepart.vue",
+      "path": "bigboss-base/src/components/form/selectDepart.vue",
       "status": "needs-review",
       "props": [
         "value",
@@ -457,7 +457,7 @@
       "name": "newSelectDepart",
       "importPath": "./form/newSelectDepart.vue",
       "source": "expose.js",
-      "path": "src/components/form/newSelectDepart.vue",
+      "path": "bigboss-base/src/components/form/newSelectDepart.vue",
       "status": "needs-review",
       "props": [
         "depart"
@@ -467,7 +467,7 @@
       "name": "depart",
       "importPath": "./form/depart.vue",
       "source": "expose.js",
-      "path": "src/components/form/depart.vue",
+      "path": "bigboss-base/src/components/form/depart.vue",
       "status": "needs-review",
       "props": [
         "value",
@@ -478,7 +478,7 @@
       "name": "workFlow",
       "importPath": "./workFlow/setting.vue",
       "source": "expose.js",
-      "path": "src/components/workFlow/setting.vue",
+      "path": "bigboss-base/src/components/workFlow/setting.vue",
       "status": "needs-review",
       "props": [
         "modalType"
@@ -488,7 +488,7 @@
       "name": "UTag",
       "importPath": "./form/UTag.vue",
       "source": "expose.js",
-      "path": "src/components/form/UTag.vue",
+      "path": "bigboss-base/src/components/form/UTag.vue",
       "status": "needs-review",
       "props": [
         "label"
@@ -498,7 +498,7 @@
       "name": "DepartmentSelection",
       "importPath": "./form/departmentSelection.vue",
       "source": "expose.js",
-      "path": "src/components/form/departmentSelection.vue",
+      "path": "bigboss-base/src/components/form/departmentSelection.vue",
       "status": "needs-review",
       "props": [
         "showDepart"
@@ -508,7 +508,7 @@
       "name": "Tab",
       "importPath": "./form/Tabs.vue",
       "source": "expose.js",
-      "path": "src/components/form/Tabs.vue",
+      "path": "bigboss-base/src/components/form/Tabs.vue",
       "status": "needs-review",
       "props": [
         "tabs"
@@ -518,7 +518,7 @@
       "name": "PersonalResume",
       "importPath": "./form/personalResume/index.vue",
       "source": "expose.js",
-      "path": "src/components/form/personalResume/index.vue",
+      "path": "bigboss-base/src/components/form/personalResume/index.vue",
       "status": "needs-review",
       "props": []
     },
@@ -526,7 +526,7 @@
       "name": "viewFile",
       "importPath": "./form/viewFile.vue",
       "source": "expose.js",
-      "path": "src/components/form/viewFile.vue",
+      "path": "bigboss-base/src/components/form/viewFile.vue",
       "status": "needs-review",
       "props": []
     },
@@ -534,7 +534,7 @@
       "name": "Roll",
       "importPath": "@/components/bigboss-app/app-infoDrawer/components/table.vue",
       "source": "expose.js",
-      "path": "src/components/bigboss-app/app-infoDrawer/components/table.vue",
+      "path": "bigboss-base/src/components/bigboss-app/app-infoDrawer/components/table.vue",
       "status": "needs-review",
       "props": [
         "tableData"
@@ -544,7 +544,7 @@
       "name": "Excel",
       "importPath": "./excel/index",
       "source": "expose.js",
-      "path": "src/components/excel/index.vue",
+      "path": "bigboss-base/src/components/excel/index.vue",
       "status": "needs-review",
       "props": [
         "templateUrl"
@@ -554,7 +554,7 @@
       "name": "uSwiper",
       "importPath": "./uSwiper/index.vue",
       "source": "expose.js",
-      "path": "src/components/uSwiper/index.vue",
+      "path": "bigboss-base/src/components/uSwiper/index.vue",
       "status": "needs-review",
       "props": []
     },
@@ -562,7 +562,7 @@
       "name": "MenuManage",
       "importPath": "@/module/admin/MenuManage/menuManage.vue",
       "source": "expose.js",
-      "path": "src/module/admin/MenuManage/menuManage.vue",
+      "path": "bigboss-base/src/module/admin/MenuManage/menuManage.vue",
       "status": "needs-review",
       "props": [
         "dev"
@@ -572,7 +572,7 @@
       "name": "currentYearMonth",
       "importPath": "./form/currentYearMonth/index.vue",
       "source": "expose.js",
-      "path": "src/components/form/currentYearMonth/index.vue",
+      "path": "bigboss-base/src/components/form/currentYearMonth/index.vue",
       "status": "needs-review",
       "props": []
     },
@@ -580,7 +580,7 @@
       "name": "selectDepartUser",
       "importPath": "./form/selectDepartUser/index.vue",
       "source": "expose.js",
-      "path": "src/components/form/selectDepartUser/index.vue",
+      "path": "bigboss-base/src/components/form/selectDepartUser/index.vue",
       "status": "needs-review",
       "props": [
         "disabled"
@@ -590,7 +590,7 @@
       "name": "viewWord",
       "importPath": "./form/viewWord/index.vue",
       "source": "expose.js",
-      "path": "src/components/form/viewWord/index.vue",
+      "path": "bigboss-base/src/components/form/viewWord/index.vue",
       "status": "needs-review",
       "props": [
         "attachTitle"
@@ -600,7 +600,7 @@
       "name": "CarouselVue",
       "importPath": "./form/CarouselVue.vue",
       "source": "expose.js",
-      "path": "src/components/form/CarouselVue.vue",
+      "path": "bigboss-base/src/components/form/CarouselVue.vue",
       "status": "needs-review",
       "props": [
         "value"
@@ -610,7 +610,7 @@
       "name": "SearchSelectUser",
       "importPath": "@/components/form/SearchSelectUser",
       "source": "expose.js",
-      "path": "src/components/form/SearchSelectUser.vue",
+      "path": "bigboss-base/src/components/form/SearchSelectUser.vue",
       "status": "needs-review",
       "props": [
         "selectList"
@@ -620,7 +620,7 @@
       "name": "actionTitle",
       "importPath": "@/components/form/actionTitle",
       "source": "expose.js",
-      "path": "src/components/form/actionTitle.vue",
+      "path": "bigboss-base/src/components/form/actionTitle.vue",
       "status": "needs-review",
       "props": []
     },
@@ -628,7 +628,7 @@
       "name": "quarter",
       "importPath": "@/components/form/quarter",
       "source": "expose.js",
-      "path": "src/components/form/quarter.vue",
+      "path": "bigboss-base/src/components/form/quarter.vue",
       "status": "needs-review",
       "props": [
         "quarterValue"
@@ -638,7 +638,7 @@
       "name": "HtmlView",
       "importPath": "@/components/form/HtmlView",
       "source": "expose.js",
-      "path": "src/components/form/HtmlView.vue",
+      "path": "bigboss-base/src/components/form/HtmlView.vue",
       "status": "needs-review",
       "props": [
         "html"
@@ -648,7 +648,7 @@
       "name": "FlowUserRule",
       "importPath": "@/module/open/flow/user_rule/index",
       "source": "expose.js",
-      "path": "src/module/open/flow/user_rule/index.vue",
+      "path": "bigboss-base/src/module/open/flow/user_rule/index.vue",
       "status": "needs-review",
       "props": []
     },
@@ -656,7 +656,7 @@
       "name": "QaDetail",
       "importPath": "@/module/order/work/module/order_qa_detail",
       "source": "expose.js",
-      "path": "src/module/order/work/module/order_qa_detail.vue",
+      "path": "bigboss-base/src/module/order/work/module/order_qa_detail.vue",
       "status": "needs-review",
       "props": []
     },
@@ -664,7 +664,7 @@
       "name": "documentDesc",
       "importPath": "@/module/admin/doc/documentDesc.vue",
       "source": "expose.js",
-      "path": "src/module/admin/doc/documentDesc.vue",
+      "path": "bigboss-base/src/module/admin/doc/documentDesc.vue",
       "status": "needs-review",
       "props": []
     },
@@ -672,17 +672,35 @@
       "name": "HrProfile",
       "importPath": "@/components/hrProfile/index.vue",
       "source": "expose.js",
-      "path": "src/components/hrProfile/index.vue",
+      "path": "bigboss-base/src/components/hrProfile/index.vue",
       "status": "needs-review",
       "props": [
         "userName"
       ]
     },
     {
-      "name": "NoticeOverviewConfig",
+      "name": "NoticeConfig",
       "importPath": "@/components/notice/module/index.vue",
       "source": "expose.js",
-      "path": "src/components/notice/module/index.vue",
+      "path": "bigboss-base/src/components/notice/module/index.vue",
+      "status": "needs-review",
+      "props": []
+    },
+    {
+      "name": "NoticeLayout",
+      "importPath": "@/components/notice/layout/index.vue",
+      "source": "expose.js",
+      "path": "bigboss-base/src/components/notice/layout/index.vue",
+      "status": "needs-review",
+      "props": [
+        "layoutType"
+      ]
+    },
+    {
+      "name": "NoticeDetail",
+      "importPath": "@/components/notice/detail/index.vue",
+      "source": "expose.js",
+      "path": "bigboss-base/src/components/notice/detail/index.vue",
       "status": "needs-review",
       "props": []
     },
@@ -690,7 +708,7 @@
       "name": "Description",
       "importPath": "@/module/admin/systemDescription/index.vue",
       "source": "expose.js",
-      "path": "src/module/admin/systemDescription/index.vue",
+      "path": "bigboss-base/src/module/admin/systemDescription/index.vue",
       "status": "needs-review",
       "props": [
         "isInit"
@@ -700,7 +718,7 @@
       "name": "businessConf",
       "importPath": "./form/businessConfiguration/index.vue",
       "source": "expose.js",
-      "path": "src/components/form/businessConfiguration/index.vue",
+      "path": "bigboss-base/src/components/form/businessConfiguration/index.vue",
       "status": "needs-review",
       "props": [
         "isInit"
@@ -710,7 +728,7 @@
       "name": "MeetingManage",
       "importPath": "@/module/infor-syn/meeting/index.vue",
       "source": "expose.js",
-      "path": "src/module/infor-syn/meeting/index.vue",
+      "path": "bigboss-base/src/module/infor-syn/meeting/index.vue",
       "status": "needs-review",
       "props": []
     }

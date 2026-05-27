@@ -1,10 +1,44 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const root = process.argv[2] || 'D:/ywl/workbench/web/bigboss-base';
+const configPath = path.resolve('.design-agent/config/project.config.json');
+
+function readJson(file) {
+  return fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : {};
+}
+
+const config = readJson(configPath);
+const configuredRoot = config.componentCodebaseRoot;
+const root = process.argv[2] || configuredRoot;
+const repoName = root ? path.basename(path.resolve(root)) : 'bigboss-base';
+
+if (!root) {
+  throw new Error(
+    '未配置基础组件代码库路径。请在 .design-agent/config/project.config.json 中设置 componentCodebaseRoot，或运行脚本时传入路径。'
+  );
+}
+
+if (!fs.existsSync(root)) {
+  throw new Error(
+    `基础组件代码库路径不存在：${root}\n请更新 .design-agent/config/project.config.json 的 componentCodebaseRoot，或运行：node .design-agent/scripts/scan-components.mjs "<你的 bigboss-base 路径>"`
+  );
+}
+
 const componentRoot = path.join(root, 'src/components');
 const exposePath = path.join(componentRoot, 'expose.js');
 const outDir = path.resolve('.repo-design-index/components/generated');
+
+function logicalPath(file) {
+  return path.join(repoName, path.relative(root, file)).replaceAll('\\', '/');
+}
+
+if (!fs.existsSync(componentRoot)) {
+  throw new Error(`未找到组件目录：${componentRoot}`);
+}
+
+if (!fs.existsSync(exposePath)) {
+  throw new Error(`未找到组件导出文件：${exposePath}`);
+}
 
 function read(file) {
   return fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : '';
@@ -85,7 +119,7 @@ const exposed = parseExpose(read(exposePath)).map((item) => {
   const resolved = resolveComponentPath(item);
   return {
     ...item,
-    path: resolved ? path.relative(root, resolved).replaceAll('\\', '/') : null,
+    path: resolved ? logicalPath(resolved) : null,
     status: 'needs-review',
     props: resolved ? extractPropNames(resolved) : []
   };
@@ -93,8 +127,8 @@ const exposed = parseExpose(read(exposePath)).map((item) => {
 
 const summary = {
   scannedAt: new Date().toISOString(),
-  root: root.replaceAll('\\', '/'),
-  componentRoot: componentRoot.replaceAll('\\', '/'),
+  root: repoName,
+  componentRoot: `${repoName}/src/components`,
   totals: {
     files: allFiles.length,
     vueFiles: vueFiles.length,
