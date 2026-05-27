@@ -1,9 +1,18 @@
 {
   "name": "ghdi-design-md-harness",
   "targetStack": "Vue2 + Element UI",
-  "workspaceRoot": "D:/ywl/2026/ghdi-design-md/design2code",
-  "componentCodebaseRoot": "D:/ywl/workbench/web/bigboss-base",
-  "componentRoot": "D:/ywl/workbench/web/bigboss-base/src/components",
+  "workspaceRoot": ".",
+  "componentCodebaseRoot": "",
+  "componentRoot": "",
+  "knownCodebases": {
+    "bigboss-base": "",
+    "bigboss-wedo": ""
+  },
+  "pathPolicy": {
+    "persistedPathFormat": "repo-relative",
+    "externalRepoPathFormat": "<repo-name>/<path-from-repo-root>",
+    "localAbsolutePaths": "runtime-only"
+  },
   "sourceDesignSeeds": [
     "seed/design.md",
     "seed/Component.md",
@@ -26,4 +35,3 @@
     "actionTitle"
   ]
 }
-

@@ -24,15 +24,17 @@ Read these files:
 
 - `SYSTEM_DESIGN.md`
 - `.repo-design-index/style/DESIGN.md`
+- `.repo-design-index/style/STYLE_REGISTRY.json`
 - `.repo-design-index/components/COMPONENT_REGISTRY.json`
 - `.repo-design-index/components/COMPONENT_CARDS.md`
+- `.repo-design-index/patterns/PATTERN_REGISTRY.json`
 - `.repo-design-index/patterns/PAGE_PATTERNS.md`
 - `.repo-design-index/generation/GENERATION_RULES.md`
 - `design-inputs/<page>/design_ir.json`
 
 When component details are unclear, inspect the real source under:
 
-- `D:/ywl/workbench/web/bigboss-base/src/components`
+- `bigboss-base/src/components` 对应的本地组件源码路径
 
 ## Output
 
@@ -62,7 +64,10 @@ The plan must include:
 
 - Do not write page code in this skill.
 - Prefer `baseTableV2` for new table-first pages unless the target module clearly uses legacy `TableBase`.
+- `TableBase` is deprecated for new pages; use it only when maintaining an existing `TableBase` page.
 - Prefer existing form and selection components before adding custom controls.
+- Match page type through `PATTERN_REGISTRY.json` before choosing a layout.
+- Read the matched pattern card before writing the implementation plan.
+- Apply `STYLE_REGISTRY.json` and `DESIGN.md` rules when describing layout, density, color, and interaction states.
 - Mark any new component proposal as a risk.
 - Mention at least one canonical example or source component for every major recommendation.
-

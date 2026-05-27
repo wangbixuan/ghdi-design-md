@@ -25,7 +25,9 @@ Read:
 - `.codex-task/<page>/score.md`
 - `.codex-task/<page>/feedback.md` if present
 - `.repo-design-index/style/DESIGN.md`
+- `.repo-design-index/style/STYLE_REGISTRY.json`
 - `.repo-design-index/components/COMPONENT_CARDS.md`
+- `.repo-design-index/patterns/PATTERN_REGISTRY.json`
 - `.repo-design-index/patterns/PAGE_PATTERNS.md`
 
 ## Output
@@ -49,6 +51,6 @@ Each proposal must include:
 ## Rules
 
 - Do not promote one-off page feedback into a global rule without evidence.
+- Prefer proposing updates to a specific style card or pattern card before changing canonical summaries.
 - Mark conflicts with existing rules clearly.
 - Keep the patch small and reviewable.
-

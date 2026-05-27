@@ -26,6 +26,8 @@ Read:
 - `.codex-task/<page>/implementation-notes.md`
 - `.repo-design-index/generation/REVIEW_RUBRIC.md`
 - `.repo-design-index/components/COMPONENT_REGISTRY.json`
+- `.repo-design-index/style/STYLE_REGISTRY.json`
+- `.repo-design-index/patterns/PATTERN_REGISTRY.json`
 - `.repo-design-index/patterns/PAGE_PATTERNS.md`
 - generated page files
 
@@ -51,6 +53,7 @@ Use the project rubric:
 
 - Findings must cite files or plan sections.
 - Penalize unnecessary custom components when indexed components cover the need.
+- Penalize `TableBase` usage in new pages unless the plan explicitly says this is legacy maintenance.
 - Penalize unknown colors, heavy decorative styling, and marketing-like layouts in enterprise admin pages.
+- Penalize page structure that ignores the matched pattern card.
 - Do not treat aesthetic preference as a primary score unless it maps to a documented rule.
-

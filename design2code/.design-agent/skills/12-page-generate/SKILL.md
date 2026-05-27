@@ -33,7 +33,7 @@ Read:
 
 Then inspect target code examples in:
 
-- `D:/ywl/workbench/web/bigboss-base`
+- `bigboss-base` 对应的本地组件源码路径
 
 ## Output
 
@@ -62,4 +62,3 @@ Implementation notes must list:
 - style rules followed
 - unresolved risks
 - items that should be scored
-
