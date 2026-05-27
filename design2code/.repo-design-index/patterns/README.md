@@ -3,6 +3,8 @@
 这个目录保存两层页面模式记忆：
 
 - `PAGE_PATTERNS.md` 是 Codex 优先读取的简版规划索引。
+- `PATTERN_REGISTRY.json` 是机器可检索的页面模式索引。
+- `cards/` 存放可逐条评审的结构化页面模式卡片。
 - 各个具体页面模式文件保留了 seed 中原始的 Design MD 格式，用于更细的页面重建指导。
 
 ## Seed 迁移映射
@@ -34,3 +36,11 @@ AI Generation Prompt
 ```
 
 更新详细页面模式时，默认继续保留这套结构。除非经过评审的 guideline patch 明确要求调整格式。
+
+## 读取顺序
+
+页面规划时建议按以下顺序读取：
+
+1. `PATTERN_REGISTRY.json`
+2. 命中的 `cards/<pattern>.md`
+3. 对应详细 Design MD，例如 `list-management-page.md`

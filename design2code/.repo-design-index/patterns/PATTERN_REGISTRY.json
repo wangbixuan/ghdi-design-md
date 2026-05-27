@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "source": "patterns/cards/*.md",
+  "patterns": [
+    {
+      "id": "list-management-page",
+      "status": "preferred",
+      "card": ".repo-design-index/patterns/cards/list-management-page.md",
+      "detail": ".repo-design-index/patterns/list-management-page.md",
+      "keywords": ["列表", "表格", "CRUD", "查询", "分页", "管理页"],
+      "recommendedComponents": ["baseTableV2", "File", "SearchSelectUser", "newSelectDepart"],
+      "avoidComponents": ["TableBase"]
+    },
+    {
+      "id": "config-management-page",
+      "status": "allowed",
+      "card": ".repo-design-index/patterns/cards/config-management-page.md",
+      "detail": ".repo-design-index/patterns/config-management-page.md",
+      "keywords": ["配置", "公告", "富文本", "规则", "模板", "编辑"],
+      "recommendedComponents": ["EditorVue", "File", "SearchSelectUser"]
+    },
+    {
+      "id": "dashboard-page",
+      "status": "specialized",
+      "card": ".repo-design-index/patterns/cards/dashboard-page.md",
+      "detail": ".repo-design-index/patterns/dashboard-page.md",
+      "keywords": ["看板", "统计", "概览", "KPI", "图表"],
+      "recommendedComponents": ["chartsLine", "chartsFunnel", "countTo", "UCard"]
+    },
+    {
+      "id": "form-ledger-page",
+      "status": "specialized",
+      "card": ".repo-design-index/patterns/cards/form-ledger-page.md",
+      "detail": ".repo-design-index/patterns/form-ledger-page.md",
+      "keywords": ["审批", "台账", "表单", "工单", "流程"],
+      "recommendedComponents": ["File", "EditorVue", "WorkFlowDetail", "SearchSelectUser"]
+    },
+    {
+      "id": "foundation-controls-page",
+      "status": "reference-only",
+      "card": ".repo-design-index/patterns/cards/foundation-controls-page.md",
+      "detail": ".repo-design-index/patterns/foundation-controls-page.md",
+      "keywords": ["控件", "设计系统", "Element UI", "状态"],
+      "recommendedComponents": []
+    },
+    {
+      "id": "theme-engine-page",
+      "status": "specialized",
+      "card": ".repo-design-index/patterns/cards/theme-engine-page.md",
+      "detail": ".repo-design-index/patterns/theme-engine-page.md",
+      "keywords": ["主题", "菜单颜色", "系统配置", "预览"],
+      "recommendedComponents": ["iconPicker", "SearchSelectUser"]
+    },
+    {
+      "id": "status-page",
+      "status": "allowed",
+      "card": ".repo-design-index/patterns/cards/status-page.md",
+      "detail": ".repo-design-index/patterns/status-page.md",
+      "keywords": ["404", "空状态", "无权限", "错误", "失败"],
+      "recommendedComponents": []
+    }
+  ]
+}

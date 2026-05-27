@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "source": "style/cards/*.md",
+  "design": ".repo-design-index/style/DESIGN.md",
+  "tokens": ".repo-design-index/style/tokens.css",
+  "cards": [
+    {
+      "id": "control-foundation",
+      "card": ".repo-design-index/style/cards/control-foundation.md",
+      "status": "human-reviewed-seed",
+      "keywords": ["Element UI", "控件", "按钮", "输入框", "标签", "分页"],
+      "appliesTo": ["all-pages"],
+      "priority": "required"
+    },
+    {
+      "id": "theme-color-system",
+      "card": ".repo-design-index/style/cards/theme-color-system.md",
+      "status": "human-reviewed-seed",
+      "keywords": ["主题色", "var(--theme-color)", "var(--line-color)", "菜单颜色"],
+      "appliesTo": ["all-pages"],
+      "priority": "required"
+    },
+    {
+      "id": "table-list-visual-style",
+      "card": ".repo-design-index/style/cards/table-list-visual-style.md",
+      "status": "human-reviewed-seed",
+      "keywords": ["表格", "列表", "baseTableV2", "操作列", "分页"],
+      "appliesTo": ["list-management-page"],
+      "priority": "required"
+    },
+    {
+      "id": "dialog-form-style",
+      "card": ".repo-design-index/style/cards/dialog-form-style.md",
+      "status": "human-reviewed-seed",
+      "keywords": ["弹窗", "抽屉", "表单", "编辑", "详情"],
+      "appliesTo": ["list-management-page", "config-management-page"],
+      "priority": "recommended"
+    },
+    {
+      "id": "density-and-layout",
+      "card": ".repo-design-index/style/cards/density-and-layout.md",
+      "status": "human-reviewed-seed",
+      "keywords": ["信息密度", "布局", "后台", "扫描", "操作效率"],
+      "appliesTo": ["all-pages"],
+      "priority": "required"
+    }
+  ],
+  "antiPatterns": [
+    "CRUD 页面营销化",
+    "用装饰卡片网格替代表格",
+    "硬编码主题色",
+    "为单页污染全局样式",
+    "新页面使用 TableBase"
+  ]
+}
