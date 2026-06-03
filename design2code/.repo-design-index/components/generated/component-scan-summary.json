@@ -1,11 +1,11 @@
 {
-  "scannedAt": "2026-05-27T09:09:52.878Z",
+  "scannedAt": "2026-05-29T07:30:24.592Z",
   "root": "bigboss-base",
   "componentRoot": "bigboss-base/src/components",
   "totals": {
     "files": 387,
     "vueFiles": 234,
-    "exposedComponents": 62
+    "exposedComponents": 63
   },
   "topLevelDirectories": [
     {
@@ -685,6 +685,16 @@
       "path": "bigboss-base/src/components/notice/module/index.vue",
       "status": "needs-review",
       "props": []
+    },
+    {
+      "name": "NoticeAddNew",
+      "importPath": "@/components/notice/module/noticeManage/addNew.vue",
+      "source": "expose.js",
+      "path": "bigboss-base/src/components/notice/module/noticeManage/addNew.vue",
+      "status": "needs-review",
+      "props": [
+        "editId"
+      ]
     },
     {
       "name": "NoticeLayout",

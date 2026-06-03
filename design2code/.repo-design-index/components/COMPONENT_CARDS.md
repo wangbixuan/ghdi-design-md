@@ -4,10 +4,10 @@
 
 ## 总览
 
-- 组件数：63
+- 组件数：64
 - `preferred`：5
 - `allowed`：40
-- `specialized`：17
+- `specialized`：18
 - `legacy`：1
 - `internal`：0
 
@@ -896,6 +896,39 @@ Generation notes:
 - 只有当需求与“适合新页面中的部门选择”明确匹配时，才优先使用该组件。
 - 选择人员或部门人员混选时看 selectDepartUser。
 - 组件名、props 和事件应保持源码写法，不要在生成代码时擅自改名。
+
+## NoticeAddNew
+
+Path: `bigboss-base/src/components/notice/module/noticeManage/addNew.vue`
+
+Status: `specialized`
+
+Review: `codex-drafted`
+
+Card: [NoticeAddNew](./cards/NoticeAddNew.md)
+
+Use when:
+
+- 通知公告模块中创建新的公告实例。
+- 编辑草稿、待发布、已取消或审批退回/撤销后的公告实例。
+- 查看需要展示审批流的公告实例详情。
+- 需要基于通知模板变量进行实例填值，并支持主公告内容、抄送内容、附件、封面图片和预览。
+- 需要走 `WorkFlowDetail` 发起审批发布或重新申请的通知公告发布场景。
+
+Do not use when:
+
+- 不要作为普通新增/编辑表单模板复用；它强绑定通知公告接口、模板变量模型、发文规则和发布状态。
+- 不要用于通用富文本编辑场景；通用富文本优先看 `EditorVue`，通知模板/变量编辑需看通知模块内部的 `TemplateEditor`。
+- 不要用于普通附件上传；附件场景优先使用 `File`。
+- 不要在普通 CRUD 页面中直接嵌入这个页面级组件，除非目标页面就是通知公告实例表单。
+
+Generation notes:
+
+- 生成通知公告管理功能时，列表页优先使用 NoticeConfig 或通知模块现有 noticeManage/index.vue 模式；表单页才考虑 NoticeAddNew。
+- 进入新增、编辑、查看应优先通过 /notice/manage/form 路由和 query 参数控制，不建议在普通页面局部直接嵌入。
+- noticeMode=view 时组件会只读展示，并隐藏保存、审批发布、重新申请等编辑动作。
+- 该组件内部依赖通知模板、发文规则、预览、附件上传和审批流接口；迁移到非通知模块前必须确认这些接口和路由上下文存在。
+- 若只是需要人员选择、附件上传、审批流、富文本等单项能力，应使用对应基础组件，而不是复用整个 NoticeAddNew 页面。
 
 ## NoticeConfig
 

@@ -82,3 +82,29 @@
   - `.repo-design-index/components/COMPONENT_CARDS.md`
   - `.repo-design-index/components/generated/component-card-list.json`
 
+## 2026-05-29T07:30:24.858Z registry build
+
+- cards: 64
+- preferred: 5
+- allowed: 41
+- specialized: 17
+- legacy: 1
+- internal: 0
+- outputs:
+  - `.repo-design-index/components/COMPONENT_REGISTRY.json`
+  - `.repo-design-index/components/COMPONENT_CARDS.md`
+  - `.repo-design-index/components/generated/component-card-list.json`
+
+## 2026-05-29T07:32:41.345Z registry build
+
+- cards: 64
+- preferred: 5
+- allowed: 40
+- specialized: 18
+- legacy: 1
+- internal: 0
+- outputs:
+  - `.repo-design-index/components/COMPONENT_REGISTRY.json`
+  - `.repo-design-index/components/COMPONENT_CARDS.md`
+  - `.repo-design-index/components/generated/component-card-list.json`
+

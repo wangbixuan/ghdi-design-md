@@ -11,6 +11,7 @@ generated/component-scan-summary.json -> machine facts
 components/cards/<ComponentName>.md -> LLM-generated and human-reviewed component descriptions
 COMPONENT_REGISTRY.json -> machine-readable lookup index
 COMPONENT_CARDS.md -> compact reading index for Codex
+COMPONENT_CONFIG_REQUIREMENTS.md -> component configs that must be confirmed before generation
 source code -> exact details when needed
 ```
 
@@ -65,6 +66,8 @@ Avoid flattening every leaf component. Group dense subtrees such as `mvpFlow/ico
 3. Let Codex enrich `.repo-design-index/components/cards/<ComponentName>.md`.
 4. Let humans review or revise component cards.
 5. Run `ghdi-component-registry-build` to update `COMPONENT_REGISTRY.json` and `COMPONENT_CARDS.md`.
+
+Before generating a page, read `COMPONENT_CONFIG_REQUIREMENTS.md` when the plan uses upload, workflow, table configuration, notice, Excel import, or system configuration components. These components often require business codes or existing platform configuration and should not be filled with invented values.
 
 ## Human Review Required
 

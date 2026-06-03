@@ -2,11 +2,11 @@
   "name": "ghdi-design-md-harness",
   "targetStack": "Vue2 + Element UI",
   "workspaceRoot": ".",
-  "componentCodebaseRoot": "",
-  "componentRoot": "",
+  "componentCodebaseRoot": "c:\\ghdi\\bigboss-base",
+  "componentRoot": "c:\\ghdi\\bigboss-base\\src\\components",
   "knownCodebases": {
-    "bigboss-base": "",
-    "bigboss-wedo": ""
+    "bigboss-base": "c:\\ghdi\\bigboss-base",
+    "bigboss-wedo": "c:\\ghdi\\bigboss-wedo"
   },
   "pathPolicy": {
     "persistedPathFormat": "repo-relative",

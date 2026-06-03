@@ -63,8 +63,8 @@
 | `documentDesc` | `bigboss-base/src/module/admin/doc/documentDesc.vue` | `needs-description` | [documentDesc](./documentDesc.md) |
 | `HrProfile` | `bigboss-base/src/components/hrProfile/index.vue` | `needs-description` | [HrProfile](./HrProfile.md) |
 | `NoticeConfig` | `bigboss-base/src/components/notice/module/index.vue` | `notice-business` | [NoticeConfig](./NoticeConfig.md) |
+| `NoticeAddNew` | `bigboss-base/src/components/notice/module/noticeManage/addNew.vue` | `notice-business` | [NoticeAddNew](./NoticeAddNew.md) |
 | `NoticeLayout` | `bigboss-base/src/components/notice/layout/index.vue` | `notice-business` | [NoticeLayout](./NoticeLayout.md) |
-| `NoticeSubscribe` | `bigboss-base/src/components/notice/subscribe/index.vue` | `notice-business` | [NoticeSubscribe](./NoticeSubscribe.md) |
 | `NoticeDetail` | `bigboss-base/src/components/notice/detail/index.vue` | `notice-business` | [NoticeDetail](./NoticeDetail.md) |
 | `Description` | `bigboss-base/src/module/admin/systemDescription/index.vue` | `needs-description` | [Description](./Description.md) |
 | `businessConf` | `bigboss-base/src/components/form/businessConfiguration/index.vue` | `form-control` | [businessConf](./businessConf.md) |

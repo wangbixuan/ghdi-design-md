@@ -249,6 +249,14 @@
       "recommendation": "preferred"
     },
     {
+      "name": "NoticeAddNew",
+      "cardPath": ".repo-design-index/components/cards/NoticeAddNew.md",
+      "sourcePath": "bigboss-base/src/components/notice/module/noticeManage/addNew.vue",
+      "category": "notice",
+      "status": "codex-drafted",
+      "recommendation": "allowed"
+    },
+    {
       "name": "NoticeConfig",
       "cardPath": ".repo-design-index/components/cards/NoticeConfig.md",
       "sourcePath": "bigboss-base/src/components/notice/module/index.vue",

@@ -1,0 +1,139 @@
+{
+  "source": {
+    "type": "user-intent",
+    "intentPath": "design-inputs/personnel-dashboard/intent.md",
+    "targetFile": "bigboss-wedo/src/module/main/depart/personnelManagement/index.vue",
+    "existingApiFile": "bigboss-wedo/src/module/main/depart/personnelManagement/api.js"
+  },
+  "pageName": "人员情况",
+  "pageIntent": {
+    "pageType": "dashboard-page",
+    "businessObject": "人员情况与人员构成",
+    "targetUsers": [
+      "部门管理人员",
+      "人力资源管理人员",
+      "经营管理人员"
+    ],
+    "goal": "用看板方式快速查看人员规模、在岗状态、异动名单和人员结构分布。"
+  },
+  "regions": [
+    {
+      "name": "页面上下文",
+      "intent": "page-context",
+      "content": [
+        "页面标题：人员情况",
+        "统计说明：展示员工花名册、入离职、在岗、请假、出差、设计代表和人员构成。"
+      ]
+    },
+    {
+      "name": "核心指标区",
+      "intent": "kpi-summary",
+      "metrics": [
+        "员工总数",
+        "在岗",
+        "请假",
+        "出差",
+        "设计代表"
+      ]
+    },
+    {
+      "name": "人员数据区",
+      "intent": "task-list-panels",
+      "panels": [
+        "员工花名册摘要",
+        "入职名单",
+        "离职名单"
+      ]
+    },
+    {
+      "name": "人员构成区",
+      "intent": "chart-panels",
+      "charts": [
+        "年龄构成",
+        "职称构成",
+        "岗位构成",
+        "性别构成",
+        "司龄构成",
+        "学历构成"
+      ]
+    },
+    {
+      "name": "部门人数分布",
+      "intent": "wide-structure-chart",
+      "charts": [
+        "部门人数统计"
+      ]
+    }
+  ],
+  "fields": {
+    "metrics": [
+      { "key": "total", "label": "员工总数" },
+      { "key": "onDuty", "label": "在岗" },
+      { "key": "leave", "label": "请假" },
+      { "key": "businessTrip", "label": "出差" },
+      { "key": "designRepresentative", "label": "设计代表" }
+    ],
+    "rosterColumns": [
+      "姓名",
+      "部门",
+      "岗位",
+      "职称",
+      "状态"
+    ],
+    "entryExitColumns": [
+      "姓名",
+      "部门",
+      "日期",
+      "类型"
+    ],
+    "chartDimensions": [
+      "age",
+      "title",
+      "post",
+      "gender",
+      "tenure",
+      "education"
+    ]
+  },
+  "actions": [
+    {
+      "name": "刷新",
+      "type": "reload-dashboard",
+      "description": "重新加载人数统计和部门人数统计。"
+    },
+    {
+      "name": "查看花名册",
+      "type": "future-navigation",
+      "description": "后续可跳转到员工花名册明细页。"
+    }
+  ],
+  "visualHints": {
+    "density": "compact-enterprise",
+    "layout": "dashboard-two-column",
+    "theme": "use var(--theme-color) and var(--line-color)",
+    "components": [
+      "chartsLine",
+      "chartsFunnel",
+      "countTo"
+    ]
+  },
+  "knownApis": [
+    {
+      "name": "headcount",
+      "path": "bigboss-wedo/src/module/main/depart/personnelManagement/api.js",
+      "purpose": "人数统计"
+    },
+    {
+      "name": "deptEmpNum",
+      "path": "bigboss-wedo/src/module/main/depart/personnelManagement/api.js",
+      "purpose": "部门人数统计"
+    }
+  ],
+  "unknowns": [
+    "员工花名册接口和字段未提供。",
+    "入职离职名单接口和字段未提供。",
+    "在岗、请假、出差、设计代表统计口径未提供。",
+    "年龄、职称、岗位、性别、司龄、学历构成接口未提供。",
+    "点击查看花名册、入职名单、离职名单的目标路由未提供。"
+  ]
+}
